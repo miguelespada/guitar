@@ -1,3 +1,2 @@
 ofxOsc
 ofxJSON
-ofxMidi

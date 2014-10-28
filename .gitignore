@@ -1,3 +1,8 @@
 bin/*.app
 Makefile
 .DS_Store
+heinneken.cbp
+heinneken.workspace
+bin/heinneken_debug
+bin/libs
+obj

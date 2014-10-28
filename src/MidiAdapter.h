@@ -10,10 +10,10 @@
 #define __heinneken__MidiAdapter__
 
 #include "ofMain.h"
-#include "ofxMidi.h"
+//#include "ofxMidi.h"
 
 class MidiAdapter{
-    ofxMidiOut midiOut;
+  //  ofxMidiOut midiOut;
     int channel = 6;
 public:
     MidiAdapter();
