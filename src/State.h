@@ -1,0 +1,106 @@
+//
+//  State.h
+//  Game
+//
+//  Created by miguel on 12/10/14.
+//
+//
+
+#ifndef __game__State__
+#define __game__State__
+
+#include "ofMain.h"
+#include "GameLogic.h"
+
+//========================================================================
+
+class Game;
+
+class State
+{
+public:
+    Game *game;
+    virtual void push() =0;
+    
+    virtual void jump() {};
+    virtual std::string toString() {}
+    virtual void draw() {}
+    virtual void notify(Action *action) {}
+    
+};
+
+//========================================================================
+
+class IDLE: public State
+{
+public:
+    
+    IDLE(Game *g);
+    ~IDLE(){};
+    
+    void push();
+    
+    std::string toString() {
+        return "Idle";
+    }
+    void draw();
+};
+
+//========================================================================
+
+class STARTING: public State
+{
+public:
+    STARTING(Game *c);
+    ~STARTING(){};
+    
+    void push();
+    void jump();
+    
+    std::string toString() {
+        return "Starting";
+    }
+    void draw();
+};
+
+//========================================================================
+
+class RUNNING: public State
+{
+    GameLogic *gameLogic;
+    
+public:
+    RUNNING(Game *g);
+    ~RUNNING();
+    
+    void push();
+    
+    std::string toString() {
+        return "Running";
+    }
+    void draw();
+    
+    void notify(Action *action);
+
+};
+
+//========================================================================
+
+class WINNER: public State
+{
+public:
+    WINNER(Game *g);
+    ~WINNER(){};
+    
+    float timer;
+    void push();
+    
+    std::string toString() {
+        return "Winner";
+    }
+    void draw();
+};
+
+#endif 
+
+//========================================================================
