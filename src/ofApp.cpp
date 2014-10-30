@@ -34,7 +34,8 @@ void ofApp::setup(){
     game.setAssetsFacade(&assetsFacade);
     game.setCurrent(new IDLE(&game));
     
-    midi.open("IAC Driver Bus 1");
+    midi.open("Network", "Network");
+    midi.registerObserver(&game);
 }
 
 //--------------------------------------------------------------
@@ -52,6 +53,12 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    if(key >= '0' && key <= '9'){
+        midi.sendNoteOn(song);
+        song = key - '0';
+        midi.sendNoteOn(126);
+        midi.sendNoteOn(song);
+    }
     
     switch (key) {
         case 'f':
@@ -69,14 +76,14 @@ void ofApp::keyPressed(int key){
         case 'C':
             ofShowCursor();
             break;
-        case '1':
+        case 'z':
             oscSimulator.playerOn(1);
             break;
-        case '2':
+        case 'x':
             oscSimulator.playerOff(1);
             break;
-        case 'n':
-            midi.sendNoteOn(0);
+        case 's':
+            midi.sendNoteOn(127);
             break;
         default:
             break;
@@ -86,13 +93,6 @@ void ofApp::keyPressed(int key){
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     
-    switch (key) {
-        case 'n':
-            midi.sendNoteOff(0);
-            break;
-        default:
-            break;
-    }
 }
 
 

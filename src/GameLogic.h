@@ -23,5 +23,7 @@ public:
     void notify(Action *action);
     void playerOn(int value);
     void playerOff(int value);
+    void beat();
+    bool bTempo;
 };
 #endif /* defined(__heinneken__GameLogic__) */

@@ -15,9 +15,7 @@ Game::Game(){
 
 void Game::notify(Action *action){
     // Chain of command
-    current->notify(action);
-    
-    // Then run de action
+    current->notify(action);    
     run(action);
 }
 

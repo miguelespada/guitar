@@ -12,6 +12,7 @@
 GameLogic::GameLogic(){
     commands.push_back(new PlayerOn("/player_on"));
     commands.push_back(new PlayerOff("/player_off"));
+    commands.push_back(new Beat("/beat"));
 };
 
 GameLogic::~GameLogic(){
@@ -24,12 +25,20 @@ void GameLogic::notify(Action *action){
     run(action);
 };
 
-void GameLogic::draw(){};
-
+void GameLogic::draw(){
+    if(bTempo){
+        ofRect(100,  100, 50, 50);
+        bTempo = false;
+    }
+};
 void GameLogic::playerOn(int value){
     cout << "Player on: "  << value << endl;
 }
 
 void GameLogic::playerOff(int value){
     cout << "Player off: "  << value << endl;
+}
+
+void GameLogic::beat(){
+    bTempo = true;
 }

@@ -28,3 +28,14 @@ void PlayerOff::run(Action *_action, Commandable *g){
     if(_action->getAction() == action)
         ((GameLogic *)g)->playerOff(_action->getArgAsInt(0));
 }
+
+
+Beat::Beat(string actionName){
+    action = actionName;
+    cout << toString("beat") << endl;
+}
+
+void Beat::run(Action *_action, Commandable *g){
+    if(_action->getAction() == action)
+        ((GameLogic *)g)->beat();
+}

@@ -27,4 +27,11 @@ public:
 };
 
 
+class Beat: public Command{
+public:
+    Beat(string actionName);
+    void run(Action *_action, Commandable *g);
+};
+
+
 #endif /* defined(__heinneken__GameLogicCommand__) */

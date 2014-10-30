@@ -30,6 +30,7 @@ public:
     OscAdapter oscAdapter;
     OscSimulator oscSimulator;
     MidiAdapter midi;
+    int song = 0;
 };
 
 
