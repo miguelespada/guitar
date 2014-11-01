@@ -4,7 +4,7 @@ Makefile
 heinneken.cbp
 heinneken.workspace
 bin/heinneken_debug
-Project.xconfig
+Project.xcconfig
 heinneken.xcodeproj
 bin/libs
 obj
