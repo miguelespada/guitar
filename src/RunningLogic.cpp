@@ -8,3 +8,33 @@
 
 #include "RunningLogic.h"
 
+RunningLogic::RunningLogic(RunningModel* model)
+{
+    running_model = model;
+}
+RunningLogic::~RunningLogic()
+{
+    //dtor
+}
+
+RunningModel* RunningLogic::getRunningModel(){
+    return running_model;
+}
+
+void RunningLogic::playerOn(int player){
+}
+
+void RunningLogic::playerOff(int player){
+}
+
+void RunningLogic::updateBlocks(){
+}
+
+void RunningLogic::generateBlocks(){
+    
+}
+
+bool RunningLogic::isPaintable(int player, int pieces){
+}
+
+

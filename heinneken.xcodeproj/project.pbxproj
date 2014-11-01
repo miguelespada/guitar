@@ -16,6 +16,9 @@
 		49C545121A04E4D50038882A /* RunningModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545101A04E4D50038882A /* RunningModel.cpp */; };
 		49C545151A04E5040038882A /* RunningLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545131A04E5040038882A /* RunningLogic.cpp */; };
 		49C545181A04E5160038882A /* RunningDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545161A04E5160038882A /* RunningDraw.cpp */; };
+		49C5451F1A04E8650038882A /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C5451D1A04E8650038882A /* Player.cpp */; };
+		49C545221A04E86D0038882A /* Team.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545201A04E86D0038882A /* Team.cpp */; };
+		49C545251A04E98A0038882A /* GameBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545231A04E98A0038882A /* GameBlock.cpp */; };
 		49CE12101A027CD70049A62B /* Assets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE11EF1A027CD70049A62B /* Assets.cpp */; };
 		49CE12111A027CD70049A62B /* AssetsFacade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE11F11A027CD70049A62B /* AssetsFacade.cpp */; };
 		49CE12121A027CD70049A62B /* Commad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE11F31A027CD70049A62B /* Commad.cpp */; };
@@ -132,6 +135,12 @@
 		49C545141A04E5040038882A /* RunningLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningLogic.h; sourceTree = "<group>"; };
 		49C545161A04E5160038882A /* RunningDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunningDraw.cpp; sourceTree = "<group>"; };
 		49C545171A04E5160038882A /* RunningDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningDraw.h; sourceTree = "<group>"; };
+		49C5451D1A04E8650038882A /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		49C5451E1A04E8650038882A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		49C545201A04E86D0038882A /* Team.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Team.cpp; sourceTree = "<group>"; };
+		49C545211A04E86D0038882A /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		49C545231A04E98A0038882A /* GameBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameBlock.cpp; sourceTree = "<group>"; };
+		49C545241A04E98A0038882A /* GameBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBlock.h; sourceTree = "<group>"; };
 		49CE11EE1A027CD70049A62B /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		49CE11EF1A027CD70049A62B /* Assets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assets.cpp; sourceTree = "<group>"; };
 		49CE11F01A027CD70049A62B /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
@@ -315,6 +324,25 @@
 				86D2677079A3AF4A5A88E29A /* oscpack */,
 			);
 			name = libs;
+			sourceTree = "<group>";
+		};
+		49C545191A04E8440038882A /* Running */ = {
+			isa = PBXGroup;
+			children = (
+				49C545131A04E5040038882A /* RunningLogic.cpp */,
+				49C545141A04E5040038882A /* RunningLogic.h */,
+				49C545101A04E4D50038882A /* RunningModel.cpp */,
+				49C545111A04E4D50038882A /* RunningModel.h */,
+				49C545161A04E5160038882A /* RunningDraw.cpp */,
+				49C545171A04E5160038882A /* RunningDraw.h */,
+				49C5451D1A04E8650038882A /* Player.cpp */,
+				49C5451E1A04E8650038882A /* Player.h */,
+				49C545201A04E86D0038882A /* Team.cpp */,
+				49C545211A04E86D0038882A /* Team.h */,
+				49C545231A04E98A0038882A /* GameBlock.cpp */,
+				49C545241A04E98A0038882A /* GameBlock.h */,
+			);
+			name = Running;
 			sourceTree = "<group>";
 		};
 		58AD3BD71B781D9BC25763C8 /* json */ = {
@@ -547,12 +575,7 @@
 				49CE11F81A027CD70049A62B /* Game.h */,
 				49CE11F91A027CD70049A62B /* GameLogic.cpp */,
 				49CE11FA1A027CD70049A62B /* GameLogic.h */,
-				49C545131A04E5040038882A /* RunningLogic.cpp */,
-				49C545141A04E5040038882A /* RunningLogic.h */,
-				49C545101A04E4D50038882A /* RunningModel.cpp */,
-				49C545111A04E4D50038882A /* RunningModel.h */,
-				49C545161A04E5160038882A /* RunningDraw.cpp */,
-				49C545171A04E5160038882A /* RunningDraw.h */,
+				49C545191A04E8440038882A /* Running */,
 				49CE11FC1A027CD70049A62B /* GameLogicCommand.h */,
 				49CE11FB1A027CD70049A62B /* GameLogicCommand.cpp */,
 				49CE11FD1A027CD70049A62B /* main.cpp */,
@@ -729,11 +752,13 @@
 				49CE121B1A027CD70049A62B /* ofApp.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
 				49CE121C1A027CD70049A62B /* OscAction.cpp in Sources */,
+				49C545221A04E86D0038882A /* Team.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				49CE121F1A027CD70049A62B /* Settings.cpp in Sources */,
 				49CE12131A027CD70049A62B /* Command.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
 				BEDFEE7400C58EA4E412B757 /* ofxJSONElement.cpp in Sources */,
+				49C5451F1A04E8650038882A /* Player.cpp in Sources */,
 				49CE12321A0280AE0049A62B /* ofxEasingElastic.cpp in Sources */,
 				FB84AAF8D1B7A95266DB5C09 /* jsoncpp.cpp in Sources */,
 				49CE12141A027CD70049A62B /* Game.cpp in Sources */,
@@ -751,6 +776,7 @@
 				49CE12201A027CD70049A62B /* State.cpp in Sources */,
 				49CE12171A027CD70049A62B /* main.cpp in Sources */,
 				49C545121A04E4D50038882A /* RunningModel.cpp in Sources */,
+				49C545251A04E98A0038882A /* GameBlock.cpp in Sources */,
 				63D0FD8734D5760B8080C901 /* RtMidi.cpp in Sources */,
 				49C545181A04E5160038882A /* RunningDraw.cpp in Sources */,
 			);
