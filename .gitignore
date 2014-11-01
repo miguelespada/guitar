@@ -3,6 +3,8 @@ Makefile
 .DS_Store
 heinneken.cbp
 heinneken.workspace
+heinneken.layout
+heinneken.workspace.layout
 bin/heinneken_debug
 bin/libs
 obj
