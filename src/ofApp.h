@@ -5,7 +5,7 @@
 #include "Assets.h"
 #include "AssetsFacade.h"
 #include "OscAdapter.h"
-#include "OscSimulator.h"
+#include "Simulator.h"
 #include "MidiAdapter.h"
 
 class ofApp : public ofBaseApp{
@@ -26,7 +26,7 @@ public:
     Assets assets;
     AssetsFacade assetsFacade;
     OscAdapter oscAdapter;
-    OscSimulator oscSimulator;
+    Simulator simulator;
     MidiAdapter midi;
     int song = 0;
 };

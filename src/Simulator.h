@@ -12,15 +12,16 @@
 #include <stdio.h>
 #include "ofxOsc.h"
 
-class OscSimulator{
+class Simulator{
     ofxOscSender sender;
     
 public:
-    OscSimulator();
+    Simulator();
     
     void key_down();
     void playerOn(int player);
     void playerOff(int player);
+    void sendMidiBeat();
 };
 
 

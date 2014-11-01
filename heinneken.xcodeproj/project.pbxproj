@@ -35,7 +35,7 @@
 		49CE121F1A027CD70049A62B /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE120C1A027CD70049A62B /* Settings.cpp */; };
 		49CE12201A027CD70049A62B /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE120E1A027CD70049A62B /* State.cpp */; };
 		49CE12291A0280070049A62B /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65EEFA3DA3526E9CDD9C21F9 /* ofxOscBundle.cpp */; };
-		49CE122A1A0280610049A62B /* OscSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE120A1A027CD70049A62B /* OscSimulator.cpp */; };
+		49CE122A1A0280610049A62B /* Simulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE120A1A027CD70049A62B /* Simulator.cpp */; };
 		49CE122B1A02806D0049A62B /* MidiAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE12001A027CD70049A62B /* MidiAdapter.cpp */; };
 		49CE122F1A0280A20049A62B /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE122D1A0280A20049A62B /* ofxTween.cpp */; };
 		49CE12321A0280AE0049A62B /* ofxEasingElastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE12301A0280AE0049A62B /* ofxEasingElastic.cpp */; };
@@ -169,8 +169,8 @@
 		49CE12071A027CD70049A62B /* OscAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscAction.h; sourceTree = "<group>"; };
 		49CE12081A027CD70049A62B /* OscAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscAdapter.cpp; sourceTree = "<group>"; };
 		49CE12091A027CD70049A62B /* OscAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscAdapter.h; sourceTree = "<group>"; };
-		49CE120A1A027CD70049A62B /* OscSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscSimulator.cpp; sourceTree = "<group>"; };
-		49CE120B1A027CD70049A62B /* OscSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscSimulator.h; sourceTree = "<group>"; };
+		49CE120A1A027CD70049A62B /* Simulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Simulator.cpp; sourceTree = "<group>"; };
+		49CE120B1A027CD70049A62B /* Simulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simulator.h; sourceTree = "<group>"; };
 		49CE120C1A027CD70049A62B /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
 		49CE120D1A027CD70049A62B /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		49CE120E1A027CD70049A62B /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State.cpp; sourceTree = "<group>"; };
@@ -591,8 +591,8 @@
 				49CE12071A027CD70049A62B /* OscAction.h */,
 				49CE12081A027CD70049A62B /* OscAdapter.cpp */,
 				49CE12091A027CD70049A62B /* OscAdapter.h */,
-				49CE120A1A027CD70049A62B /* OscSimulator.cpp */,
-				49CE120B1A027CD70049A62B /* OscSimulator.h */,
+				49CE120A1A027CD70049A62B /* Simulator.cpp */,
+				49CE120B1A027CD70049A62B /* Simulator.h */,
 				49CE120C1A027CD70049A62B /* Settings.cpp */,
 				49CE120D1A027CD70049A62B /* Settings.h */,
 				49CE120E1A027CD70049A62B /* State.cpp */,
@@ -730,7 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49CE122B1A02806D0049A62B /* MidiAdapter.cpp in Sources */,
-				49CE122A1A0280610049A62B /* OscSimulator.cpp in Sources */,
+				49CE122A1A0280610049A62B /* Simulator.cpp in Sources */,
 				49CE12291A0280070049A62B /* ofxOscBundle.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,

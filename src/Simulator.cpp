@@ -6,28 +6,35 @@
 //
 //
 
-#include "OscSimulator.h"
+#include "Simulator.h"
 
-OscSimulator::OscSimulator(){
+Simulator::Simulator(){
     sender.setup("127.0.0.1", 8080);
 }
 
-void OscSimulator::key_down(){
+void Simulator::key_down(){
     ofxOscMessage m;
     m.setAddress("/key_down");
     sender.sendMessage(m);
 }
 
-void OscSimulator::playerOn(int player){
+void Simulator::playerOn(int player){
     ofxOscMessage m;
     m.setAddress("/player_on");
     m.addIntArg(player);
     sender.sendMessage(m);
 }
 
-void OscSimulator::playerOff(int player){
+void Simulator::playerOff(int player){
     ofxOscMessage m;
     m.setAddress("/player_off");
     m.addIntArg(player);
+    sender.sendMessage(m);
+}
+
+void Simulator::sendMidiBeat(){
+    ofxOscMessage m;
+    m.setAddress("/beat");
+    m.addIntArg(0);
     sender.sendMessage(m);
 }

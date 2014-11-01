@@ -42,6 +42,9 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     oscAdapter.update();
+    
+    if(ofGetFrameNum() % 30 == 0)
+        simulator.sendMidiBeat();
 }
 
 //--------------------------------------------------------------
@@ -50,23 +53,21 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
-
-
-//--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if(key >= '0' && key <= '9'){
-        midi.sendNoteOn(song);
-        song = key - '0';
-        midi.sendNoteOn(126);
-        midi.sendNoteOn(song);
-    }
     
     switch (key) {
+            
+        case '0' ... '9':
+            midi.sendNoteOn(song);
+            song = key - '0';
+            midi.sendNoteOn(126);
+            midi.sendNoteOn(song);
+            break;
         case 'f':
             ofToggleFullscreen();
             break;
         case ' ':
-            oscSimulator.key_down();
+            simulator.key_down();
             break;
         case 'j':
             game.jump();
@@ -77,23 +78,42 @@ void ofApp::keyPressed(int key){
         case 'C':
             ofShowCursor();
             break;
-        case 'z':
-            oscSimulator.playerOn(1);
+            
+        case 'q':
+            simulator.playerOn(1);
             break;
-        case 'x':
-            oscSimulator.playerOff(1);
+        case 'w':
+            simulator.playerOn(2);
             break;
-        case 's':
-            midi.sendNoteOn(127);
+        case 'e':
+            simulator.playerOn(3);
+            break;
+        case 'r':
+            simulator.playerOn(4);
             break;
         default:
             break;
     }
 }
 
-//--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     
+    switch (key) {
+        case 'q':
+            simulator.playerOff(1);
+            break;
+        case 'w':
+            simulator.playerOff(2);
+            break;
+        case 'e':
+            simulator.playerOff(3);
+            break;
+        case 'r':
+            simulator.playerOff(4);
+            break;
+        default:
+            break;
+    }
 }
 
 
