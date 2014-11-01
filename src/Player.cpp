@@ -34,6 +34,13 @@ Team* Player::getTeam(){
     return team;
 }
 
+void Player::setOn(){
+    bDown = true;
+}
+
+void Player::setOff(){
+    bDown = false;
+}
 
 void Player::draw(){
     ofPushStyle();

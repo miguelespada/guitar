@@ -25,13 +25,16 @@ public:
     int getId();
     Team* getTeam();
     void draw();
-    bool bDown = false;
+    void setOn();
+    void setOff();
     
 protected:
 private:
     int id;
     Team* team;
     std::vector<GameBlock*> blocks;
+    bool bDown = false;
+    
     
     void drawBlocks();
     void drawBackground();

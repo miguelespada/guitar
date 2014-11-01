@@ -37,6 +37,10 @@ int Team::getId(){
     return id;
 }
 
+Player *Team::getPlayer(int id){
+    return players.at(id);
+}
+
 void Team::draw(){
     std::vector<Player*>::const_iterator p;
     ofTranslate(0, Settings::getInstance()->getPlayerMargin());

@@ -20,6 +20,7 @@ public:
     RunningModel();
     virtual ~RunningModel();
     std::vector<Team*> getTeams();
+    Player *getPlayer(int team, int id);
     
 protected:
 private:

@@ -20,6 +20,7 @@ public:
     virtual ~Team();
     int getId();
     void draw();
+    Player *getPlayer(int id);
     
 protected:
 private:

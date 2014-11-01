@@ -24,12 +24,15 @@ RunningModel* RunningLogic::getRunningModel(){
 void RunningLogic::playerOn(int player){
     int team = player / 2;
     int id = player % 2;
+    Player *p = running_model->getPlayer(team, id);
+    p->setOn();
 }
 
 void RunningLogic::playerOff(int player){
     int team = player / 2;
     int id = player % 2;
-
+    Player *p = running_model->getPlayer(team, id);
+    p->setOff();
 }
 
 void RunningLogic::update(){
