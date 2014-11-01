@@ -19,16 +19,16 @@ RunningDraw::~RunningDraw()
 
 void RunningDraw::draw(){
     drawTeams();
-    drawBlocks();
 }
 
 RunningModel* RunningDraw::getRunningModel(){
     return running_model;
 }
 
-void RunningDraw::drawBlocks(){
-    for(int i = 0; i< getRunningModel()->getBlocks().size(); i++){
-        GameBlock block = getRunningModel()->getBlock(i);
-        block.draw();
-    }
+void RunningDraw::drawTeams(){
+    vector<Team*>  teams = running_model->getTeams();
+    
+    std::vector<Team*>::const_iterator t;
+    for(t=teams.begin(); t!=teams.end(); ++t)
+        (*t)->draw();
 }

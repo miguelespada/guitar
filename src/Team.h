@@ -9,17 +9,22 @@
 #ifndef __heinneken__Team__
 #define __heinneken__Team__
 
+#include "ofMain.h"
+
+class Player;
 class Team
 {
 public:
     Team();
     Team(int team_number);
     virtual ~Team();
-    int getTeamNumber();
-    bool isLeftPainted();
+    int getId();
+    void draw();
+    
 protected:
 private:
     int id;
+    vector<Player*> players;
 };
 
 

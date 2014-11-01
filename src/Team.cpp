@@ -7,27 +7,41 @@
 //
 
 #include "Team.h"
+#include "Player.h"
 
 Team::Team()
 {
 }
 
+Team::~Team(){
+    for (int i = 0; i < players.size(); i++){
+        Player* p = players.front();
+        players.erase(players.begin());
+        delete p;
+        p = NULL;
+    }
+}
+
 Team::Team(int id)
 {
+    for (int j = 0; j < 2; j++){
+        Player* p = new Player(j, this); 
+        players.push_back(p);
+        p = NULL;
+    }
     Team::id = id;
 }
 
 
-Team::~Team()
-{
-    //dtor
-}
-
-
-int Team::getTeamNumber(){
+int Team::getId(){
     return id;
 }
 
-bool Team::isLeftPainted(){
-    return id;
+
+void Team::draw(){
+    
+    std::vector<Player*>::const_iterator p;
+    for(p=players.begin(); p!=players.end(); ++p)
+        (*p)->draw();
+    
 }
