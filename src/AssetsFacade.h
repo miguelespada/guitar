@@ -26,7 +26,6 @@ public:
     Settings *settings;
     
     void setAssets(Assets *a);
-    void setSettings(Settings *s);
     
     void draw_background();
 };

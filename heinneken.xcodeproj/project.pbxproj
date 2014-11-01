@@ -13,6 +13,9 @@
 		28090DEB5109115003E8F1C5 /* UdpSocketWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5928AA323F5C2690B06C837D /* UdpSocketWin.cpp */; };
 		3AEFE4FA8AD5C72671AD07F8 /* ofxRtMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 712B183BC00EBFFB1EEA5AB8 /* ofxRtMidiOut.cpp */; };
 		4903C5C519FE81DB007A152B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903C5C419FE81DB007A152B /* CoreMIDI.framework */; };
+		49C545121A04E4D50038882A /* RunningModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545101A04E4D50038882A /* RunningModel.cpp */; };
+		49C545151A04E5040038882A /* RunningLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545131A04E5040038882A /* RunningLogic.cpp */; };
+		49C545181A04E5160038882A /* RunningDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C545161A04E5160038882A /* RunningDraw.cpp */; };
 		49CE12101A027CD70049A62B /* Assets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE11EF1A027CD70049A62B /* Assets.cpp */; };
 		49CE12111A027CD70049A62B /* AssetsFacade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE11F11A027CD70049A62B /* AssetsFacade.cpp */; };
 		49CE12121A027CD70049A62B /* Commad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CE11F31A027CD70049A62B /* Commad.cpp */; };
@@ -123,6 +126,12 @@
 		470CF04F1D4D1B38D5AA1797 /* ofxRtMidiOut.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxRtMidiOut.h; path = ../../../addons/ofxMidi/src/desktop/ofxRtMidiOut.h; sourceTree = SOURCE_ROOT; };
 		48974F980F51769171D0B2F5 /* IpEndpointName.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IpEndpointName.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/IpEndpointName.h; sourceTree = SOURCE_ROOT; };
 		4903C5C419FE81DB007A152B /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = ../../../../../../../../System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<group>"; };
+		49C545101A04E4D50038882A /* RunningModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunningModel.cpp; sourceTree = "<group>"; };
+		49C545111A04E4D50038882A /* RunningModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningModel.h; sourceTree = "<group>"; };
+		49C545131A04E5040038882A /* RunningLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunningLogic.cpp; sourceTree = "<group>"; };
+		49C545141A04E5040038882A /* RunningLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningLogic.h; sourceTree = "<group>"; };
+		49C545161A04E5160038882A /* RunningDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunningDraw.cpp; sourceTree = "<group>"; };
+		49C545171A04E5160038882A /* RunningDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningDraw.h; sourceTree = "<group>"; };
 		49CE11EE1A027CD70049A62B /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		49CE11EF1A027CD70049A62B /* Assets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assets.cpp; sourceTree = "<group>"; };
 		49CE11F01A027CD70049A62B /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
@@ -538,8 +547,14 @@
 				49CE11F81A027CD70049A62B /* Game.h */,
 				49CE11F91A027CD70049A62B /* GameLogic.cpp */,
 				49CE11FA1A027CD70049A62B /* GameLogic.h */,
-				49CE11FB1A027CD70049A62B /* GameLogicCommand.cpp */,
+				49C545131A04E5040038882A /* RunningLogic.cpp */,
+				49C545141A04E5040038882A /* RunningLogic.h */,
+				49C545101A04E4D50038882A /* RunningModel.cpp */,
+				49C545111A04E4D50038882A /* RunningModel.h */,
+				49C545161A04E5160038882A /* RunningDraw.cpp */,
+				49C545171A04E5160038882A /* RunningDraw.h */,
 				49CE11FC1A027CD70049A62B /* GameLogicCommand.h */,
+				49CE11FB1A027CD70049A62B /* GameLogicCommand.cpp */,
 				49CE11FD1A027CD70049A62B /* main.cpp */,
 				49CE11FE1A027CD70049A62B /* MidiAction.cpp */,
 				49CE11FF1A027CD70049A62B /* MidiAction.h */,
@@ -703,6 +718,7 @@
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				49CE12121A027CD70049A62B /* Commad.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
+				49C545151A04E5040038882A /* RunningLogic.cpp in Sources */,
 				49CE12101A027CD70049A62B /* Assets.cpp in Sources */,
 				A29D8C96AE042ECEAA1BD4F3 /* NetworkingUtilsWin.cpp in Sources */,
 				49CE121A1A027CD70049A62B /* Observer.cpp in Sources */,
@@ -734,7 +750,9 @@
 				49CE12151A027CD70049A62B /* GameLogic.cpp in Sources */,
 				49CE12201A027CD70049A62B /* State.cpp in Sources */,
 				49CE12171A027CD70049A62B /* main.cpp in Sources */,
+				49C545121A04E4D50038882A /* RunningModel.cpp in Sources */,
 				63D0FD8734D5760B8080C901 /* RtMidi.cpp in Sources */,
+				49C545181A04E5160038882A /* RunningDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

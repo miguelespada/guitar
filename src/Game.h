@@ -21,8 +21,6 @@ public:
     
     void setCurrent(State *s);
     void setAssetsFacade(AssetsFacade *a);
-    
-    void setSettings(Settings *s);
     void notify(Action *action);
     
     void next();

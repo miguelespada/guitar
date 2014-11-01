@@ -44,6 +44,3 @@ void Game::draw()
     current->draw();
 }
 
-void Game::setSettings(Settings *s){
-    settings = s;
-}

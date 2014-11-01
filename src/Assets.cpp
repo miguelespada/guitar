@@ -17,15 +17,12 @@ Assets::~Assets(){
     cout << "Destroying Assets " << endl;
 }
 
-void Assets::setSettings(Settings *s){
-    settings = s;
-}
-
 void Assets::load(){
-
-    string assets_path = settings->assetsPath();
+    
+    
+    string assets_path = Settings::getInstance()->assetsPath();
     cout << "Loading assets from..." << assets_path << endl;
-        
+    
     string filename = assets_path + "background.jpg";
     background.loadImage(filename);
     cout << "Loading: " << filename << endl;

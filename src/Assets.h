@@ -26,8 +26,6 @@ public:
     
     ofImage background;
     
-    void setSettings(Settings *s);
-    
 private:
 };
 

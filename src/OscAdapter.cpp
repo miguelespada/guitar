@@ -19,13 +19,11 @@ OscAdapter::~OscAdapter(){
 }
 
 void OscAdapter::init(){
-    receiver.setup(settings->port);
-    cout << "listening for osc messages on port " << settings->port << "\n";
+    
+    Settings* settings = Settings::getInstance();
+    receiver.setup(settings->getPort());
+    cout << "listening for osc messages on port " << settings->getPort() << "\n";
     bOnline = false;
-}
-
-void OscAdapter::setSettings(Settings *s){
-    settings = s;
 }
 
 void OscAdapter::registerObserver(Observer *o){

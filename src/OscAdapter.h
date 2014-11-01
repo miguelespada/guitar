@@ -28,7 +28,6 @@ public:
     void registerObserver(Observer *o);
     void init();
     void update();
-    void setSettings(Settings *s);
 };
 
 #endif /* defined(__carrousel__OscAdapter__) */

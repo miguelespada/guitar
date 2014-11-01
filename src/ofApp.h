@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "Game.h"
-#include "Settings.h"
 #include "Assets.h"
 #include "AssetsFacade.h"
 #include "OscAdapter.h"
@@ -24,7 +23,6 @@ public:
     bool bInfo = false;
     
     Game game;
-    Settings settings;
     Assets assets;
     AssetsFacade assetsFacade;
     OscAdapter oscAdapter;

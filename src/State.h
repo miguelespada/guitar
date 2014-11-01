@@ -25,6 +25,7 @@ public:
     virtual void jump() {};
     virtual std::string toString() {}
     virtual void draw() {}
+    virtual void update() {};
     virtual void notify(Action *action) {}
     
 };
@@ -79,6 +80,7 @@ public:
         return "Running";
     }
     void draw();
+    void update();
     
     void notify(Action *action);
 

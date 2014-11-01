@@ -8,6 +8,7 @@
 
 #include "AssetsFacade.h"
 #include "Assets.h"
+#include "Settings.h"
 
 
 AssetsFacade::AssetsFacade(){
@@ -22,11 +23,7 @@ void AssetsFacade::setAssets(Assets *a){
     assets = a;
 }
 
-void AssetsFacade::setSettings(Settings *s){
-    settings = s;
-}
-
 void AssetsFacade::draw_background(){
-    assets->background.draw(0, 0, settings->width, settings->height);
+    Settings * settings = Settings::getInstance();
+    assets->background.draw(0, 0, settings->getWidth(), settings->getHeight());
 }
-

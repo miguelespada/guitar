@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "State.h"
+#include "Settings.h"
 
 ofApp::ofApp(){
     cout << "Constructing Main" << endl;
@@ -17,25 +18,25 @@ void ofApp::setup(){
     
     ofSetWindowPosition(0, 0);
     ofHideCursor();
-    
-    settings.load();
-    
-    assets.setSettings(&settings);
+
     assets.load();
     
-    assetsFacade.setSettings(&settings);
     assetsFacade.setAssets(&assets);
     
-    oscAdapter.setSettings(&settings);
     oscAdapter.registerObserver(&game);
     oscAdapter.init();
     
-    game.setSettings(&settings);
     game.setAssetsFacade(&assetsFacade);
     game.setCurrent(new IDLE(&game));
     
     midi.open("Network", "Network");
     midi.registerObserver(&game);
+    
+    int width = Settings::getInstance()->getWidth();
+    int height = Settings::getInstance()->getHeight();
+    
+    
+    ofSetWindowShape(width, height);
 }
 
 //--------------------------------------------------------------

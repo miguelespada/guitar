@@ -64,6 +64,10 @@ void RUNNING::draw(){
     gameLogic->draw();
 };
 
+void RUNNING::update(){
+    gameLogic->update();
+}
+
 void RUNNING::push()
 {
     game->setCurrent(new WINNER(game));

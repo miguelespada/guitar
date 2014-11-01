@@ -9,20 +9,26 @@
 #ifndef __carrousel__Settings__
 #define __carrousel__Settings__
 
-#include <stdio.h>
 #include "ofxJSON.h"
 #include "ofMain.h"
 
 class Settings{
-    ofxJSONElement settings;
 public:
-    Settings();
+    static Settings* getInstance();
     ~Settings();
-    
     void load();
     string assetsPath();
+    int getWidth();
+    int getHeight();
+    int getPort();
     
-    int width, height;
-    int port;
+private:
+    static Settings* instance;
+    Settings();
+    Settings(Settings const&);       // Don't Implement
+    void operator=(Settings const&); // Don't implement
+    
+    ofxJSONElement json_file;
+    Json::Value getData(string key);
 };
 #endif /* defined(__carrousel__Settings__) */
