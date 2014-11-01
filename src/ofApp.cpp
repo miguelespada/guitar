@@ -44,7 +44,7 @@ void ofApp::update(){
     oscAdapter.update();
     game.update();
     
-    if(ofGetFrameNum() % 30 == 0)
+    if(ofGetFrameNum() % 8 == 0)
         simulator.sendMidiBeat();
 }
 

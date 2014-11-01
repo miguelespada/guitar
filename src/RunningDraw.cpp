@@ -80,7 +80,7 @@ void RunningDraw::loopOnBlocks(){
 
 void RunningDraw::paintBlock(GameBlock b){
     bool active = getRunningModel()->getPlayer(b.getPlayerNumber())->isActive();
-    
+        
     ofRectangle r = b.getRectangle();
     //Collide zone
     r.width = r.width - Settings::getInstance()->PIECE_SIZE;

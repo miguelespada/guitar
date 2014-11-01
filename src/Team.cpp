@@ -34,9 +34,5 @@ void Team::setTeamNumber(int value){
 }
 
 bool Team::isLeftPainted(){
-    if (team_number == 1){
-        return true;
-    } else{
-        return false;
-    }
+    return team_number == 1;
 }

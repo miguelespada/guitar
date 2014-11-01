@@ -35,7 +35,6 @@ void OscAdapter::processMessages(){
         bOnline = true;
         ofxOscMessage m;
         receiver.getNextMessage(&m);
-        cout << "[OSC] Received " << m.getAddress() << endl;
         OscAction *action = new OscAction(m);
         observer->notify(action);
         delete(action);

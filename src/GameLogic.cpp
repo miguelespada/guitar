@@ -31,12 +31,13 @@ void GameLogic::notify(Action *action){
 
 void GameLogic::draw(){
     running_draw->draw();
-    if(bTempo)
-        bTempo = false;
-    
 };
 
 void GameLogic::update(){
+    if(bTempo){
+        running_logic->generateBlocks();
+        bTempo = false;
+    }
     running_logic->updateBlocks();
 }
 
