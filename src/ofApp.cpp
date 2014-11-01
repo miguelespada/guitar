@@ -81,16 +81,16 @@ void ofApp::keyPressed(int key){
             break;
             
         case 'q':
-            simulator.playerOn(1);
+            simulator.playerOn(0);
             break;
         case 'w':
-            simulator.playerOn(2);
+            simulator.playerOn(1);
             break;
         case 'e':
-            simulator.playerOn(3);
+            simulator.playerOn(2);
             break;
         case 'r':
-            simulator.playerOn(4);
+            simulator.playerOn(3);
             break;
         default:
             break;
@@ -101,16 +101,16 @@ void ofApp::keyReleased(int key){
     
     switch (key) {
         case 'q':
-            simulator.playerOff(1);
+            simulator.playerOff(0);
             break;
         case 'w':
-            simulator.playerOff(2);
+            simulator.playerOff(1);
             break;
         case 'e':
-            simulator.playerOff(3);
+            simulator.playerOff(2);
             break;
         case 'r':
-            simulator.playerOff(4);
+            simulator.playerOff(3);
             break;
         default:
             break;

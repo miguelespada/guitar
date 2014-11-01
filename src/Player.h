@@ -36,6 +36,8 @@ private:
     void drawBlocks();
     void drawBackground();
     void drawIcon();
+    
+    int x, y_up, y_down, radius;
 };
 
 

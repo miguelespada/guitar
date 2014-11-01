@@ -22,10 +22,14 @@ RunningModel* RunningLogic::getRunningModel(){
 }
 
 void RunningLogic::playerOn(int player){
-    
+    int team = player / 2;
+    int id = player % 2;
 }
 
 void RunningLogic::playerOff(int player){
+    int team = player / 2;
+    int id = player % 2;
+
 }
 
 void RunningLogic::update(){
