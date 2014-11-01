@@ -5,5 +5,6 @@ heinneken.cbp
 heinneken.workspace
 bin/heinneken_debug
 Project.xconfig
+heinneken.xcodeproj
 bin/libs
 obj
