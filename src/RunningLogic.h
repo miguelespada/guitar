@@ -19,15 +19,15 @@ public:
     RunningLogic(RunningModel* model);
     virtual ~RunningLogic();
     RunningModel* getRunningModel();
+    
     void playerOn(int player);
     void playerOff(int player);
-    void updateBlocks();
+    void update();
     void generateBlocks();
-    bool isPaintable(int player, int pieces);
+    
 protected:
 private:
     RunningModel* running_model;
-    int generate_player_turn;
 };
 
 #endif /* defined(__heinneken__RunningLogic__) */

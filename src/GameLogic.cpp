@@ -38,7 +38,7 @@ void GameLogic::update(){
         running_logic->generateBlocks();
         bTempo = false;
     }
-    running_logic->updateBlocks();
+    running_logic->update();
 }
 
 void GameLogic::playerOn(int value){

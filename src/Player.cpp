@@ -32,15 +32,13 @@ Team* Player::getTeam(){
 
 void Player::draw(){
     cout << "Draw player: " << team->getId() << "," << id << endl;
+    drawBlocks();
 }
 
-
 void Player::drawBlocks(){
-        
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b)
         (*b)->draw();
-    
 }
 
 

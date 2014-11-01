@@ -28,7 +28,7 @@ void RunningLogic::playerOn(int player){
 void RunningLogic::playerOff(int player){
 }
 
-void RunningLogic::updateBlocks(){
+void RunningLogic::update(){
 
 }
 
@@ -36,6 +36,3 @@ void RunningLogic::generateBlocks(){
 
 }
 
-bool RunningLogic::isPaintable(int player, int pieces){
- 
-}
