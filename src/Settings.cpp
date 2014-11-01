@@ -59,3 +59,35 @@ int Settings::getPort(){
 string Settings::assetsPath(){
     return ofToDataPath("assets/" );
 }
+
+
+int Settings::getPlayerY(int player, bool isUp){
+    int pos = 0;
+    switch(player){
+        case 1: pos =  P1_Y; break;
+        case 2: pos =  P2_Y; break;
+        case 3: pos =  P3_Y; break;
+        case 4: pos =  P4_Y; break;
+    }
+    if(isUp){
+        return pos - 50;
+        
+    }else{
+        return pos + 50;
+    }
+}
+
+int Settings::getEndlineRight(){
+    return getWidth();
+}
+int Settings::getBeginRight(){
+    return getWidth() - getBeginLeft();
+}
+int Settings::getEndlineLeft(){
+    return 0;
+}
+int Settings::getBeginLeft(){
+    return -MAX_BLOCK_PIECES * PIECE_SIZE;
+}
+
+

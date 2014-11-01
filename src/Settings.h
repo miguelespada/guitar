@@ -22,6 +22,32 @@ public:
     int getHeight();
     int getPort();
     
+    
+    int getPlayerY(int player, bool isUp);
+    
+    //Game variables
+    
+    
+    int getEndlineRight();
+    int getBeginRight();
+    int getEndlineLeft();
+    int getBeginLeft();
+    
+    const int PIECE_SIZE = 15;
+    const int MAX_BLOCK_PIECES = 20;
+    const int MAX_PLAYER_PIECES = 150;
+    const int BLOCK_SEPARATION = 30;
+    
+    // Player positions //
+    const int P1_Y = 150;
+    const int P2_Y = 250;
+    const int P3_Y = 400;
+    const int P4_Y = 500;
+    
+    // Color constants //
+    
+    const ofColor RUNNING_BACKGROUND = (0,0,0);
+    
 private:
     static Settings* instance;
     Settings();
@@ -30,5 +56,6 @@ private:
     
     ofxJSONElement json_file;
     Json::Value getData(string key);
+    
 };
 #endif /* defined(__carrousel__Settings__) */
