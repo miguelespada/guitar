@@ -24,7 +24,6 @@ public:
     void draw();
 protected:
 private:
-    void drawBlocks();
     void drawTeams();
 
     RunningModel* running_model;

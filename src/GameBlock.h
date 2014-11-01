@@ -17,14 +17,14 @@ class GameBlock
 public:
     GameBlock();
     ~GameBlock();
-    GameBlock(int length, bool bUp);
+    GameBlock(int length, bool bDown);
     
     void update();
     void draw();
 private:
     int length;
     int x;
-    bool bUp;
+    bool bDown;
 };
 
 #endif /* defined(__heinneken__GameBlock__) */
