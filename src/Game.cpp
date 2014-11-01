@@ -15,13 +15,13 @@ Game::Game(){
 
 void Game::notify(Action *action){
     // Chain of command
-    current->notify(action);    
+    current_state->notify(action);    
     run(action);
 }
 
 void Game::setCurrent(State *s)
 {
-    current = s;
+    current_state = s;
 }
 
 void Game::setAssetsFacade(AssetsFacade *a)
@@ -31,16 +31,22 @@ void Game::setAssetsFacade(AssetsFacade *a)
 
 void Game::next()
 {
-    current->push();
+    current_state->push();
 }
 
 void Game::jump()
 {
-    current->jump();
+    current_state->jump();
 }
 
 void Game::draw()
 {
-    current->draw();
+    current_state->draw();
 }
+
+void Game::update()
+{
+    current_state->update();
+}
+
 

@@ -15,7 +15,7 @@ class Game: public Observer, public Commandable
     
 public:
     Game();    
-    class State *current;
+    class State *current_state;
     class AssetsFacade *assetsFacade;
     class Settings *settings;
     
@@ -26,6 +26,7 @@ public:
     void next();
     void jump();
     void draw();
+    void update();
 };
 
 #endif

@@ -16,18 +16,22 @@ RunningDraw::~RunningDraw()
 {
     //dtor
 }
+
 void RunningDraw::draw(){
+    
     
     int sw = Settings::getInstance()->getWidth();
     int sh = Settings::getInstance()->getHeight();
     
     //Paint background
     ofBackground(0,0,0);
+    
     //Draw player areas
     ofSetColor(32,32,32);
     int endline = Settings::getInstance()->getEndlineLeft();
     
     int piece_size = Settings::getInstance()->PIECE_SIZE;
+    
     int p1_up = Settings::getInstance()->getPlayerY(1, true);
     int p1_down = Settings::getInstance()->getPlayerY(1, false);
     ofRect(0, p1_up - 10 ,sw, p1_down - p1_up - 10);
@@ -38,7 +42,6 @@ void RunningDraw::draw(){
     
     
     endline = Settings::getInstance()->getEndlineRight();
-    
     int p3_up = Settings::getInstance()->getPlayerY(3, true);
     int p3_down = Settings::getInstance()->getPlayerY(3, false);
     

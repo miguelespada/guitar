@@ -14,7 +14,7 @@ ofApp::~ofApp(){
 void ofApp::setup(){
     ofEnableAlphaBlending();
     ofSetVerticalSync(true);
-    ofSetFrameRate(30);
+    ofSetFrameRate(60);
     
     ofSetWindowPosition(0, 0);
     ofHideCursor();
@@ -42,6 +42,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     oscAdapter.update();
+    game.update();
     
     if(ofGetFrameNum() % 30 == 0)
         simulator.sendMidiBeat();

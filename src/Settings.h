@@ -27,7 +27,6 @@ public:
     
     //Game variables
     
-    
     int getEndlineRight();
     int getBeginRight();
     int getEndlineLeft();

@@ -50,7 +50,6 @@ void RunningLogic::generateBlocks(){
             }
         }
     }
-    
     model = NULL;
 }
 
@@ -74,10 +73,6 @@ bool RunningLogic::isPaintable(int player, int pieces){
                 return true;
             }
         }
-        
-        /*if (b.x() > Settings::getInstance()->BLOCK_SEPARATION + (Settings::getInstance()->PIECE_SIZE*pieces)){
-         return true;
-         }*/
     }
     
     return false;
