@@ -29,6 +29,9 @@ void RunningDraw::drawTeams(){
     vector<Team*>  teams = running_model->getTeams();
     
     std::vector<Team*>::const_iterator t;
-    for(t=teams.begin(); t!=teams.end(); ++t)
+    for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw();
+        ofTranslate(Settings::getInstance()->getWidth(), 0);
+        ofScale(-1, 1);
+    }
 }

@@ -26,17 +26,6 @@ Settings* Settings::getInstance(){
 };
 
 void Settings::load(){
-    ofDirectory dir(ofToDataPath(""));
-    //only show png files
-    dir.allowExt("json");
-    //populate the directory object
-    dir.listDir();
-    
-    //go through and print out all the paths
-    for(int i = 0; i < dir.numFiles(); i++){
-        ofLogNotice(dir.getPath(i));
-    }
-    
     json_file.open(ofToDataPath("settings.json"));
 }
 
@@ -60,34 +49,39 @@ string Settings::assetsPath(){
     return ofToDataPath("assets/" );
 }
 
+int Settings::getPlayerHeight(){
+    return getHeight() / 6;
+}
 
-int Settings::getPlayerY(int player, bool isUp){
-    int pos = 0;
-    switch(player){
-        case 1: pos =  P1_Y; break;
-        case 2: pos =  P2_Y; break;
-        case 3: pos =  P3_Y; break;
-        case 4: pos =  P4_Y; break;
+int Settings::getPlayerSeparation(){
+    return getHeight() / 36;
+}
+
+int Settings::getPlayerCenter(){
+    return getWidth() / 30;
+}
+
+int Settings::getPlayerRadius(){
+    return getPlayerCenter()/2;
+}
+
+int Settings::getPlayerMargin(){
+    return getHeight() / 18;
+}
+
+ofColor Settings::getPlayerColor(int team, int id){
+    // TODO get colors from file
+    if(team == 0){
+        if (id == 0)
+            return ofColor(255, 0, 0);
+        else
+            return ofColor(0, 255, 0);
     }
-    if(isUp){
-        return pos - 50;
-        
-    }else{
-        return pos + 50;
+    else{
+        if (id == 0)
+            return ofColor(255, 0, 255);
+        else
+            return ofColor(255, 255, 0);
     }
+    
 }
-
-int Settings::getEndlineRight(){
-    return getWidth();
-}
-int Settings::getBeginRight(){
-    return getWidth() - getBeginLeft();
-}
-int Settings::getEndlineLeft(){
-    return 0;
-}
-int Settings::getBeginLeft(){
-    return -MAX_BLOCK_PIECES * PIECE_SIZE;
-}
-
-

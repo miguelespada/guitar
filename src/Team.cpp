@@ -37,11 +37,13 @@ int Team::getId(){
     return id;
 }
 
-
 void Team::draw(){
-    
     std::vector<Player*>::const_iterator p;
-    for(p=players.begin(); p!=players.end(); ++p)
+    ofTranslate(0, Settings::getInstance()->getPlayerMargin());
+
+    for(p=players.begin(); p!=players.end(); ++p){
         (*p)->draw();
+        ofTranslate(0, Settings::getInstance()->getPlayerHeight() + Settings::getInstance()->getPlayerSeparation());
+    }
     
 }

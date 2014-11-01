@@ -27,7 +27,7 @@ void ofApp::setup(){
     oscAdapter.init();
     
     game.setAssetsFacade(&assetsFacade);
-    game.setCurrent(new IDLE(&game));
+    game.setCurrent(new RUNNING(&game));
     
     midi.open("Network", "Network");
     midi.registerObserver(&game);

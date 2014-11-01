@@ -17,7 +17,6 @@ GameBlock::GameBlock(int length, bool bUp)
 }
 
 void GameBlock::update(){
-    x += 1;
 }
 
 void GameBlock::draw(){

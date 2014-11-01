@@ -31,8 +31,36 @@ Team* Player::getTeam(){
 
 
 void Player::draw(){
-    cout << "Draw player: " << team->getId() << "," << id << endl;
+    ofPushStyle();
+    
+    drawBackground();
+    drawIcon();
     drawBlocks();
+
+    ofPopStyle();
+}
+
+void Player::drawBackground(){
+    ofColor background = Settings::getInstance()->PLAYER_BACKGROUND;
+    int width = Settings::getInstance()->getWidth();
+    int height = Settings::getInstance()->getPlayerHeight();
+    ofSetColor(background);
+    ofRect(0, 0, width, height);
+}
+
+void Player::drawIcon(){
+    int x = Settings::getInstance()->getPlayerCenter();
+    int y = Settings::getInstance()->getPlayerHeight()/2;
+    int radius = Settings::getInstance()->getPlayerRadius();
+    ofColor color = Settings::getInstance()->getPlayerColor(team->getId(), id);
+    
+    if(bDown)
+        y += radius * 2;
+    else
+        y -= radius * 2;
+    
+    ofSetColor(color);
+    ofCircle(x, y, radius);
 }
 
 void Player::drawBlocks(){
