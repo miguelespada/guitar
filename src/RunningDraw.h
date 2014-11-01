@@ -12,6 +12,8 @@
 #include "ofMain.h"
 #include "RunningModel.h"
 #include "Settings.h"
+#include "GameBlock.h"
+
 class RunningDraw
 {
 public:
@@ -21,6 +23,7 @@ public:
     RunningModel* getRunningModel();
     void draw();
     void loopOnBlocks();
+    void paintBlock(GameBlock b);
     
 protected:
 private:

@@ -63,10 +63,44 @@ void RunningDraw::draw(){
 
     
 }
-void RunningDraw::loopOnBlocks(){
-    
-}
 
 RunningModel* RunningDraw::getRunningModel(){
     return running_model;
+}
+
+void RunningDraw::loopOnBlocks(){
+    for(int i = 0; i< getRunningModel()->getBlocks().size(); i++){
+        GameBlock block = getRunningModel()->getBlock(i);
+        paintBlock(block);
+    }
+}
+
+void RunningDraw::paintBlock(GameBlock b){
+    bool active = getRunningModel()->getPlayer(b.getPlayerNumber())->isActive();
+    
+    ofRectangle r = b.getRectangle();
+    //Collide zone
+    r.width = r.width - Settings::getInstance()->PIECE_SIZE;
+    
+    int piece = b.pieceTouchingEndLine();
+    if (piece != -1){
+        
+        ofSetColor(100, 100, 100);
+        r.width = piece * Settings::getInstance()->PIECE_SIZE;
+        
+        ofRectangle s = r;
+        s.x += r.width;
+        s.width = b.width() - r.width;
+        
+        ofRect(s);
+    }
+    if(active && piece != -1){
+        ofSetColor(255, 0, 255);
+    }else{
+        //ofSetColor(ofRandom(0,255), ofRandom(0,255), ofRandom(0,255));
+        ofSetColor(255, 255, 255);
+    }
+    
+    ofRectRounded(r, 10);
+    
 }
