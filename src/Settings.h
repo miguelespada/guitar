@@ -40,8 +40,8 @@ public:
 
     // Color constants //
 
-    const ofColor RUNNING_BACKGROUND = (0,0,0);
-    const ofColor PLAYER_BACKGROUND = (100, 0, 0);
+    const ofColor RUNNING_BACKGROUND = ofColor(0, 0, 0);
+    const ofColor PLAYER_BACKGROUND = ofColor(100, 0, 0);
 
 private:
     static Settings* instance;
