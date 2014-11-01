@@ -9,10 +9,10 @@
 #include "GameBlock.h"
 
 
-GameBlock::GameBlock(int length, bool bUp)
+GameBlock::GameBlock(int length, bool bDown)
 {
     GameBlock::length = length;
-    GameBlock::bUp = bUp;
+    GameBlock::bDown = bDown;
     x = 0;
 }
 

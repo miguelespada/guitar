@@ -10,7 +10,7 @@
 
 Settings::Settings(){
     cout << "Constructing Settings " << endl;
-    
+
 }
 Settings::~Settings(){
     cout << "Destroying Settings " << endl;
@@ -73,7 +73,7 @@ ofColor Settings::getPlayerColor(int team, int id){
     // TODO get colors from file
     if(team == 0){
         if (id == 0)
-            return ofColor(255, 0, 0);
+            return ofColor(255, 0, 255);
         else
             return ofColor(0, 255, 0);
     }
@@ -83,5 +83,5 @@ ofColor Settings::getPlayerColor(int team, int id){
         else
             return ofColor(255, 255, 0);
     }
-    
+
 }
