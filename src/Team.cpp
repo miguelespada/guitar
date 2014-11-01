@@ -10,12 +10,11 @@
 
 Team::Team()
 {
-    //ctor
 }
 
-Team::Team(int team_number)
+Team::Team(int id)
 {
-    Team::team_number = team_number;
+    Team::id = id;
 }
 
 
@@ -26,13 +25,9 @@ Team::~Team()
 
 
 int Team::getTeamNumber(){
-    return team_number;
-}
-
-void Team::setTeamNumber(int value){
-    team_number = value;
+    return id;
 }
 
 bool Team::isLeftPainted(){
-    return team_number == 1;
+    return id;
 }

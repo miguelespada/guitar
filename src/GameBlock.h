@@ -36,6 +36,7 @@ public:
     bool isLeftPainted();
     void setLeftPainted(bool value);
     void updatePosition();
+    void draw();
 private:
     bool left_painted;
     ofRectangle rectangle;

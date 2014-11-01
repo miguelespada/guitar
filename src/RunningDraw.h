@@ -22,11 +22,11 @@ public:
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
     void draw();
-    void loopOnBlocks();
-    void paintBlock(GameBlock b);
-    
 protected:
 private:
+    void drawBlocks();
+    void drawTeams();
+
     RunningModel* running_model;
 };
 

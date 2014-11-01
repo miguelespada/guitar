@@ -12,16 +12,19 @@ RunningModel::RunningModel()
     total_blocks = 0;
     
     for (int i = 0; i < 2; i++){
-        Team* t = new Team(i+1);
-        teams.push_back(t);
-        t = NULL;
+        Team* team = new Team(i);
+        
+        for (int j = 0; j < 4; j++){
+            Player* p = new Player(j, team); //Team number = 1 or 2
+            players.push_back(p);
+            p = NULL;
+        }
+        
+        teams.push_back(team);
+        team = NULL;
     }
     
-    for (int i = 0; i < 4; i++){
-        Player* p = new Player(i+1, getTeam((i/2)+1)); //Team number = 1 or 2
-        players.push_back(p);
-        p = NULL;
-    }
+    
     
     cout << "creating Model" << endl;
     
