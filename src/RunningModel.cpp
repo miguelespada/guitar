@@ -14,7 +14,7 @@ RunningModel::RunningModel()
     for (int i = 0; i < 2; i++){
         Team* team = new Team(i);
         
-        for (int j = 0; j < 4; j++){
+        for (int j = 0; j < 2; j++){
             Player* p = new Player(j, team); //Team number = 1 or 2
             players.push_back(p);
             p = NULL;
