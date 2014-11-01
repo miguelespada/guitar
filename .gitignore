@@ -4,5 +4,6 @@ Makefile
 heinneken.cbp
 heinneken.workspace
 bin/heinneken_debug
+Project.xconfig
 bin/libs
 obj

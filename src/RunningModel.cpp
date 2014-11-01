@@ -30,7 +30,6 @@ std::vector<Team*> RunningModel::getTeams(){
     return teams;
 }
 
-
 Player *RunningModel::getPlayer(int team, int id){
     return teams.at(team)->getPlayer(id);
 }
