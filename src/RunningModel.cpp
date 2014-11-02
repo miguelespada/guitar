@@ -38,3 +38,10 @@ void RunningModel::addNewBlock(int team, int player_number, bool position_down, 
     getPlayer(team, player_number)->addNewBlock(position_down, block_pieces);
 }
 
+int RunningModel::getBeatCounter(){
+    return beatCounter;
+}
+
+void RunningModel::incrementBeatCounter(){
+    beatCounter += 1;
+}

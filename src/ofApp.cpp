@@ -29,14 +29,12 @@ void ofApp::setup(){
     game.setAssetsFacade(&assetsFacade);
     game.setCurrent(new RUNNING(&game));
     
-    midi.open("Network", "Network");
+    midi.open("IAC Driver Bus 1", "Network");
     midi.registerObserver(&game);
     
     int width = Settings::getInstance()->getWidth();
     int height = Settings::getInstance()->getHeight();
     
-    
-    ofSetWindowShape(width, height);
 }
 
 //--------------------------------------------------------------
@@ -51,6 +49,10 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     game.draw();
+    ofSetColor(255, 0, 0);
+    ofLine(ofGetMouseX(), 0, ofGetMouseX(), ofGetHeight());
+    ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
+    ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), ofGetMouseX() + 10, ofGetMouseY() + 10);
 }
 
 //--------------------------------------------------------------

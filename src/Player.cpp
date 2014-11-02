@@ -15,11 +15,12 @@ Player::Player(){
 Player::Player(int id, Team* team){
     Player::id = id;
     Player::team = team;
-    x = Settings::getInstance()->getPlayerCenter();
+    x = Settings::getInstance()->getPlayerCenterX();
     int y = Settings::getInstance()->getPlayerHeight()/2;
-    radius = Settings::getInstance()->getPlayerRadius();
-    y_up = y - radius * 2;
-    y_down = y + radius * 2;
+    outer_radius = Settings::getInstance()->getPlayerOuterRadius();
+    inner_radius = Settings::getInstance()->getPlayerInnerRadius();
+    y_up = y - Settings::getInstance()->getPlayerCenterY()/2;
+    y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
 }
 
 Player::~Player(){
@@ -61,13 +62,15 @@ void Player::drawBackground(){
 }
 
 void Player::drawIcon(){
+    int yy =  y_up;
+    if(bDown) yy =  y_down;
+
     ofColor color = Settings::getInstance()->getPlayerColor(team->getId(), id);
     ofSetColor(color);
+    ofCircle(x, yy, outer_radius);
 
-    if(bDown)
-        ofCircle(x, y_down, radius);
-    else
-        ofCircle(x, y_up, radius);
+    ofSetColor(0);
+    ofCircle(x, yy, inner_radius);
 }
 
 void Player::drawBlocks(){

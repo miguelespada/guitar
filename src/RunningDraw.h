@@ -25,8 +25,10 @@ public:
 protected:
 private:
     void drawTeams();
-
+    void drawBeatCounter();
+    void drawHeader();
     RunningModel* running_model;
+    Settings* settings;
 };
 
 #endif /* defined(__heinneken__RunningDraw__) */

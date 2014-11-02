@@ -35,7 +35,8 @@ public:
     void playerOn(int value);
     void playerOff(int value);
     void beat();
-    bool bTempo;
+    void subbeat();
+    bool bBeat, bSubbeat;
     
 };
 #endif /* defined(__heinneken__GameLogic__) */

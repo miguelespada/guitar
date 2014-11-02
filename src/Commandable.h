@@ -34,6 +34,12 @@ public:
         for(c=commands.begin(); c!=commands.end(); ++c)
             (*c)->run(action, this);
     }
+    
+    void destroyCommands(){
+        std::vector<Command*>::const_iterator c;
+        for(c=commands.begin(); c!=commands.end(); ++c)
+            delete *c;
+    }
 };
 
 #endif

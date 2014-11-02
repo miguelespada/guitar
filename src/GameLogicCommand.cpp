@@ -39,3 +39,13 @@ void Beat::run(Action *_action, Commandable *g){
     if(_action->getAction() == action)
         ((GameLogic *)g)->beat();
 }
+
+Subbeat::Subbeat(string actionName){
+    action = actionName;
+    cout << toString("subbeat") << endl;
+}
+
+void Subbeat::run(Action *_action, Commandable *g){
+    if(_action->getAction() == action)
+        ((GameLogic *)g)->subbeat();
+}

@@ -44,10 +44,10 @@ private:
 
     bool hasPlace(bool position_down);
 
-    int x, y_up, y_down, radius;
     int queue_up;
     int queue_down;
 
+    int x, y_up, y_down, outer_radius, inner_radius;
 };
 
 
