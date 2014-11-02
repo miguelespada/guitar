@@ -28,7 +28,7 @@ public:
     void setOn();
     void setOff();
 
-    void updateBlocks();
+    void update();
     void addNewBlock(bool position_down, int block_pieces);
 
 protected:
@@ -49,6 +49,13 @@ private:
     int queue_down;
 
     int x, y_up, y_down, outer_radius, inner_radius;
+    void updateBlocks();
+    void updateInBlock();
+    bool inBlock;
+    bool getInBlock();
+    void enterBlock();
+    void exitBlock();
+
 };
 
 

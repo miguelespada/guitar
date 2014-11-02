@@ -15,13 +15,13 @@ Player::Player(){
 Player::Player(int id, Team* team){
     Player::id = id;
     Player::team = team;
+    inBlock = false;
     x = Settings::getInstance()->getPlayerCenterX();
     int y = Settings::getInstance()->getPlayerHeight()/2;
     outer_radius = Settings::getInstance()->getPlayerOuterRadius();
     inner_radius = Settings::getInstance()->getPlayerInnerRadius();
     y_up = y - Settings::getInstance()->getPlayerCenterY()/2;
     y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
-
 }
 
 Player::~Player(){
@@ -65,25 +65,52 @@ void Player::drawBackground(){
 
 void Player::drawIcon(){
     int yy =  bDown ? y_down : y_up;
-
+    
+    // TODO: this have to go to constructor
     color = Settings::getInstance()->getPlayerColor(team->getId(), id);
 
     ofSetColor(color);
     ofCircle(x, yy, outer_radius);
     
-    // TODO draw a hole
+    // TODO: draw a hole
     ofSetColor(0);
     ofCircle(x, yy, inner_radius);
 }
 
+void Player::update(){
+    updateBlocks();
+}
+
 void Player::drawBlocks(){
     std::vector<GameBlock*>::const_iterator b;
-    for(b=blocks.begin(); b!=blocks.end(); ++b)
-        if((*b)->isDown()){
-            (*b)->draw(y_down - inner_radius);
-        }else{
-            (*b)->draw(y_up - inner_radius);
-        }
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        int y = (*b)->isDown() ? y_down : y_up ;
+        (*b)->draw(y - inner_radius);
+    }
+}
+
+void Player::updateInBlock(){
+    bool prevInBlock = inBlock;
+    inBlock = getInBlock();
+    
+    if(prevInBlock && !inBlock)
+        exitBlock();
+    
+    if(!prevInBlock && inBlock)
+        enterBlock();
+}
+
+bool Player::getInBlock(){
+    //  TODO: compute is a player is in block
+    return false;
+}
+
+void Player::enterBlock(){
+    // TODO: send note on
+}
+
+void Player::exitBlock(){
+    // TODO: send note off
 }
 
 void Player::updateBlocks(){
