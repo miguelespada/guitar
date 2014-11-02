@@ -41,7 +41,8 @@ private:
     std::vector<GameBlock*> blocks;
     bool bDown = false;
     ofColor color;
-        
+    float height = 0;
+    
     void drawBlocks();
     void drawBackground();
     void drawIcon();

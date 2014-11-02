@@ -9,7 +9,7 @@
 #include "Player.h"
 #include "MidiAdapter.h"
 
-#define DEBUG false
+#define DEBUG true
 
 Player::Player(){
     //ctor
@@ -46,10 +46,12 @@ Team* Player::getTeam(){
 
 void Player::setOn(){
     bDown = true;
+    height = -(y_down - y_up);
 }
 
 void Player::setOff(){
     bDown = false;
+    height = 0;
 }
 
 void Player::draw(){
@@ -80,21 +82,17 @@ void Player::drawIcon(){
     ofPath icon;
     icon.setFillColor(color);
     
-    int height = 0;
-    if(DEBUG)
-        height =  y_down - y_up;
-    
     //upper cap
-    icon.arc(x, y, inner_radius, inner_radius, 180, 360);
+    icon.arc(x, y + height, inner_radius, inner_radius, 180, 360);
     icon.close();
-    icon.arc(x, y, outer_radius, outer_radius, 180, 360);
+    icon.arc(x, y + height, outer_radius, outer_radius, 180, 360);
     icon.draw();
     icon.clear();
     
     //lower cap
-    icon.arc(x, y + height, inner_radius, inner_radius, 0, 180);
+    icon.arc(x, y, inner_radius, inner_radius, 0, 180);
     icon.close();
-    icon.arc(x, y + height, outer_radius, outer_radius, 0, 180);
+    icon.arc(x, y, outer_radius, outer_radius, 0, 180);
     icon.draw();
     icon.clear();
     
@@ -102,6 +100,8 @@ void Player::drawIcon(){
     icon.rectangle(x + inner_radius, y, outer_radius - inner_radius, height);
     icon.rectangle(x - inner_radius, y, -outer_radius + inner_radius, height);
     icon.draw();
+    
+    height *= 0.8;
 }
 
 void Player::update(){
