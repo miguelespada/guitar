@@ -13,6 +13,7 @@
 #include "RunningModel.h"
 #include "Settings.h"
 #include "GameBlock.h"
+#include "ofxTextSuite.h"
 
 class RunningDraw
 {
@@ -26,8 +27,7 @@ public:
     void drawTitle();
 protected:
 private:
-    ofTrueTypeFont myfont;
-
+    ofxTextBlock  myText;
 
 
 // in draw:

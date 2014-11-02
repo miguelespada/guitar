@@ -11,7 +11,9 @@
 RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
-    myfont.loadFont("arial.ttf", 18);
+
+    myText.init("frabk.ttf", 18); //TODO: add font file
+    myText.setColor(255,255,255,255);
 }
 
 RunningDraw::~RunningDraw()
@@ -79,17 +81,20 @@ void RunningDraw::drawTeamScores(int team1, int team2){
     int team0_x = Settings::getInstance()->getTeamScoreX(0);
     int team1_x = Settings::getInstance()->getTeamScoreX(1);
 
-    ofSetColor(255,255,255);
-    myfont.drawString(t1, team0_x + 5, Settings::getInstance()->getHeaderHeight());
-    myfont.drawString(t2, team1_x - 20, Settings::getInstance()->getHeaderHeight());
-    //TODO: move to settings all margins
+    myText.setColor(255,255,255,255); //TODO: set text color to white correctly
+    myText.setText(t1);
+    myText.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+
+    myText.setText(t2);
+    myText.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
+
 }
 void RunningDraw::drawTitle(){
-    int title_pos = Settings::getInstance()->getSmallHeaderPanelWidth() *2 + 10;
-    ofSetColor(255,255,255);
+    int title_pos = Settings::getInstance()->getWidth() / 2;
 
-    myfont.drawString("NAVIGATE\nTHE SUB",  title_pos, 25);
-    //TODO: move to settings top margin
+    myText.setText("NAVIGATE THE SUB");
+    myText.wrapTextForceLines(2);
+    myText.drawCenter(title_pos, 0);
 }
 void RunningDraw::drawBeatCounter(){
     int beat = getRunningModel()->getBeatCounter();
