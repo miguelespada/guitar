@@ -43,8 +43,12 @@ void RunningLogic::generateBlocks(){
         for (int player = 0; player < 2; player++){
             int block_pieces = round(ofRandom(1,3));
             bool position_down = round(ofRandom(0,1));
+            ofColor color = Settings::getInstance()->getPlayerColor(team, player);
+            if (round(ofRandom(0,6) < 2)){
+                color = Settings::getInstance()->getPlayerColor(round(ofRandom(0,1)), round(ofRandom(0,1)));
+            }
             if (ofRandom(0,100) < 12){
-                model->addNewBlock(team, player, position_down, block_pieces);
+                model->addNewBlock(team, player, position_down, block_pieces, color);
             }
         }
     }

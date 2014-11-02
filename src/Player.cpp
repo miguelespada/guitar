@@ -244,13 +244,13 @@ bool Player::hasPlace(bool position_down){
     return position_down ? queue_down == 0 : queue_up == 0;
 }
 
-void Player::addNewBlock(bool position_down, int block_pieces){
+void Player::addNewBlock(bool position_down, int block_pieces, ofColor color){
     Settings* settings = Settings::getInstance();
     int margin = settings->getBlockSeparation();
     int block_margin = (margin + block_pieces) * settings->PIECE_SIZE;
     if (hasPlace(position_down)){
         incrementQueue(position_down, block_margin);
-        blocks.push_back(new GameBlock(block_pieces, position_down, ofColor(255,0,255)));
+        blocks.push_back(new GameBlock(block_pieces, position_down, color));
     }
     settings = NULL;
 }
@@ -271,7 +271,6 @@ void Player::decrementQueues(){
 void Player::modifyScore(int value){
     player_score += value;
     team->modifyScore(value);
-    if (getTeam()->getId() == 0 && id == 0)
 }
 
 

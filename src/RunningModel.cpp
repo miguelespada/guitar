@@ -34,8 +34,8 @@ Player* RunningModel::getPlayer(int team, int id){
     return teams.at(team)->getPlayer(id);
 }
 
-void RunningModel::addNewBlock(int team, int player_number, bool position_down, int block_pieces){
-    getPlayer(team, player_number)->addNewBlock(position_down, block_pieces);
+void RunningModel::addNewBlock(int team, int player_number, bool position_down, int block_pieces, ofColor color){
+    getPlayer(team, player_number)->addNewBlock(position_down, block_pieces, color);
 }
 
 int RunningModel::getBeatCounter(){

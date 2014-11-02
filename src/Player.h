@@ -32,7 +32,7 @@ public:
     void setOff();
 
     void update();
-    void addNewBlock(bool position_down, int block_pieces);
+    void addNewBlock(bool position_down, int block_pieces, ofColor color);
 
     void modifyScore(int value);
 
