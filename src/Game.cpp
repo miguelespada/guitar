@@ -10,7 +10,11 @@
 #include "Command.h"
 
 Game::Game(){
-   commands.push_back(new Next("/key_down"));
+    commands.push_back(new Next("/key_down"));
+}
+
+Game::~Game(){
+    destroyCommands();
 }
 
 void Game::notify(Action *action){

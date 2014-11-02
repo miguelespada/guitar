@@ -15,6 +15,7 @@ class Game: public Observer, public Commandable
     
 public:
     Game();    
+    ~Game();
     class State *current_state;
     class AssetsFacade *assetsFacade;
     class Settings *settings;

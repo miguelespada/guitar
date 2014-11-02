@@ -9,7 +9,7 @@
 #include "Player.h"
 #include "MidiAdapter.h"
 
-#define DEBUG true
+#define DEBUG false
 
 Player::Player(){
     //ctor
@@ -72,17 +72,36 @@ void Player::drawBackground(){
 }
 
 void Player::drawIcon(){
-    int yy =  bDown ? y_down : y_up;
+    int y =  bDown ? y_down : y_up;
     
-    // TODO: this have to go to constructor
+    // TODO: color should go to constructor
     color = Settings::getInstance()->getPlayerColor(team->getId(), id);
 
-    ofSetColor(color);
-    ofCircle(x, yy, outer_radius);
+    ofPath icon;
+    icon.setFillColor(color);
     
-    // TODO: draw a hole
-    ofSetColor(0);
-    ofCircle(x, yy, inner_radius);
+    int height = 0;
+    if(DEBUG)
+        height =  y_down - y_up;
+    
+    //upper cap
+    icon.arc(x, y, inner_radius, inner_radius, 180, 360);
+    icon.close();
+    icon.arc(x, y, outer_radius, outer_radius, 180, 360);
+    icon.draw();
+    icon.clear();
+    
+    //lower cap
+    icon.arc(x, y + height, inner_radius, inner_radius, 0, 180);
+    icon.close();
+    icon.arc(x, y + height, outer_radius, outer_radius, 0, 180);
+    icon.draw();
+    icon.clear();
+    
+    //side cap
+    icon.rectangle(x + inner_radius, y, outer_radius - inner_radius, height);
+    icon.rectangle(x - inner_radius, y, -outer_radius + inner_radius, height);
+    icon.draw();
 }
 
 void Player::update(){

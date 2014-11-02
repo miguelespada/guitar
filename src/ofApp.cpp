@@ -51,7 +51,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofPushMatrix();
     game.draw();
+    ofPopMatrix();
+    
     ofSetColor(255, 0, 0);
     ofLine(ofGetMouseX(), 0, ofGetMouseX(), ofGetHeight());
     ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
