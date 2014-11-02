@@ -41,7 +41,6 @@ void GameLogic::update(){
         running_logic->generateBlocks();
         bBeat = false;
     }
-    
 }
 
 void GameLogic::playerOn(int value){
@@ -60,7 +59,6 @@ void GameLogic::subbeat(){
     running_model->incrementBeatCounter();
     bSubbeat = true;
 }
-
 
 void GameLogic::constructRunningServices(){
     running_model = new RunningModel();
