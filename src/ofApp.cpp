@@ -32,8 +32,7 @@ void ofApp::setup(){
     midi.open("IAC Driver Bus 1", "Network");
     midi.registerObserver(&game);
     
-    int width = Settings::getInstance()->getWidth();
-    int height = Settings::getInstance()->getHeight();
+    ofEnableAlphaBlending();
     
 }
 
