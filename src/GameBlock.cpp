@@ -15,6 +15,8 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
     GameBlock::bDown = bDown;
     x = Settings::getInstance()->getWidth();
     pieces = pieces_num;
+    piece_on = -1;
+    piece_off = -1;
 }
 
 void GameBlock::update(){
@@ -65,4 +67,19 @@ int GameBlock::pieceAtTheEnd(){
 }
 bool GameBlock::isOutOfMap(){
         return (x + (pieces * Settings::getInstance()->PIECE_SIZE)) < 0;
+}
+int GameBlock::getPieceOn(){
+    return piece_on;
+}
+int GameBlock::getPieceOff(){
+    return piece_off;
+}
+void GameBlock::setPieceOn(int p){
+    piece_on = p;
+}
+void GameBlock::setPieceOff(int p){
+    piece_off = p;
+}
+int GameBlock::getScore(){
+    return (piece_off - piece_on) * Settings::getInstance()->PIECE_SCORE;
 }

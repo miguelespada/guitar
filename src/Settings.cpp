@@ -113,3 +113,8 @@ ofColor Settings::getPlayerColor(int team, int id){
     string color = Settings::getData(player).asString();
     return ofColor::fromHex(ofHexToInt("0x" + color));
 }
+
+ofColor Settings::getColor(string colorName){
+    string color = Settings::getData(colorName).asString();
+    return ofColor::fromHex(ofHexToInt("0x" + color));
+}

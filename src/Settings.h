@@ -37,6 +37,7 @@ public:
     float getPlayerOuterRadius();
     float getPlayerInnerRadius();
     float getPlayerMargin();
+    ofColor getColor(string colorName);
 
     int getBlockSeparation();
 
@@ -49,6 +50,7 @@ public:
     const int MAX_PLAYER_PIECES = 150;
     const int BLOCK_SEPARATION = 2;
     const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
+    const int PIECE_SCORE = 10;
 
 
     // Color constants //
