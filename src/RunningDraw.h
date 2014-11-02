@@ -25,7 +25,8 @@ public:
 protected:
 private:
     void drawTeams();
-
+    void drawBeatCounter();
+    void drawHeader();
     RunningModel* running_model;
 };
 

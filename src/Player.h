@@ -40,7 +40,7 @@ private:
     void drawBackground();
     void drawIcon();
     
-    int x, y_up, y_down, radius;
+    int x, y_up, y_down, outer_radius, inner_radius;
 };
 
 

@@ -21,10 +21,12 @@ public:
     virtual ~RunningModel();
     std::vector<Team*> getTeams();
     Player *getPlayer(int team, int id);
-    
+    int getBeatCounter();
+    void incrementBeatCounter();
 protected:
 private:
     std::vector<Team*> teams;
+    int beatCounter = 0;
 
 };
 

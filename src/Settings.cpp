@@ -34,11 +34,15 @@ Json::Value Settings::getData(string key){
 }
 
 int Settings::getWidth(){
-    return Settings::getData("width").asInt();
+    return 192 * SCALE;
 }
 
 int Settings::getHeight(){
-    return Settings::getData("height").asInt();
+    return 157 * SCALE;
+}
+
+int Settings::getHeaderHeight(){
+    return 32 * SCALE;
 }
 
 int Settings::getPort(){
@@ -49,25 +53,38 @@ string Settings::assetsPath(){
     return ofToDataPath("assets/" );
 }
 
-int Settings::getPlayerHeight(){
-    return getHeight() / 6;
+float Settings::getPlayerHeight(){
+    return 24 * SCALE;
 }
 
-int Settings::getPlayerSeparation(){
-    return getHeight() / 36;
+float Settings::getPlayerSeparation(){
+    return 3 * SCALE;
 }
 
-int Settings::getPlayerCenter(){
-    return getWidth() / 30;
+float Settings::getPlayerCenterX(){
+    return 8 * SCALE;
 }
 
-int Settings::getPlayerRadius(){
-    return getPlayerCenter()/2;
+float Settings::getPlayerCenterY(){
+    return 8 * SCALE;
 }
 
-int Settings::getPlayerMargin(){
-    return getHeight() / 18;
+float Settings::getPlayerOuterRadius(){
+    return 5 * SCALE;
 }
+
+float Settings::getPlayerInnerRadius(){
+    return 3 * SCALE;
+}
+
+float Settings::getPlayerMargin(){
+    return 7 * SCALE;
+}
+
+float Settings::getTeamSeparation(){
+    return 9 * SCALE;
+}
+
 
 ofColor Settings::getPlayerColor(int team, int id){
     // TODO get colors from file

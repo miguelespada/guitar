@@ -25,6 +25,7 @@ public:
     void update();
     void generateBlocks();
     
+    
 protected:
 private:
     RunningModel* running_model;

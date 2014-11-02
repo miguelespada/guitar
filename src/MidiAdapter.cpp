@@ -19,6 +19,9 @@ void MidiAdapter::open(string input_port, string output_port){
     midiIn.openPort(input_port);
     midiIn.addListener(this);
     midiIn.ignoreTypes(false, false, false);
+    
+    cout << "Listening MIDI on " << input_port << endl;
+    cout << "Sending MIDI on " << output_port << endl;
 }
 
 
@@ -48,11 +51,15 @@ void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
     }
     if(msg.status == 248){
         ticks += 1;
+        
+        MidiAction *action = new MidiAction("/subbeat", subbeats);
+        observer->notify(action);
+        delete(action);
+        
         if(ticks == 6){
-            
             subbeats += 1;
             ticks = 0;
-            MidiAction *action = new MidiAction("/beat", subbeats);
+            MidiAction *action = new MidiAction("/beat", beats);
             observer->notify(action);
             delete(action);
         }
