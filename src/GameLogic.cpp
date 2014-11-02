@@ -16,7 +16,7 @@ GameLogic::GameLogic(){
     commands.push_back(new PlayerOff("/player_off"));
     commands.push_back(new Beat("/beat"));
     commands.push_back(new Subbeat("/subbeat"));
-    
+
     constructRunningServices();
 };
 

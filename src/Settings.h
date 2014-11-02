@@ -37,6 +37,7 @@ public:
     float getPlayerOuterRadius();
     float getPlayerInnerRadius();
     float getPlayerMargin();
+    ofColor getColor(string colorName);
 
     ofColor getPlayerColor(int team, int id);
 

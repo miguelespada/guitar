@@ -42,7 +42,7 @@ void RunningLogic::generateBlocks(){
     for (int i = 0; i < 2; i++){
         for (int j = 0; j < 2; j++){
             int block_pieces = ofRandom(1, 6);
-            bool position_down = ofRandom(0,1);
+            bool position_down = round(ofRandom(0,1));
             //if (model->getPlayer(i,j)->getRemainingPieces() >= block_pieces){
                 if (ofRandom(0,100) < 12){
                     model->addNewBlock(i, j, position_down, block_pieces);

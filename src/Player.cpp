@@ -54,32 +54,51 @@ void Player::setOff(){
     height = y_down - y_up;
 }
 
-void Player::draw(){
-    
-    if(color == 0)
-        color = Settings::getInstance()->getPlayerColor(team->getId(), id);
-    
+void Player::draw(){    
     ofPushStyle();
     drawBackground();
-    drawIcon();
     drawBlocks();
+    drawGradients();
+    drawIcon();
+    drawScore();
     ofPopStyle();
 }
 
 void Player::drawBackground(){
-    ofColor background = Settings::getInstance()->PLAYER_BACKGROUND;
     int width = Settings::getInstance()->getWidth();
     int height = Settings::getInstance()->getPlayerHeight();
-
-    ofSetColor(background);
+    ofColor backgroundColor = Settings::getInstance()->getColor("gray");
+    ofSetColor(backgroundColor);
     ofRect(0, 0, width, height);
+   
+ 
+}
+
+void Player::drawGradients(){
+    int width = Settings::getInstance()->getWidth();
+    int height = Settings::getInstance()->getPlayerHeight();
+    
+    if(inBlock){
+        ofColor color =  Settings::getInstance()->getPlayerColor(team->getId(), id);
+        for(int i = 0; i < width/2; i ++){
+            ofSetColor(color, ofMap(i, 0, width/2, 255, 0));
+            ofLine(i, 0, i, height);
+        }
+    }
+    
+    ofColor backgroundColor = Settings::getInstance()->getColor("black");
+    for(int i = width/2; i < width; i ++){
+        ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
+        ofLine(i, 0, i, height);
+    }
+    
 }
 
 void Player::drawIcon(){
     int y =  bDown ? y_down : y_up;
     
-    
     ofPath icon;
+    ofColor color = inBlock ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
     icon.setFillColor(color);
     
     //upper cap
@@ -105,6 +124,7 @@ void Player::drawIcon(){
     icon.draw();
     
     height *= 0.9;
+    if(abs(height) < 1) height = 0;
 }
 
 void Player::update(){
@@ -135,6 +155,10 @@ bool Player::getInBlock(){
     return false;
 }
 
+void Player::drawScore(){
+    // TODO: draw score increment
+}
+
 void Player::enterBlock(){
     ofLogVerbose() << "[Player] enter block ";
     MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
@@ -150,6 +174,7 @@ void Player::updateBlocks(){
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
     }
+    decrementQueues();
 }
 
 void Player::drawBlocks(){
@@ -166,10 +191,26 @@ bool Player::hasPlace(bool position_down){
 
 void Player::addNewBlock(bool position_down, int block_pieces){
     if (hasPlace(position_down)){
+        incrementQueue(position_down, block_pieces);
         blocks.push_back(new GameBlock(block_pieces, position_down, ofColor(255,0,255)));
     } else if (hasPlace(!position_down)){
+        incrementQueue(!position_down, block_pieces);
         blocks.push_back(new GameBlock(block_pieces, !position_down, ofColor(255,0,255)));
     }
 }
+
+void Player::incrementQueue(bool position_down, int block_pieces){
+    if (position_down){
+        queue_down += block_pieces;
+    } else{
+        queue_up += block_pieces;
+    }
+}
+
+void Player::decrementQueues(){
+    if (queue_down > 0) queue_down--;
+    if (queue_up > 0) queue_up--;
+}
+
 
 
