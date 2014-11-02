@@ -30,6 +30,18 @@ std::vector<Team*> RunningModel::getTeams(){
     return teams;
 }
 
-Player *RunningModel::getPlayer(int team, int id){
+Player* RunningModel::getPlayer(int team, int id){
     return teams.at(team)->getPlayer(id);
+}
+
+void RunningModel::addNewBlock(int team, int player_number, bool position_down, int block_pieces){
+    getPlayer(team, player_number)->addNewBlock(position_down, block_pieces);
+}
+
+int RunningModel::getBeatCounter(){
+    return beatCounter;
+}
+
+void RunningModel::incrementBeatCounter(){
+    beatCounter += 1;
 }

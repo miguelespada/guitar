@@ -34,4 +34,11 @@ public:
 };
 
 
+class Subbeat: public Command{
+public:
+    Subbeat(string actionName);
+    void run(Action *_action, Commandable *g);
+};
+
+
 #endif /* defined(__heinneken__GameLogicCommand__) */

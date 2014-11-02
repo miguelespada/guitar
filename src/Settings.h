@@ -12,6 +12,8 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
+#define SCALE 2
+
 class Settings{
 public:
     static Settings* getInstance();
@@ -21,14 +23,20 @@ public:
     int getWidth();
     int getHeight();
     int getPort();
+    
+    int getHeaderHeight();
+    int getSmallHeaderPanelWidth();
+    int getBigHeaderPanelWidth();
+    int getHeaderPanelHeight();
 
-
-    //Game variables
-    int getPlayerHeight();
-    int getPlayerSeparation();
-    int getPlayerCenter();
-    int getPlayerRadius();
-    int getPlayerMargin();
+    float getPlayerHeight();
+    float getPlayerSeparation();
+    float getTeamSeparation();
+    float getPlayerCenterX();
+    float getPlayerCenterY();
+    float getPlayerOuterRadius();
+    float getPlayerInnerRadius();
+    float getPlayerMargin();
 
     ofColor getPlayerColor(int team, int id);
 

@@ -17,7 +17,7 @@ class GameBlock
 public:
     GameBlock();
     ~GameBlock();
-    GameBlock(int length, bool bDown);
+    GameBlock(int length, bool bDown, ofColor bColor);
 
     void update();
     void draw(int y);

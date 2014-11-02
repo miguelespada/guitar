@@ -9,15 +9,19 @@
 #include "GameBlock.h"
 
 
-GameBlock::GameBlock(int pieces_num, bool bDown)
+GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
 {
-
+    GameBlock::block_color = bColor;
     GameBlock::bDown = bDown;
     x = 0;
+
     pieces = pieces_num;
+
+    cout << "new block " << endl;
 }
 
 void GameBlock::update(){
+    x = x+1;
 }
 
 void GameBlock::draw(int y){

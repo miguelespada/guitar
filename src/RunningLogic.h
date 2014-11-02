@@ -19,12 +19,12 @@ public:
     RunningLogic(RunningModel* model);
     virtual ~RunningLogic();
     RunningModel* getRunningModel();
-    
+
     void playerOn(int player);
     void playerOff(int player);
     void update();
     void generateBlocks();
-    
+
 protected:
 private:
     RunningModel* running_model;

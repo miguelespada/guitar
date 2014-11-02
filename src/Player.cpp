@@ -15,11 +15,12 @@ Player::Player(){
 Player::Player(int id, Team* team){
     Player::id = id;
     Player::team = team;
-    x = Settings::getInstance()->getPlayerCenter();
+    x = Settings::getInstance()->getPlayerCenterX();
     int y = Settings::getInstance()->getPlayerHeight()/2;
-    radius = Settings::getInstance()->getPlayerRadius();
-    y_up = y - radius * 2;
-    y_down = y + radius * 2;
+    outer_radius = Settings::getInstance()->getPlayerOuterRadius();
+    inner_radius = Settings::getInstance()->getPlayerInnerRadius();
+    y_up = y - Settings::getInstance()->getPlayerCenterY()/2;
+    y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
 
 //    for(int i = 0; i < 3; i++){
 //        GameBlock* b = new GameBlock(i + 2, true);
@@ -71,13 +72,16 @@ void Player::drawBackground(){
 }
 
 void Player::drawIcon(){
+    int yy =  y_up;
+    if(bDown) yy =  y_down;
+
     ofColor color = Settings::getInstance()->getPlayerColor(team->getId(), id);
     ofSetColor(color);
 
-    if(bDown)
-        ofCircle(x, y_down, radius);
-    else
-        ofCircle(x, y_up, radius);
+    ofCircle(x, yy, outer_radius);
+
+    ofSetColor(0);
+    ofCircle(x, yy, inner_radius);
 }
 
 void Player::drawBlocks(){
@@ -90,5 +94,23 @@ void Player::drawBlocks(){
         }
 }
 
+void Player::updateBlocks(){
+    std::vector<GameBlock*>::const_iterator b;
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        (*b)->update();
+    }
+}
+
+bool Player::hasPlace(bool position_down){
+    return position_down ? queue_down == 0 : queue_up == 0;
+}
+
+void Player::addNewBlock(bool position_down, int block_pieces){
+    if (hasPlace(position_down)){
+        blocks.push_back(new GameBlock(block_pieces, position_down, ofColor(255,0,255)));
+    } else if (hasPlace(!position_down)){
+        blocks.push_back(new GameBlock(block_pieces, !position_down, ofColor(255,0,255)));
+    }
+}
 
 

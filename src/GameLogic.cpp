@@ -13,6 +13,7 @@ GameLogic::GameLogic(){
     commands.push_back(new PlayerOn("/player_on"));
     commands.push_back(new PlayerOff("/player_off"));
     commands.push_back(new Beat("/beat"));
+    commands.push_back(new Subbeat("/subbeat"));
     
     constructRunningServices();
 };
@@ -20,9 +21,7 @@ GameLogic::GameLogic(){
 
 GameLogic::~GameLogic(){
     destroyRunningServices();
-    std::vector<Command*>::const_iterator c;
-    for(c=commands.begin(); c!=commands.end(); ++c)
-        delete *c;
+    destroyCommands();
 };
 
 void GameLogic::notify(Action *action){
@@ -34,11 +33,15 @@ void GameLogic::draw(){
 };
 
 void GameLogic::update(){
-    if(bTempo){
-        running_logic->generateBlocks();
-        bTempo = false;
+    if(bSubbeat){
+        running_logic->update();
+        bSubbeat = false;
     }
-    running_logic->update();
+    if(bBeat){
+        running_logic->generateBlocks();
+        bBeat = false;
+    }
+    
 }
 
 void GameLogic::playerOn(int value){
@@ -46,12 +49,16 @@ void GameLogic::playerOn(int value){
 }
 
 void GameLogic::playerOff(int value){
-    
     running_logic->playerOff(value);
 }
 
 void GameLogic::beat(){
-    bTempo = true;
+    bBeat = true;
+}
+
+void GameLogic::subbeat(){
+    running_model->incrementBeatCounter();
+    bSubbeat = true;
 }
 
 
