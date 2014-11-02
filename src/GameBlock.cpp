@@ -58,7 +58,7 @@ int GameBlock::pieceAtTheEnd(){
     int piece_size = Settings::getInstance()->PIECE_SIZE;
 
     for(int i = 0; i < pieces; i++){
-        if((i* piece_size + x )> endline_x){
+        if((i* piece_size + x )< endline_x){
             //Piece touching endline
             return i;
         }
