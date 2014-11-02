@@ -17,14 +17,24 @@ class GameBlock
 public:
     GameBlock();
     ~GameBlock();
-    GameBlock(int length, bool bDown);
-    
+    GameBlock(int length, bool bDown, ofColor bColor);
+
     void update();
-    void draw();
+    void draw(int y);
+    bool isDown();
+    void setBlockColor(ofColor color);
+    void setX(int x);
+    void setNumberOfPieces(int num);
+    void paintBlock(int y);
 private:
     int length;
     int x;
     bool bDown;
+    ofColor block_color;
+        //ofRectangle rectangle;
+    int pieces; // Number of pieces
+    int piece_on; // Piece where player pressed on
+    int piece_off; // Piece where player pressed off
 };
 
 #endif /* defined(__heinneken__GameBlock__) */

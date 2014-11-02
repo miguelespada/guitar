@@ -23,7 +23,7 @@ public:
     int getWidth();
     int getHeight();
     int getPort();
-    
+
     int getHeaderHeight();
     int getSmallHeaderPanelWidth();
     int getBigHeaderPanelWidth();
@@ -40,16 +40,17 @@ public:
 
     ofColor getPlayerColor(int team, int id);
 
-    const int PIECE_SIZE = 15;
+    const int PIECE_SIZE = getPlayerInnerRadius() * 2;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
     const int BLOCK_SEPARATION = 30;
+    const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
 
 
     // Color constants //
 
     const ofColor RUNNING_BACKGROUND = ofColor(0, 0, 0);
-    const ofColor PLAYER_BACKGROUND = ofColor(100, 0, 0);
+    const ofColor PLAYER_BACKGROUND = ofColor(19, 19, 19);
 
 private:
     static Settings* instance;
