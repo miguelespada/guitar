@@ -23,10 +23,10 @@ Player::Player(int id, Team* team){
     y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
 
 //    for(int i = 0; i < 3; i++){
-//        GameBlock* b = new GameBlock(i + 2, true);
+//        GameBlock* b = new GameBlock(1, true, Settings::getInstance()->getPlayerColor(team->getId(),id));
 //        blocks.push_back(b);
 //    }
-//    GameBlock* b = new GameBlock(6, false);
+//    GameBlock* b = new GameBlock(1, false, Settings::getInstance()->getPlayerColor(team->getId(),id));
 //    b->setX(60);
 //    blocks.push_back(b);
 
@@ -88,9 +88,9 @@ void Player::drawBlocks(){
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b)
         if((*b)->isDown()){
-            (*b)->draw(y_down);
+            (*b)->draw(y_down - inner_radius);
         }else{
-            (*b)->draw(y_up);
+            (*b)->draw(y_up - inner_radius);
         }
 }
 

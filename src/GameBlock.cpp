@@ -13,7 +13,7 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
 {
     GameBlock::block_color = bColor;
     GameBlock::bDown = bDown;
-    x = 0;
+    x = Settings::getInstance()->getWidth();
 
     pieces = pieces_num;
 
@@ -21,7 +21,7 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
 }
 
 void GameBlock::update(){
-    x = x+1;
+    x--;
 }
 
 void GameBlock::draw(int y){
