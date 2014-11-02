@@ -272,7 +272,6 @@ void Player::modifyScore(int value){
     player_score += value;
     team->modifyScore(value);
     if (getTeam()->getId() == 0 && id == 0)
-    cout << "Team " << getTeam()->getId() <<" Player " << id << " " << player_score << endl;
 }
 
 
