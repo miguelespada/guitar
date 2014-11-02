@@ -57,6 +57,7 @@ private:
 
     int queue_up;
     int queue_down;
+    int last_block_touching = -1;
 
     int x, y_up, y_down, outer_radius, inner_radius;
     void updateBlocks();

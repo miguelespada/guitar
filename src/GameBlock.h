@@ -24,6 +24,7 @@ public:
     bool isDown();
     void setBlockColor(ofColor color);
     void setX(int x);
+    int getNumberOfPieces();
     void setNumberOfPieces(int num);
     void paintBlock(int y);
     int pieceAtTheEnd();

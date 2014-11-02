@@ -148,21 +148,37 @@ void Player::updateInBlock(){
 
 bool Player::getInBlock(){
     if (blocks.size() > 0){
-        GameBlock* first_block = blocks.front();
-        int piece_touching = first_block->pieceAtTheEnd() ;
-        if (piece_touching != -1 && bDown == first_block->isDown()){
-            if (first_block->getPieceOn() == -1){
-                first_block->setPieceOn(piece_touching);
-            }
+        int block_scoring = getBlockScoring();
+        if (block_scoring != -1){
+            last_block_touching = block_scoring;
             return true;
-        } else{
-             if (first_block->getPieceOn() != -1 && first_block->getPieceOff() == -1){
-                first_block->setPieceOff(piece_touching);
-                modifyScore(first_block->getScore());
+        } else {
+            if (last_block_touching != -1){
+                Block* b = blocks.at(last_block_touching);
+                b->setPieceOff(b->getLastTouchingPiece());
+                modifyScore(b->getScore());
             }
         }
     }
     return false;
+}
+
+int Player::getBlockScoring(){
+    int touchable_blocks = 4;
+    if (blocks.size() < 4){
+        touchable_blocks = blocks.size();
+    }
+    for(int i = 0; i < touchable_blocks; i++){
+        GameBlock* block = blocks.at(i);
+        int piece_touching = block->pieceAtTheEnd();
+        if (b->getPieceOff == -1 && piece_touching != -1 && bDown == block->isDown()){
+            if (block->getPieceOn() == -1){
+                block->setPieceOn(piece_touching);
+            }
+            return i;
+        }
+    }
+    return -1;
 }
 
 void Player::drawScore(){
@@ -184,7 +200,6 @@ void Player::updateBlocks(){
         if (blocks.front()->isOutOfMap()){
                 GameBlock* b_delete = blocks.front();
                 blocks.erase(blocks.begin());
-
                 delete b_delete;
                 b_delete = NULL;
             }

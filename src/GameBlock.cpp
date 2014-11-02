@@ -53,6 +53,9 @@ void GameBlock::setX(int x){
 void GameBlock::setNumberOfPieces(int num){
     GameBlock::pieces = num;
 }
+int GameBlock::getNumberOfPieces(){
+    return GameBlock::pieces;
+}
 int GameBlock::pieceAtTheEnd(){
     int endline_x = Settings::getInstance()->getPlayerCenterX();
     int piece_size = Settings::getInstance()->PIECE_SIZE;
@@ -81,5 +84,6 @@ void GameBlock::setPieceOff(int p){
     piece_off = p;
 }
 int GameBlock::getScore(){
+    cout << piece_off << " " << piece_on << endl;
     return (piece_off - piece_on) * Settings::getInstance()->PIECE_SCORE;
 }
