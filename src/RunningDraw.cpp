@@ -11,6 +11,7 @@
 RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
+    myfont.loadFont("arial.ttf", 18);
 }
 
 RunningDraw::~RunningDraw()
@@ -60,13 +61,35 @@ void RunningDraw::drawTeams(){
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
     }
+
     ofPopMatrix();
+    drawTeamScores(running_model->getTeams().at(0)->getScore(), running_model->getTeams().at(0)->getScore());
+    drawTitle();
 }
-void RunningDraw::drawTeamScores(){
+void RunningDraw::drawTeamScores(int team1, int team2){
+
+    //Conversion to string
+    string t1, t2;
+    ostringstream temp1, temp2;
+    temp1 << team1;
+    t1=temp1.str();
+    temp2 << team2;
+    t2=temp2.str();
+
     int team0_x = Settings::getInstance()->getTeamScoreX(0);
     int team1_x = Settings::getInstance()->getTeamScoreX(1);
 
-    //TODO: render scores on the top of the screen
+    ofSetColor(255,255,255);
+    myfont.drawString(t1, team0_x + 5, Settings::getInstance()->getHeaderHeight());
+    myfont.drawString(t2, team1_x - 20, Settings::getInstance()->getHeaderHeight());
+    //TODO: move to settings all margins
+}
+void RunningDraw::drawTitle(){
+    int title_pos = Settings::getInstance()->getSmallHeaderPanelWidth() *2 + 10;
+    ofSetColor(255,255,255);
+
+    myfont.drawString("NAVIGATE\nTHE SUB",  title_pos, 25);
+    //TODO: move to settings top margin
 }
 void RunningDraw::drawBeatCounter(){
     int beat = getRunningModel()->getBeatCounter();

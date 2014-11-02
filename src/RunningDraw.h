@@ -22,9 +22,16 @@ public:
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
     void draw();
-    void drawTeamScores();
+    void drawTeamScores(int team1, int team2);
+    void drawTitle();
 protected:
 private:
+    ofTrueTypeFont myfont;
+
+
+
+// in draw:
+
     void drawTeams();
     void drawBeatCounter();
     void drawHeader();

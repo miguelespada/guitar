@@ -22,12 +22,13 @@ public:
     void draw();
     Player *getPlayer(int id);
     void modifyScore(int value);
+    int getScore();
 
 protected:
 private:
     int id;
     vector<Player*> players;
-    int team_score;
+    int team_score = 0;
 };
 
 
