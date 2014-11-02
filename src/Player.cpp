@@ -154,7 +154,7 @@ void Player::exitBlock(){
 void Player::updateBlocks(){
     if (blocks.size() > 0){
         if (blocks.front()->isOutOfMap()){
-                Block* b_delete = blocks.front();
+                GameBlock* b_delete = blocks.front();
                 blocks.erase(blocks.begin());
                 delete b_delete;
                 b_delete = NULL;
