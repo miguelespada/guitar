@@ -25,6 +25,8 @@ Player::Player(int id, Team* team){
     inner_radius = Settings::getInstance()->getPlayerInnerRadius();
     y_up = y - Settings::getInstance()->getPlayerCenterY()/2;
     y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
+    queue_down = 0;
+    queue_up = 0;
 }
 
 Player::~Player(){
@@ -100,7 +102,7 @@ void Player::drawIcon(){
     ofPath icon;
     ofColor color = inBlock ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
     icon.setFillColor(color);
-    
+
     //upper cap
     int yy = (height < 0) ? y + height + 1 : y;
     icon.arc(x, yy, inner_radius, inner_radius, 180, 360);
@@ -108,21 +110,21 @@ void Player::drawIcon(){
     icon.arc(x, yy, outer_radius, outer_radius, 180, 360);
     icon.draw();
     icon.clear();
-    
+
     //lower cap
     yy = (height > 0) ? y + height - 1 : y;
-    
+
     icon.arc(x, yy, inner_radius, inner_radius, 0, 180);
     icon.close();
     icon.arc(x, yy, outer_radius, outer_radius, 0, 180);
     icon.draw();
     icon.clear();
-    
+
     //side lines
     icon.rectangle(x + inner_radius, y, outer_radius - inner_radius, height);
     icon.rectangle(x - inner_radius, y, -outer_radius + inner_radius, height);
     icon.draw();
-    
+
     height *= 0.9;
     if(abs(height) < 1) height = 0;
 }
@@ -137,21 +139,25 @@ void Player::update(){
 void Player::updateInBlock(){
     bool prevInBlock = inBlock;
     inBlock = getInBlock();
-    
+
     if(prevInBlock && !inBlock)
         exitBlock();
-    
+
     if(!prevInBlock && inBlock)
         enterBlock();
 }
 
 bool Player::getInBlock(){
-    
-    //  TODO: compute is a player is in block
+    if (blocks.size() > 0){
+        GameBlock* first_block = blocks.front();
+        if (first_block->pieceAtTheEnd() != -1){
+            return true;
+        }
+    }
     if(DEBUG){
         return bDown;
     }
-    
+
     return false;
 }
 
@@ -160,16 +166,24 @@ void Player::drawScore(){
 }
 
 void Player::enterBlock(){
-    ofLogVerbose() << "[Player] enter block ";
+   // ofLogVerbose() << "[Player] enter block ";
     MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-    ofLogVerbose() << "[Player] exit block ";
+   // ofLogVerbose() << "[Player] exit block ";
     MidiAdapter::getInstance()->sendNoteOff(getGlobalId());
 }
 
 void Player::updateBlocks(){
+    if (blocks.size() > 0){
+        if (blocks.front()->isOutOfMap()){
+                GameBlock* b_delete = blocks.front();
+                blocks.erase(blocks.begin());
+                delete b_delete;
+                b_delete = NULL;
+            }
+    }
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
@@ -190,13 +204,14 @@ bool Player::hasPlace(bool position_down){
 }
 
 void Player::addNewBlock(bool position_down, int block_pieces){
+    Settings* settings = Settings::getInstance();
+    int margin = settings->getBlockSeparation();
+    int block_margin = (margin + block_pieces) * settings->PIECE_SIZE;
     if (hasPlace(position_down)){
-        incrementQueue(position_down, block_pieces);
+        incrementQueue(position_down, block_margin);
         blocks.push_back(new GameBlock(block_pieces, position_down, ofColor(255,0,255)));
-    } else if (hasPlace(!position_down)){
-        incrementQueue(!position_down, block_pieces);
-        blocks.push_back(new GameBlock(block_pieces, !position_down, ofColor(255,0,255)));
     }
+    settings = NULL;
 }
 
 void Player::incrementQueue(bool position_down, int block_pieces){

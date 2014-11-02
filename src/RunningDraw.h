@@ -22,6 +22,7 @@ public:
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
     void draw();
+    void drawTeamScores();
 protected:
 private:
     void drawTeams();
