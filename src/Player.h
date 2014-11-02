@@ -24,9 +24,9 @@ public:
 
     int getId();
     int getGlobalId();
-    
+
     Team* getTeam();
-    
+
     void draw();
     void setOn();
     void setOff();
@@ -34,15 +34,18 @@ public:
     void update();
     void addNewBlock(bool position_down, int block_pieces);
 
+    void modifyScore(int value);
+
 protected:
 private:
     int id;
     Team* team;
+    int player_score;
     std::vector<GameBlock*> blocks;
     bool bDown = false;
     ofColor color;
     float height = 0;
-    
+
     void drawBlocks();
     void drawBackground();
     void drawIcon();

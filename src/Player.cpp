@@ -203,5 +203,9 @@ void Player::decrementQueues(){
     if (queue_up > 0) queue_up--;
 }
 
+void Player::modifyScore(int value){
+    player_score += value;
+}
+
 
 
