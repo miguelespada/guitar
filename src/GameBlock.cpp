@@ -54,11 +54,11 @@ void GameBlock::setNumberOfPieces(int num){
     GameBlock::pieces = num;
 }
 int GameBlock::pieceAtTheEnd(){
-    int endline_x = Settings::getInstance()->getPlayerCenterY();
+    int endline_x = Settings::getInstance()->getPlayerCenterX();
     int piece_size = Settings::getInstance()->PIECE_SIZE;
 
     for(int i = 0; i < pieces; i++){
-        if((i* piece_size + x )> endline_x){
+        if((i* piece_size + x )< endline_x){
             //Piece touching endline
             return i;
         }
