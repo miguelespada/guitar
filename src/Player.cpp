@@ -20,6 +20,15 @@ Player::Player(int id, Team* team){
     radius = Settings::getInstance()->getPlayerRadius();
     y_up = y - radius * 2;
     y_down = y + radius * 2;
+
+//    for(int i = 0; i < 3; i++){
+//        GameBlock* b = new GameBlock(i + 2, true);
+//        blocks.push_back(b);
+//    }
+//    GameBlock* b = new GameBlock(6, false);
+//    b->setX(60);
+//    blocks.push_back(b);
+
 }
 
 Player::~Player(){
@@ -44,7 +53,7 @@ void Player::setOff(){
 
 void Player::draw(){
     ofPushStyle();
-    
+
     drawBackground();
     drawIcon();
     drawBlocks();
@@ -56,6 +65,7 @@ void Player::drawBackground(){
     ofColor background = Settings::getInstance()->PLAYER_BACKGROUND;
     int width = Settings::getInstance()->getWidth();
     int height = Settings::getInstance()->getPlayerHeight();
+
     ofSetColor(background);
     ofRect(0, 0, width, height);
 }
@@ -63,7 +73,7 @@ void Player::drawBackground(){
 void Player::drawIcon(){
     ofColor color = Settings::getInstance()->getPlayerColor(team->getId(), id);
     ofSetColor(color);
-    
+
     if(bDown)
         ofCircle(x, y_down, radius);
     else
@@ -73,7 +83,11 @@ void Player::drawIcon(){
 void Player::drawBlocks(){
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b)
-        (*b)->draw();
+        if((*b)->isDown()){
+            (*b)->draw(y_down);
+        }else{
+            (*b)->draw(y_up);
+        }
 }
 
 

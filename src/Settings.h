@@ -36,12 +36,13 @@ public:
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
     const int BLOCK_SEPARATION = 30;
+    const int PIECE_WIDTH = 20;
 
 
     // Color constants //
 
     const ofColor RUNNING_BACKGROUND = ofColor(0, 0, 0);
-    const ofColor PLAYER_BACKGROUND = ofColor(100, 0, 0);
+    const ofColor PLAYER_BACKGROUND = ofColor(19, 19, 19);
 
 private:
     static Settings* instance;

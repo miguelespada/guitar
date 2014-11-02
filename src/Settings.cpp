@@ -73,15 +73,15 @@ ofColor Settings::getPlayerColor(int team, int id){
     // TODO get colors from file
     if(team == 0){
         if (id == 0)
-            return ofColor(255, 0, 255);
+            return ofColor(255, 106, 19);
         else
-            return ofColor(0, 255, 0);
+            return ofColor(255, 209, 0);
     }
     else{
         if (id == 0)
-            return ofColor(255, 0, 255);
+            return ofColor(160, 218, 179);
         else
-            return ofColor(255, 255, 0);
+            return ofColor(0, 193, 213);
     }
 
 }
