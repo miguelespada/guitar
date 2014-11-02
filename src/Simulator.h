@@ -22,6 +22,7 @@ public:
     void playerOn(int player);
     void playerOff(int player);
     void sendMidiBeat();
+    void sendMidiSubbeat();
 };
 
 

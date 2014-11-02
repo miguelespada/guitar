@@ -9,6 +9,8 @@
 #include "GameLogic.h"
 #include "GameLogicCommand.h"
 
+#define DEBUG true
+
 GameLogic::GameLogic(){
     commands.push_back(new PlayerOn("/player_on"));
     commands.push_back(new PlayerOff("/player_off"));

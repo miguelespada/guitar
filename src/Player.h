@@ -23,12 +23,15 @@ public:
     virtual ~Player();
 
     int getId();
+    int getGlobalId();
+    
     Team* getTeam();
+    
     void draw();
     void setOn();
     void setOff();
 
-    void updateBlocks();
+    void update();
     void addNewBlock(bool position_down, int block_pieces);
 
 protected:
@@ -38,7 +41,8 @@ private:
     std::vector<GameBlock*> blocks;
     bool bDown = false;
     ofColor color;
-        
+    float height = 0;
+    
     void drawBlocks();
     void drawBackground();
     void drawIcon();
@@ -51,6 +55,13 @@ private:
     int queue_down;
 
     int x, y_up, y_down, outer_radius, inner_radius;
+    void updateBlocks();
+    void updateInBlock();
+    bool inBlock;
+    bool getInBlock();
+    void enterBlock();
+    void exitBlock();
+
 };
 
 

@@ -9,11 +9,11 @@
 #include "Settings.h"
 
 Settings::Settings(){
-    cout << "Constructing Settings " << endl;
+    ofLogVerbose() << "Constructing Settings ";
 
 }
 Settings::~Settings(){
-    cout << "Destroying Settings " << endl;
+    ofLogVerbose() << "Destroying Settings ";
 }
 
 Settings* Settings::instance = 0;

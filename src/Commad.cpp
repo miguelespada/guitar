@@ -12,7 +12,7 @@
 
 Next::Next(string actionName){
     action = actionName;
-    cout << toString("next") << endl;
+     ofLogNotice() << toString("next");
 }
 
 void Next::run(Action *_action, Commandable *g){
