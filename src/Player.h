@@ -40,7 +40,7 @@ private:
     Team* team;
     std::vector<GameBlock*> blocks;
     bool bDown = false;
-    ofColor color;
+    ofColor color = 0;
     float height = 0;
     
     void drawBlocks();

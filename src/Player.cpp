@@ -55,12 +55,14 @@ void Player::setOff(){
 }
 
 void Player::draw(){
+    
+    if(color == 0)
+        color = Settings::getInstance()->getPlayerColor(team->getId(), id);
+    
     ofPushStyle();
-
     drawBackground();
     drawIcon();
     drawBlocks();
-
     ofPopStyle();
 }
 
@@ -76,9 +78,7 @@ void Player::drawBackground(){
 void Player::drawIcon(){
     int y =  bDown ? y_down : y_up;
     
-    // TODO: color should go to constructor
-    color = Settings::getInstance()->getPlayerColor(team->getId(), id);
-
+    
     ofPath icon;
     icon.setFillColor(color);
     

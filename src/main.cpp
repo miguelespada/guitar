@@ -19,6 +19,7 @@
 int main( ){
 
     ofSetupOpenGL(1024,768, OF_WINDOW);
+    glutIgnoreKeyRepeat(1);
     glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 
 	// this kicks off the running of my app
