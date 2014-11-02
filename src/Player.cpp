@@ -44,7 +44,7 @@ void Player::setOff(){
 
 void Player::draw(){
     ofPushStyle();
-    
+
     drawBackground();
     drawIcon();
     drawBlocks();
@@ -63,7 +63,7 @@ void Player::drawBackground(){
 void Player::drawIcon(){
     ofColor color = Settings::getInstance()->getPlayerColor(team->getId(), id);
     ofSetColor(color);
-    
+
     if(bDown)
         ofCircle(x, y_down, radius);
     else
@@ -76,5 +76,23 @@ void Player::drawBlocks(){
         (*b)->draw();
 }
 
+void Player::updateBlocks(){
+    std::vector<GameBlock*>::const_iterator b;
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        (*b)->update();
+    }
+}
+
+bool Player::hasPlace(bool position_down){
+    return position_down ? queue_down == 0 : queue_up == 0;
+}
+
+void Player::addNewBlock(bool position_down, int block_pieces){
+    if (hasPlace(position_down)){
+        blocks.push_back(new GameBlock(block_pieces, position_down));
+    } else if (hasPlace(!position_down)){
+        blocks.push_back(new GameBlock(block_pieces, !position_down));
+    }
+}
 
 
