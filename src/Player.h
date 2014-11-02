@@ -43,6 +43,8 @@ private:
     void drawIcon();
 
     bool hasPlace(bool position_down);
+    void incrementQueue(bool position_down, int block_pieces);
+    void decrementQueues();
 
     int queue_up;
     int queue_down;

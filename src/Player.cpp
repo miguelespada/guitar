@@ -99,6 +99,7 @@ void Player::updateBlocks(){
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
     }
+    decrementQueues();
 }
 
 bool Player::hasPlace(bool position_down){
@@ -107,10 +108,26 @@ bool Player::hasPlace(bool position_down){
 
 void Player::addNewBlock(bool position_down, int block_pieces){
     if (hasPlace(position_down)){
+        incrementQueue(position_down, block_pieces);
         blocks.push_back(new GameBlock(block_pieces, position_down, ofColor(255,0,255)));
     } else if (hasPlace(!position_down)){
+        incrementQueue(!position_down, block_pieces);
         blocks.push_back(new GameBlock(block_pieces, !position_down, ofColor(255,0,255)));
     }
 }
+
+void Player::incrementQueue(bool position_down, int block_pieces){
+    if (position_down){
+        queue_down += block_pieces;
+    } else{
+        queue_up += block_pieces;
+    }
+}
+
+void Player::decrementQueues(){
+    if (queue_down > 0) queue_down--;
+    if (queue_up > 0) queue_up--;
+}
+
 
 

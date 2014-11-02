@@ -14,7 +14,7 @@ GameLogic::GameLogic(){
     commands.push_back(new PlayerOff("/player_off"));
     commands.push_back(new Beat("/beat"));
     commands.push_back(new Subbeat("/subbeat"));
-    
+
     constructRunningServices();
 };
 
@@ -41,7 +41,8 @@ void GameLogic::update(){
         running_logic->generateBlocks();
         bBeat = false;
     }
-    
+    running_logic->update();
+
 }
 
 void GameLogic::playerOn(int value){
