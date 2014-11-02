@@ -14,7 +14,7 @@
 
 IDLE::IDLE(Game *g){
     game = g;
-    cout << "State: " << toString() << endl;
+    ofLogNotice() << "State: " << toString();
 };
 
 void IDLE::draw(){
@@ -32,7 +32,7 @@ void IDLE::push()
 
 STARTING::STARTING(Game *g){
     game = g;
-    cout << "State: " << toString() << endl;
+    ofLogNotice() << "State: " << toString();
 }
 
 void STARTING::draw(){
@@ -57,7 +57,7 @@ void STARTING::jump()
 RUNNING::RUNNING(Game *g){
     game = g;
     gameLogic = new GameLogic();
-    cout << "State: " << toString() << endl;
+    ofLogNotice() << "State: " << toString();
 };
 
 void RUNNING::draw(){
@@ -86,7 +86,7 @@ RUNNING::~RUNNING(){
 
 WINNER::WINNER(Game *g){
     game = g;
-    cout << "State: " << toString() << endl;
+    ofLogNotice() << "State: " << toString();
     
     timer = ofGetElapsedTimeMillis();
 }

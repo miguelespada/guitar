@@ -1,5 +1,12 @@
 {
   "port" : 8080,
-  "width" : 800,
-  "height" : 600
+  "player_00" : "FF6A13",
+  "player_01" : "DDD100",
+  "player_10" : "BA0DAB3",
+  "player_11" : "B00C1D5",
+  "black" : "000000",
+  "gray" : "191919",
+  "red" : "f10e0e",
+  "green" : "6daf22",
+  "white" : "ffffff"
 }

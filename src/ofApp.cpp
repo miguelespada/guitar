@@ -3,11 +3,11 @@
 #include "Settings.h"
 
 ofApp::ofApp(){
-    cout << "Constructing Main" << endl;
+    ofLogVerbose() << "Constructing Main";
 }
 
 ofApp::~ofApp(){
-    cout << "Destroying Main" << endl;
+    ofLogVerbose() << "Destroying Main";
 }
 
 //--------------------------------------------------------------
@@ -18,6 +18,8 @@ void ofApp::setup(){
     
     ofSetWindowPosition(0, 0);
     ofHideCursor();
+    
+    ofSetLogLevel(OF_LOG_VERBOSE);
 
     assets.load();
     
@@ -29,11 +31,10 @@ void ofApp::setup(){
     game.setAssetsFacade(&assetsFacade);
     game.setCurrent(new RUNNING(&game));
     
-    midi.open("IAC Driver Bus 1", "Network");
-    midi.registerObserver(&game);
+    MidiAdapter::getInstance()->open("IAC Driver Bus 1", "Network");
+    MidiAdapter::getInstance()->registerObserver(&game);
     
-    int width = Settings::getInstance()->getWidth();
-    int height = Settings::getInstance()->getHeight();
+    ofEnableAlphaBlending();
     
 }
 
@@ -42,13 +43,18 @@ void ofApp::update(){
     oscAdapter.update();
     game.update();
     
-    if(ofGetFrameNum() % 8 == 0)
+    simulator.sendMidiSubbeat();
+    
+    if(ofGetFrameNum() % 6 == 0)
         simulator.sendMidiBeat();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofPushMatrix();
     game.draw();
+    ofPopMatrix();
+    
     ofSetColor(255, 0, 0);
     ofLine(ofGetMouseX(), 0, ofGetMouseX(), ofGetHeight());
     ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
@@ -61,10 +67,11 @@ void ofApp::keyPressed(int key){
     switch (key) {
             
         case '0' ... '9':
-            midi.sendNoteOn(song);
+            // TODO stop song
+            MidiAdapter::getInstance()->sendNoteOn(song);
             song = key - '0';
-            midi.sendNoteOn(126);
-            midi.sendNoteOn(song);
+            MidiAdapter::getInstance()->sendNoteOn(126);
+            MidiAdapter::getInstance()->sendNoteOn(song);
             break;
         case 'f':
             ofToggleFullscreen();

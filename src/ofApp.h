@@ -27,7 +27,6 @@ public:
     AssetsFacade assetsFacade;
     OscAdapter oscAdapter;
     Simulator simulator;
-    MidiAdapter midi;
     int song = 0;
 };
 

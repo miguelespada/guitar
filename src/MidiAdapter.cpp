@@ -12,26 +12,35 @@
 
 MidiAdapter::MidiAdapter(){}
 
+MidiAdapter* MidiAdapter::instance = 0;
+MidiAdapter* MidiAdapter::getInstance(){
+    if (instance == 0){
+        instance = new MidiAdapter();
+    }
+    return instance;
+};
+
 void MidiAdapter::open(string input_port, string output_port){
     midiOut.listPorts();
     midiOut.openPort(output_port);
     midiIn.listPorts();
+    
     midiIn.openPort(input_port);
     midiIn.addListener(this);
     midiIn.ignoreTypes(false, false, false);
     
-    cout << "Listening MIDI on " << input_port << endl;
-    cout << "Sending MIDI on " << output_port << endl;
+    ofLogNotice() << "Listening MIDI on " << input_port;
+    ofLogNotice() << "Sending MIDI on " << output_port;
 }
 
 
 void MidiAdapter::sendNoteOn(int note){
-    cout << "Midi on: " << note << endl;
+    ofLogVerbose() << "Midi on: " << note;
     midiOut.sendNoteOn(channel, note,  64);
 }
 
 void MidiAdapter::sendNoteOff(int note){
-    cout << "Midi off: " << note << endl;
+    ofLogVerbose() << "Midi off: " << note;
     midiOut.sendNoteOff(channel, note,  64);
 }
 

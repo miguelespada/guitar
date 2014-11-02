@@ -56,7 +56,7 @@ int GameBlock::pieceAtTheEnd(){
     int piece_size = Settings::getInstance()->PIECE_SIZE;
 
     for(int i = 0; i < pieces; i++){
-        if((i* piece_size + x() )> endline_x){
+        if((i* piece_size + x )> endline_x){
             //Piece touching endline
             return i;
         }
@@ -64,8 +64,5 @@ int GameBlock::pieceAtTheEnd(){
     return -1; // Piece not touching endline
 }
 bool GameBlock::isOutOfMap(){
-    if(isLeftPainted()){
-        return (x() + width()) < 0;
-
-
+        return (x + (pieces * Settings::getInstance()->PIECE_SIZE)) < 0;
 }

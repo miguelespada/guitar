@@ -29,7 +29,6 @@ void RunningDraw::draw(){
 }
 
 RunningModel* RunningDraw::getRunningModel(){
-    
     return running_model;
 }
 
@@ -37,7 +36,7 @@ void RunningDraw::drawHeader(){
     ofSetColor(192);
     ofRect(0, 0, settings->getWidth(), settings->getHeaderHeight());
     ofSetColor(0);
-    
+
     ofPushMatrix();
     ofTranslate(settings->getSmallHeaderPanelWidth(), 0);
     ofRect(0, settings->getHeaderPanelHeight(), settings->getSmallHeaderPanelWidth(),  settings->getHeaderPanelHeight() );
@@ -46,15 +45,15 @@ void RunningDraw::drawHeader(){
     ofTranslate(settings->getBigHeaderPanelWidth(), 0);
     ofRect(0, settings->getHeaderPanelHeight(), settings->getSmallHeaderPanelWidth(),  settings->getHeaderPanelHeight() );
     ofPopMatrix();
-    
+
 }
 
 void RunningDraw::drawTeams(){
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
-    
+
     vector<Team*>  teams = running_model->getTeams();
-    
+
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw();
@@ -63,7 +62,12 @@ void RunningDraw::drawTeams(){
     }
     ofPopMatrix();
 }
+void RunningDraw::drawTeamScores(){
+    int team0_x = Settings::getInstance()->getTeamScoreX(0);
+    int team1_x = Settings::getInstance()->getTeamScoreX(1);
 
+    //TODO: render scores on the top of the screen
+}
 void RunningDraw::drawBeatCounter(){
     int beat = getRunningModel()->getBeatCounter();
     int x = ofGetWidth() - ( beat % ofGetWidth() );

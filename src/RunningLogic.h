@@ -27,6 +27,7 @@ public:
 
 protected:
 private:
+    Player* getPlayer(int player);
     RunningModel* running_model;
 };
 

@@ -9,12 +9,14 @@
 #include "GameLogic.h"
 #include "GameLogicCommand.h"
 
+#define DEBUG true
+
 GameLogic::GameLogic(){
     commands.push_back(new PlayerOn("/player_on"));
     commands.push_back(new PlayerOff("/player_off"));
     commands.push_back(new Beat("/beat"));
     commands.push_back(new Subbeat("/subbeat"));
-    
+
     constructRunningServices();
 };
 
@@ -41,7 +43,6 @@ void GameLogic::update(){
         running_logic->generateBlocks();
         bBeat = false;
     }
-    
 }
 
 void GameLogic::playerOn(int value){
@@ -60,7 +61,6 @@ void GameLogic::subbeat(){
     running_model->incrementBeatCounter();
     bSubbeat = true;
 }
-
 
 void GameLogic::constructRunningServices(){
     running_model = new RunningModel();

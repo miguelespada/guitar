@@ -12,7 +12,7 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
-#define SCALE 2
+#define SCALE 3
 
 class Settings{
 public:
@@ -37,6 +37,8 @@ public:
     float getPlayerOuterRadius();
     float getPlayerInnerRadius();
     float getPlayerMargin();
+
+    float getTeamScoreX(int team);
 
     ofColor getPlayerColor(int team, int id);
 
