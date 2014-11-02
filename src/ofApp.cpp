@@ -29,8 +29,8 @@ void ofApp::setup(){
     game.setAssetsFacade(&assetsFacade);
     game.setCurrent(new RUNNING(&game));
     
-    midi.open("IAC Driver Bus 1", "Network");
-    midi.registerObserver(&game);
+    MidiAdapter::getInstance()->open("IAC Driver Bus 1", "Network");
+    MidiAdapter::getInstance()->registerObserver(&game);
     
     ofEnableAlphaBlending();
     
@@ -60,10 +60,10 @@ void ofApp::keyPressed(int key){
     switch (key) {
             
         case '0' ... '9':
-            midi.sendNoteOn(song);
+            MidiAdapter::getInstance()->sendNoteOn(song);
             song = key - '0';
-            midi.sendNoteOn(126);
-            midi.sendNoteOn(song);
+            MidiAdapter::getInstance()->sendNoteOn(126);
+            MidiAdapter::getInstance()->sendNoteOn(song);
             break;
         case 'f':
             ofToggleFullscreen();

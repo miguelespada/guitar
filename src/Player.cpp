@@ -7,6 +7,9 @@
 //
 
 #include "Player.h"
+#include "MidiAdapter.h"
+
+#define DEBUG true
 
 Player::Player(){
     //ctor
@@ -30,6 +33,11 @@ Player::~Player(){
 
 int Player::getId(){
     return id;
+}
+
+
+int Player::getGlobalId(){
+    return team->getId() * 2 + id;
 }
 
 Team* Player::getTeam(){
@@ -78,6 +86,7 @@ void Player::drawIcon(){
 }
 
 void Player::update(){
+    updateInBlock();
     updateBlocks();
 }
 
@@ -101,16 +110,23 @@ void Player::updateInBlock(){
 }
 
 bool Player::getInBlock(){
+    
     //  TODO: compute is a player is in block
+    if(DEBUG){
+        return bDown;
+    }
+    
     return false;
 }
 
 void Player::enterBlock(){
-    // TODO: send note on
+    cout << "[Player] enter block " << endl;
+    MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-    // TODO: send note off
+    cout << "[Player] exit block " << endl;
+    MidiAdapter::getInstance()->sendNoteOff(getGlobalId());
 }
 
 void Player::updateBlocks(){

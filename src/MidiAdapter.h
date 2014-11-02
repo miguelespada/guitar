@@ -15,6 +15,10 @@
 
 
 class MidiAdapter: public ofxMidiListener{
+    
+    MidiAdapter();
+    static MidiAdapter* instance;
+    
     ofxMidiIn midiIn;
     int channel = 6;
     Observer *observer;
@@ -25,7 +29,7 @@ class MidiAdapter: public ofxMidiListener{
     int compass;
 public:
     ofxMidiOut midiOut;
-    MidiAdapter();
+    static MidiAdapter* getInstance();
     ~MidiAdapter();
     
     void newMidiMessage(ofxMidiMessage& eventArgs);

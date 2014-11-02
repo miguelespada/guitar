@@ -12,6 +12,14 @@
 
 MidiAdapter::MidiAdapter(){}
 
+MidiAdapter* MidiAdapter::instance = 0;
+MidiAdapter* MidiAdapter::getInstance(){
+    if (instance == 0){
+        instance = new MidiAdapter();
+    }
+    return instance;
+};
+
 void MidiAdapter::open(string input_port, string output_port){
     midiOut.listPorts();
     midiOut.openPort(output_port);

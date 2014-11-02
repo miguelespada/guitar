@@ -23,7 +23,10 @@ public:
     virtual ~Player();
 
     int getId();
+    int getGlobalId();
+    
     Team* getTeam();
+    
     void draw();
     void setOn();
     void setOff();
