@@ -97,18 +97,8 @@ float Settings::getTeamSeparation(){
 
 
 ofColor Settings::getPlayerColor(int team, int id){
-    // TODO get colors from file
-    if(team == 0){
-        if (id == 0)
-            return ofColor(255, 0, 255);
-        else
-            return ofColor(0, 255, 0);
-    }
-    else{
-        if (id == 0)
-            return ofColor(255, 0, 255);
-        else
-            return ofColor(255, 255, 0);
-    }
-
+    string player = "player_" + ofToString(team) + ofToString(id);
+    string color = Settings::getData(player).asString();
+    return ofColor::fromHex(ofHexToInt("0x" + color));
+    
 }

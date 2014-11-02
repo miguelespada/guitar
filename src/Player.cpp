@@ -65,7 +65,9 @@ void Player::drawIcon(){
     int yy =  y_up;
     if(bDown) yy =  y_down;
     
-    ofColor color = Settings::getInstance()->getPlayerColor(team->getId(), id);
+    // TODO: make a hole or draw like a PATH
+    
+    color = Settings::getInstance()->getPlayerColor(team->getId(), id);
     ofSetColor(color);
     ofCircle(x, yy, outer_radius);
     

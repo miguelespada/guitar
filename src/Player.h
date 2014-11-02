@@ -34,6 +34,7 @@ private:
     Team* team;
     std::vector<GameBlock*> blocks;
     bool bDown = false;
+    ofColor color;
     
     
     void drawBlocks();
