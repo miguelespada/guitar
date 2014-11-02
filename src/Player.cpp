@@ -9,7 +9,6 @@
 #include "Player.h"
 #include "MidiAdapter.h"
 
-#define DEBUG true
 
 Player::Player(){
     //ctor
@@ -154,10 +153,6 @@ bool Player::getInBlock(){
             return true;
         }
     }
-    if(DEBUG){
-        return bDown;
-    }
-
     return false;
 }
 
