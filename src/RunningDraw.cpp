@@ -63,7 +63,7 @@ void RunningDraw::drawTeams(){
     }
 
     ofPopMatrix();
-    drawTeamScores(running_model->getTeams().at(0)->getScore(), running_model->getTeams().at(0)->getScore());
+    drawTeamScores(running_model->getTeams().at(0)->getScore(), running_model->getTeams().at(1)->getScore());
     drawTitle();
 }
 void RunningDraw::drawTeamScores(int team1, int team2){
