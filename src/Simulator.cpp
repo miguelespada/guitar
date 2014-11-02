@@ -38,3 +38,10 @@ void Simulator::sendMidiBeat(){
     m.addIntArg(0);
     sender.sendMessage(m);
 }
+
+void Simulator::sendMidiSubbeat(){
+    ofxOscMessage m;
+    m.setAddress("/subbeat");
+    m.addIntArg(0);
+    sender.sendMessage(m);
+}

@@ -43,9 +43,6 @@ void GameLogic::update(){
         running_logic->generateBlocks();
         bBeat = false;
     }
-    if(DEBUG){
-        running_logic->update();
-    }
 }
 
 void GameLogic::playerOn(int value){

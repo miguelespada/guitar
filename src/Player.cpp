@@ -90,13 +90,7 @@ void Player::update(){
     updateBlocks();
 }
 
-void Player::drawBlocks(){
-    std::vector<GameBlock*>::const_iterator b;
-    for(b=blocks.begin(); b!=blocks.end(); ++b){
-        int y = (*b)->isDown() ? y_down : y_up ;
-        (*b)->draw(y - inner_radius);
-    }
-}
+
 
 void Player::updateInBlock(){
     bool prevInBlock = inBlock;
@@ -133,6 +127,14 @@ void Player::updateBlocks(){
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
+    }
+}
+
+void Player::drawBlocks(){
+    std::vector<GameBlock*>::const_iterator b;
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        int yy = (*b)->isDown() ? y_down : y_up ;
+        (*b)->draw(yy - inner_radius);
     }
 }
 
