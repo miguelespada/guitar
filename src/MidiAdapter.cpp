@@ -24,23 +24,23 @@ void MidiAdapter::open(string input_port, string output_port){
     midiOut.listPorts();
     midiOut.openPort(output_port);
     midiIn.listPorts();
-    
+
     midiIn.openPort(input_port);
     midiIn.addListener(this);
     midiIn.ignoreTypes(false, false, false);
-    
+
     ofLogNotice() << "Listening MIDI on " << input_port;
     ofLogNotice() << "Sending MIDI on " << output_port;
 }
 
 
 void MidiAdapter::sendNoteOn(int note){
-    ofLogVerbose() << "Midi on: " << note;
+   // ofLogVerbose() << "Midi on: " << note;
     midiOut.sendNoteOn(channel, note,  64);
 }
 
 void MidiAdapter::sendNoteOff(int note){
-    ofLogVerbose() << "Midi off: " << note;
+    //ofLogVerbose() << "Midi off: " << note;
     midiOut.sendNoteOff(channel, note,  64);
 }
 
@@ -51,7 +51,7 @@ MidiAdapter::~MidiAdapter(){
 
 //--------------------------------------------------------------
 void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
-    
+
     if(msg.status == 250) {
         beats = 0;
         subbeats = 0;
@@ -60,11 +60,11 @@ void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
     }
     if(msg.status == 248){
         ticks += 1;
-        
+
         MidiAction *action = new MidiAction("/subbeat", subbeats);
         observer->notify(action);
         delete(action);
-        
+
         if(ticks == 6){
             subbeats += 1;
             ticks = 0;
@@ -80,7 +80,7 @@ void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
             beats = 0;
             compass += 1;
         }
-        
+
     }
 }
 

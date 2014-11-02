@@ -53,12 +53,15 @@ void GameBlock::setX(int x){
 void GameBlock::setNumberOfPieces(int num){
     GameBlock::pieces = num;
 }
+int GameBlock::getNumberOfPieces(){
+    return GameBlock::pieces;
+}
 int GameBlock::pieceAtTheEnd(){
     int endline_x = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
     int piece_size = Settings::getInstance()->PIECE_SIZE;
 
     for(int i = last_touching_piece; i < pieces; i++){
-        if((i* piece_size + x )< endline_x){
+        if((i* piece_size + x )<= endline_x && ((i+1)*piece_size + x > endline_x)){
             //Piece touching endline
             last_touching_piece = i;
             return i;
@@ -66,6 +69,24 @@ int GameBlock::pieceAtTheEnd(){
     }
     return -1; // Piece not touching endline
 }
+
+bool GameBlock::isInsideCircle(){
+    int endline_x_right = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
+    int endline_x_left = Settings::getInstance()->getPlayerCenterX() - Settings::getInstance()->getPlayerInnerRadius();
+    int width = Settings::getInstance()->PIECE_SIZE * pieces;
+
+    int right_side = x + width;
+
+    bool leftside_passed_rightcircle = x < endline_x_right;
+    bool rightside_not_passed_leftcircle = right_side > endline_x_left;
+
+    return (leftside_passed_rightcircle && rightside_not_passed_leftcircle);
+}
+
+bool GameBlock::isTouchingEnd(){
+    return pieceAtTheEnd() > -1;
+}
+
 bool GameBlock::isOutOfMap(){
         return (x + (pieces * Settings::getInstance()->PIECE_SIZE)) < 0;
 }
@@ -82,8 +103,16 @@ void GameBlock::setPieceOff(int p){
     piece_off = p;
 }
 int GameBlock::getScore(){
-    return (piece_off - piece_on) * Settings::getInstance()->PIECE_SCORE;
+    return (piece_off - piece_on + 1) * Settings::getInstance()->PIECE_SCORE;
 }
 int GameBlock::getLastTouchingPiece(){
     return last_touching_piece;
+}
+
+bool GameBlock::hasBeenTouched(){
+    return getPieceOn() != -1;
+}
+
+bool GameBlock::hasStoppedBeingTouched(){
+    return getPieceOff() != -1;
 }

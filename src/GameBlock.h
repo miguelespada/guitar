@@ -24,6 +24,7 @@ public:
     bool isDown();
     void setBlockColor(ofColor color);
     void setX(int x);
+    int getNumberOfPieces();
     void setNumberOfPieces(int num);
     void paintBlock(int y);
     int pieceAtTheEnd();
@@ -34,6 +35,10 @@ public:
     void setPieceOn(int p);
     void setPieceOff(int p);
     int getLastTouchingPiece();
+    bool isTouchingEnd();
+    bool hasStoppedBeingTouched();
+    bool hasBeenTouched();
+    bool isInsideCircle();
 
 private:
     int last_touching_piece = 0;
