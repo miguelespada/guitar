@@ -64,13 +64,13 @@ void Player::drawBackground(){
 }
 
 void Player::drawIcon(){
-    int yy =  y_up;
-    if(bDown) yy =  y_down;
-    
+    int yy =  bDown ? y_down : y_up;
+
     color = Settings::getInstance()->getPlayerColor(team->getId(), id);
 
     ofSetColor(color);
     ofCircle(x, yy, outer_radius);
+    
     // TODO draw a hole
     ofSetColor(0);
     ofCircle(x, yy, inner_radius);
