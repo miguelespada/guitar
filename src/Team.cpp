@@ -56,4 +56,5 @@ void Team::draw(){
 }
 void Team::modifyScore(int value){
     team_score += value;
+    cout << team_score << " id " << id << endl;
 }

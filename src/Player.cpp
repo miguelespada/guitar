@@ -55,7 +55,7 @@ void Player::setOff(){
     height = y_down - y_up;
 }
 
-void Player::draw(){    
+void Player::draw(){
     ofPushStyle();
     drawBackground();
     drawBlocks();
@@ -71,14 +71,14 @@ void Player::drawBackground(){
     ofColor backgroundColor = Settings::getInstance()->getColor("gray");
     ofSetColor(backgroundColor);
     ofRect(0, 0, width, height);
-   
- 
+
+
 }
 
 void Player::drawGradients(){
     int width = Settings::getInstance()->getWidth();
     int height = Settings::getInstance()->getPlayerHeight();
-    
+
     if(inBlock){
         ofColor color =  Settings::getInstance()->getPlayerColor(team->getId(), id);
         for(int i = 0; i < width/2; i ++){
@@ -86,18 +86,18 @@ void Player::drawGradients(){
             ofLine(i, 0, i, height);
         }
     }
-    
+
     ofColor backgroundColor = Settings::getInstance()->getColor("black");
     for(int i = width/2; i < width; i ++){
         ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
         ofLine(i, 0, i, height);
     }
-    
+
 }
 
 void Player::drawIcon(){
     int y =  bDown ? y_down : y_up;
-    
+
     ofPath icon;
     ofColor color = inBlock ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
     icon.setFillColor(color);
@@ -234,6 +234,7 @@ void Player::decrementQueues(){
 
 void Player::modifyScore(int value){
     player_score += value;
+    team->modifyScore(value);
 }
 
 
