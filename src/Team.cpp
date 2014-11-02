@@ -25,7 +25,7 @@ Team::~Team(){
 Team::Team(int id)
 {
     for (int j = 0; j < 2; j++){
-        Player* p = new Player(j, this); 
+        Player* p = new Player(j, this);
         players.push_back(p);
         p = NULL;
     }
@@ -48,9 +48,12 @@ void Team::draw(){
         if(p == players.begin())
             ofTranslate(0, Settings::getInstance()->getPlayerMargin());
         (*p)->draw();
-        
+
         ofTranslate(0, Settings::getInstance()->getPlayerHeight() + Settings::getInstance()->getPlayerSeparation());
     }
     ofTranslate(0, - Settings::getInstance()->getPlayerSeparation());
-    
+
+}
+void Team::modifyScore(int value){
+    team_score += value;
 }

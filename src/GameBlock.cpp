@@ -15,6 +15,8 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
     GameBlock::bDown = bDown;
     x = Settings::getInstance()->getWidth();
     pieces = pieces_num;
+    piece_on = -1;
+    piece_off = -1;
 }
 
 void GameBlock::update(){
@@ -27,15 +29,15 @@ void GameBlock::draw(int y){
 
 void GameBlock::paintBlock(int y){
 
-            ofRectangle r;
-            r.x = x;
-            r.y = y;
-            r.width = pieces * Settings::getInstance()->PIECE_SIZE;
-            r.height = Settings::getInstance()->PIECE_WIDTH;
+    ofRectangle r;
+    r.x = x;
+    r.y = y;
+    r.width = pieces * Settings::getInstance()->PIECE_SIZE;
+    r.height = Settings::getInstance()->PIECE_WIDTH;
 
-            ofSetColor(block_color);
+    ofSetColor(block_color);
 
-            ofRectRounded(r, 10);
+    ofRectRounded(r, 10);
 
 }
 bool GameBlock::isDown(){
@@ -52,11 +54,11 @@ void GameBlock::setNumberOfPieces(int num){
     GameBlock::pieces = num;
 }
 int GameBlock::pieceAtTheEnd(){
-    int endline_x = Settings::getInstance()->getPlayerCenterY();
+    int endline_x = Settings::getInstance()->getPlayerCenterX();
     int piece_size = Settings::getInstance()->PIECE_SIZE;
 
     for(int i = 0; i < pieces; i++){
-        if((i* piece_size + x )> endline_x){
+        if((i* piece_size + x )< endline_x){
             //Piece touching endline
             return i;
         }
@@ -65,4 +67,19 @@ int GameBlock::pieceAtTheEnd(){
 }
 bool GameBlock::isOutOfMap(){
         return (x + (pieces * Settings::getInstance()->PIECE_SIZE)) < 0;
+}
+int GameBlock::getPieceOn(){
+    return piece_on;
+}
+int GameBlock::getPieceOff(){
+    return piece_off;
+}
+void GameBlock::setPieceOn(int p){
+    piece_on = p;
+}
+void GameBlock::setPieceOff(int p){
+    piece_off = p;
+}
+int GameBlock::getScore(){
+    return (piece_off - piece_on) * Settings::getInstance()->PIECE_SCORE;
 }

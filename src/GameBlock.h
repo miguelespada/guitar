@@ -28,6 +28,11 @@ public:
     void paintBlock(int y);
     int pieceAtTheEnd();
     bool isOutOfMap();
+    int getPieceOn();
+    int getPieceOff();
+    int getScore();
+    void setPieceOn(int p);
+    void setPieceOff(int p);
 
 private:
     int x;

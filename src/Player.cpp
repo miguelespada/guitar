@@ -149,8 +149,17 @@ void Player::updateInBlock(){
 bool Player::getInBlock(){
     if (blocks.size() > 0){
         GameBlock* first_block = blocks.front();
-        if (first_block->pieceAtTheEnd() != -1){
+        int piece_touching = first_block->pieceAtTheEnd() ;
+        if (piece_touching != -1 && bDown == first_block->isDown()){
+            if (first_block->getPieceOn() == -1){
+                first_block->setPieceOn(piece_touching);
+            }
             return true;
+        } else{
+             if (first_block->getPieceOn() != -1 && first_block->getPieceOff() == -1){
+                first_block->setPieceOff(piece_touching);
+                modifyScore(first_block->getScore());
+            }
         }
     }
     return false;
@@ -175,6 +184,7 @@ void Player::updateBlocks(){
         if (blocks.front()->isOutOfMap()){
             GameBlock* b_delete = blocks.front();
             blocks.erase(blocks.begin());
+
             delete b_delete;
             b_delete = NULL;
         }
@@ -220,6 +230,10 @@ void Player::incrementQueue(bool position_down, int block_pieces){
 void Player::decrementQueues(){
     if (queue_down > 0) queue_down--;
     if (queue_up > 0) queue_up--;
+}
+
+void Player::modifyScore(int value){
+    player_score += value;
 }
 
 
