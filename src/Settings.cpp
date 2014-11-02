@@ -45,6 +45,16 @@ int Settings::getHeaderHeight(){
     return 32 * SCALE;
 }
 
+int Settings::getSmallHeaderPanelWidth(){
+    return 36 * SCALE;
+}
+int Settings::getBigHeaderPanelWidth(){
+    return 48 * SCALE;
+}
+int Settings::getHeaderPanelHeight(){
+    return 16 * SCALE;
+}
+
 int Settings::getPort(){
     return Settings::getData("port").asInt();
 }

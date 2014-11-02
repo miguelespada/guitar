@@ -25,8 +25,10 @@ public:
     int getPort();
     
     int getHeaderHeight();
+    int getSmallHeaderPanelWidth();
+    int getBigHeaderPanelWidth();
+    int getHeaderPanelHeight();
 
-    //Game variables
     float getPlayerHeight();
     float getPlayerSeparation();
     float getTeamSeparation();
