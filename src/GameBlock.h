@@ -16,7 +16,7 @@ class GameBlock
 {
 public:
     GameBlock();
-    ~GameBlock();
+    ~GameBlock(){};
     GameBlock(int length, bool bDown, ofColor bColor);
 
     void update();
