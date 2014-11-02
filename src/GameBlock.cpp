@@ -29,15 +29,15 @@ void GameBlock::draw(int y){
 
 void GameBlock::paintBlock(int y){
 
-            ofRectangle r;
-            r.x = x;
-            r.y = y;
-            r.width = pieces * Settings::getInstance()->PIECE_SIZE;
-            r.height = Settings::getInstance()->PIECE_WIDTH;
+    ofRectangle r;
+    r.x = x;
+    r.y = y;
+    r.width = pieces * Settings::getInstance()->PIECE_SIZE;
+    r.height = Settings::getInstance()->PIECE_WIDTH;
 
-            ofSetColor(block_color);
+    ofSetColor(block_color);
 
-            ofRectRounded(r, 10);
+    ofRectRounded(r, 10);
 
 }
 bool GameBlock::isDown(){
