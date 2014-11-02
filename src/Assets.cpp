@@ -10,22 +10,22 @@
 
 
 Assets::Assets(){
-    cout << "Constructing Assets " << endl;
+    ofLogVerbose() << "Constructing Assets ";
 }
 
 Assets::~Assets(){
-    cout << "Destroying Assets " << endl;
+    ofLogVerbose() << "Destroying Assets ";
 }
 
 void Assets::load(){
     
     
     string assets_path = Settings::getInstance()->assetsPath();
-    cout << "Loading assets from..." << assets_path << endl;
+    ofLogNotice() << "Loading assets from..." << assets_path;
     
     string filename = assets_path + "background.jpg";
     background.loadImage(filename);
-    cout << "Loading: " << filename << endl;
+    ofLogNotice() << "Loading: " << filename;
 }
 
 

@@ -3,11 +3,11 @@
 #include "Settings.h"
 
 ofApp::ofApp(){
-    cout << "Constructing Main" << endl;
+    ofLogVerbose() << "Constructing Main";
 }
 
 ofApp::~ofApp(){
-    cout << "Destroying Main" << endl;
+    ofLogVerbose() << "Destroying Main";
 }
 
 //--------------------------------------------------------------
@@ -18,6 +18,8 @@ void ofApp::setup(){
     
     ofSetWindowPosition(0, 0);
     ofHideCursor();
+    
+    ofSetLogLevel(OF_LOG_VERBOSE);
 
     assets.load();
     
@@ -60,6 +62,7 @@ void ofApp::keyPressed(int key){
     switch (key) {
             
         case '0' ... '9':
+            // TODO stop song
             MidiAdapter::getInstance()->sendNoteOn(song);
             song = key - '0';
             MidiAdapter::getInstance()->sendNoteOn(126);

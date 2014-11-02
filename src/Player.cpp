@@ -120,12 +120,12 @@ bool Player::getInBlock(){
 }
 
 void Player::enterBlock(){
-    cout << "[Player] enter block " << endl;
+    ofLogVerbose() << "[Player] enter block ";
     MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-    cout << "[Player] exit block " << endl;
+    ofLogVerbose() << "[Player] exit block ";
     MidiAdapter::getInstance()->sendNoteOff(getGlobalId());
 }
 

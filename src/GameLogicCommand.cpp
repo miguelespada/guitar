@@ -11,7 +11,6 @@
 
 PlayerOn::PlayerOn(string actionName){
     action = actionName;
-    cout << toString("playerOn") << endl;
 }
 
 void PlayerOn::run(Action *_action, Commandable *g){
@@ -21,7 +20,6 @@ void PlayerOn::run(Action *_action, Commandable *g){
 
 PlayerOff::PlayerOff(string actionName){
     action = actionName;
-    cout << toString("playerOff") << endl;
 }
 
 void PlayerOff::run(Action *_action, Commandable *g){
@@ -32,7 +30,7 @@ void PlayerOff::run(Action *_action, Commandable *g){
 
 Beat::Beat(string actionName){
     action = actionName;
-    cout << toString("beat") << endl;
+    ofLogVerbose() << toString("beat");
 }
 
 void Beat::run(Action *_action, Commandable *g){
@@ -42,7 +40,7 @@ void Beat::run(Action *_action, Commandable *g){
 
 Subbeat::Subbeat(string actionName){
     action = actionName;
-    cout << toString("subbeat") << endl;
+    ofLogVerbose() << toString("subbeat");
 }
 
 void Subbeat::run(Action *_action, Commandable *g){

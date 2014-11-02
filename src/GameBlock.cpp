@@ -17,7 +17,7 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
 
     pieces = pieces_num;
 
-    cout << "new block " << endl;
+    ofLogVerbose()  << "new block ";
 }
 
 void GameBlock::update(){

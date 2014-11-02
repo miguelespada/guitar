@@ -10,19 +10,19 @@
 #include "OscAction.h"
 
 OscAdapter::OscAdapter(){
-    cout << "Creating Osc adapter" << endl;
+    ofLogVerbose() << "Creating Osc adapter";
 }
 
 
 OscAdapter::~OscAdapter(){
-    cout << "Destroying Osc adapter" << endl;
+    ofLogVerbose() << "Destroying Osc adapter";
 }
 
 void OscAdapter::init(){
     
     Settings* settings = Settings::getInstance();
     receiver.setup(settings->getPort());
-    cout << "listening for osc messages on port " << settings->getPort() << "\n";
+    ofLogNotice() << "listening for osc messages on port " << settings->getPort();
     bOnline = false;
 }
 

@@ -12,11 +12,11 @@
 
 
 AssetsFacade::AssetsFacade(){
-    cout << "Constructing Assets Facade" << endl;
+    ofLogVerbose() << "Constructing Assets Facade";
 }
 
 AssetsFacade::~AssetsFacade(){
-    cout << "Destroying Assets Facade" << endl;
+     ofLogVerbose() << "Destroying Assets Facade";
 }
 
 void AssetsFacade::setAssets(Assets *a){
