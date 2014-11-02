@@ -40,7 +40,7 @@ protected:
 private:
     int id;
     Team* team;
-    int player_score;
+    int player_score = 0;
     std::vector<GameBlock*> blocks;
     bool bDown = false;
     float height = 0;
@@ -66,6 +66,11 @@ private:
     bool getInBlock();
     void enterBlock();
     void exitBlock();
+
+    int getBlockScoringIndex();
+    bool isPieceInsideCircle(int position);
+    bool isBlockTouchingCircle(int position);
+    void updateBlockRange();
 
 };
 

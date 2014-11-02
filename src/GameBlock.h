@@ -34,8 +34,14 @@ public:
     int getScore();
     void setPieceOn(int p);
     void setPieceOff(int p);
+    int getLastTouchingPiece();
+    bool isTouchingEnd();
+    bool hasStoppedBeingTouched();
+    bool hasBeenTouched();
+    bool isInsideCircle();
 
 private:
+    int last_touching_piece = 0;
     int x;
     bool bDown;
     ofColor block_color;

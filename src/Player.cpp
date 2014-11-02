@@ -138,6 +138,7 @@ void Player::update(){
 void Player::updateInBlock(){
     bool prevInBlock = inBlock;
     inBlock = getInBlock();
+    updateBlockRange();
 
     if(prevInBlock && !inBlock)
         exitBlock();
@@ -146,34 +147,53 @@ void Player::updateInBlock(){
         enterBlock();
 }
 
+
 bool Player::getInBlock(){
-    if (blocks.size() > 0){
-        int block_scoring = getBlockScoring();
-        if (block_scoring != -1){
-            last_block_touching = block_scoring;
-            return true;
-        } else {
-            if (last_block_touching != -1){
-                Block* b = blocks.at(last_block_touching);
-                b->setPieceOff(b->getLastTouchingPiece());
-                modifyScore(b->getScore());
-            }
-        }
+    //Blocks at position 0 or 1 because they can be at the same time at the circle x position
+    return isBlockTouchingCircle(0) || isBlockTouchingCircle(1);
+}
+
+bool Player::isBlockTouchingCircle(int position){
+    if (blocks.size() > position){
+        return blocks.at(position)->isDown() == bDown && blocks.at(position)->isInsideCircle();
     }
     return false;
 }
 
-int Player::getBlockScoring(){
+bool Player::isPieceInsideCircle(int position){
+    if (blocks.size() > position){
+        return blocks.at(position)->isDown() == bDown && blocks.at(position)->isTouchingEnd();
+    }
+    return false;
+}
+
+void Player::updateBlockRange(){
+    if (blocks.size() > 0){
+        int block_scoring = getBlockScoringIndex();
+        if (block_scoring != -1){
+            last_block_touching = block_scoring;
+        } else {
+            if (last_block_touching != -1){
+                GameBlock* b = blocks.at(last_block_touching);
+                b->setPieceOff(b->getLastTouchingPiece());
+                modifyScore(b->getScore());
+                last_block_touching = block_scoring;
+            }
+        }
+    }
+}
+
+int Player::getBlockScoringIndex(){
     int touchable_blocks = 4;
-    if (blocks.size() < 4){
+    if (blocks.size() < touchable_blocks){
         touchable_blocks = blocks.size();
     }
+
     for(int i = 0; i < touchable_blocks; i++){
         GameBlock* block = blocks.at(i);
-        int piece_touching = block->pieceAtTheEnd();
-        if (b->getPieceOff == -1 && piece_touching != -1 && bDown == block->isDown()){
-            if (block->getPieceOn() == -1){
-                block->setPieceOn(piece_touching);
+        if (!(block->hasStoppedBeingTouched()) && isPieceInsideCircle(i)){
+            if (!(block->hasBeenTouched())){
+                block->setPieceOn(block->pieceAtTheEnd());
             }
             return i;
         }
@@ -251,6 +271,8 @@ void Player::decrementQueues(){
 void Player::modifyScore(int value){
     player_score += value;
     team->modifyScore(value);
+    if (getTeam()->getId() == 0 && id == 0)
+    cout << "Team " << getTeam()->getId() <<" Player " << id << " " << player_score << endl;
 }
 
 
