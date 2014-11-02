@@ -95,7 +95,6 @@ float Settings::getTeamSeparation(){
     return 9 * SCALE;
 }
 
-
 ofColor Settings::getPlayerColor(int team, int id){
     string player = "player_" + ofToString(team) + ofToString(id);
     string color = Settings::getData(player).asString();

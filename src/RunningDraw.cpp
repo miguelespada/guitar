@@ -29,7 +29,6 @@ void RunningDraw::draw(){
 }
 
 RunningModel* RunningDraw::getRunningModel(){
-    
     return running_model;
 }
 

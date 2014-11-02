@@ -22,14 +22,6 @@ Player::Player(int id, Team* team){
     y_up = y - Settings::getInstance()->getPlayerCenterY()/2;
     y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
 
-//    for(int i = 0; i < 3; i++){
-//        GameBlock* b = new GameBlock(1, true, Settings::getInstance()->getPlayerColor(team->getId(),id));
-//        blocks.push_back(b);
-//    }
-//    GameBlock* b = new GameBlock(1, false, Settings::getInstance()->getPlayerColor(team->getId(),id));
-//    b->setX(60);
-//    blocks.push_back(b);
-
 }
 
 Player::~Player(){
@@ -78,9 +70,8 @@ void Player::drawIcon(){
     color = Settings::getInstance()->getPlayerColor(team->getId(), id);
 
     ofSetColor(color);
-
     ofCircle(x, yy, outer_radius);
-
+    // TODO draw a hole
     ofSetColor(0);
     ofCircle(x, yy, inner_radius);
 }
