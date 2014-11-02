@@ -33,8 +33,10 @@ public:
     int getScore();
     void setPieceOn(int p);
     void setPieceOff(int p);
+    int getLastTouchingPiece();
 
 private:
+    int last_touching_piece = 0;
     int x;
     bool bDown;
     ofColor block_color;
