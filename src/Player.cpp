@@ -83,7 +83,7 @@ void Player::drawIcon(){
     icon.setFillColor(color);
     
     //upper cap
-    int yy = (height < 0) ? y + height : y;
+    int yy = (height < 0) ? y + height + 1 : y;
     icon.arc(x, yy, inner_radius, inner_radius, 180, 360);
     icon.close();
     icon.arc(x, yy, outer_radius, outer_radius, 180, 360);
@@ -91,7 +91,7 @@ void Player::drawIcon(){
     icon.clear();
     
     //lower cap
-    yy = (height > 0) ? y + height : y;
+    yy = (height > 0) ? y + height - 1 : y;
     
     icon.arc(x, yy, inner_radius, inner_radius, 0, 180);
     icon.close();
