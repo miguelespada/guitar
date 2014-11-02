@@ -173,11 +173,11 @@ void Player::exitBlock(){
 void Player::updateBlocks(){
     if (blocks.size() > 0){
         if (blocks.front()->isOutOfMap()){
-                GameBlock* b_delete = blocks.front();
-                blocks.erase(blocks.begin());
-                delete b_delete;
-                b_delete = NULL;
-            }
+            GameBlock* b_delete = blocks.front();
+            blocks.erase(blocks.begin());
+            delete b_delete;
+            b_delete = NULL;
+        }
     }
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){

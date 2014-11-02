@@ -51,12 +51,6 @@ public:
     const int BLOCK_SEPARATION = 2;
     const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
 
-
-    // Color constants //
-
-    const ofColor RUNNING_BACKGROUND = ofColor(0, 0, 0);
-    const ofColor PLAYER_BACKGROUND = ofColor(19, 19, 19);
-
 private:
     static Settings* instance;
     Settings();
