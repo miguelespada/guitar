@@ -99,6 +99,15 @@ int Settings::getBlockSeparation(){
     return BLOCK_SEPARATION;
 }
 
+float Settings::getTeamScoreX(int team){
+    int y;
+    if (team == 0){
+        y = (getBigHeaderPanelWidth() - getSmallHeaderPanelWidth()) / 2;
+    }else{
+        y =  (getBigHeaderPanelWidth() - getSmallHeaderPanelWidth()) / 2 + getSmallHeaderPanelWidth();
+    }
+    return y;
+}
 ofColor Settings::getPlayerColor(int team, int id){
     string player = "player_" + ofToString(team) + ofToString(id);
     string color = Settings::getData(player).asString();

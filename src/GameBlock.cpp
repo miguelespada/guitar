@@ -14,10 +14,7 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
     GameBlock::block_color = bColor;
     GameBlock::bDown = bDown;
     x = Settings::getInstance()->getWidth();
-
     pieces = pieces_num;
-
-    ofLogVerbose()  << "new block ";
 }
 
 void GameBlock::update(){
@@ -53,4 +50,19 @@ void GameBlock::setX(int x){
 }
 void GameBlock::setNumberOfPieces(int num){
     GameBlock::pieces = num;
+}
+int GameBlock::pieceAtTheEnd(){
+    int endline_x = Settings::getInstance()->getPlayerCenterY();
+    int piece_size = Settings::getInstance()->PIECE_SIZE;
+
+    for(int i = 0; i < pieces; i++){
+        if((i* piece_size + x )> endline_x){
+            //Piece touching endline
+            return i;
+        }
+    }
+    return -1; // Piece not touching endline
+}
+bool GameBlock::isOutOfMap(){
+        return (x + (pieces * Settings::getInstance()->PIECE_SIZE)) < 0;
 }

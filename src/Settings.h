@@ -40,6 +40,8 @@ public:
 
     int getBlockSeparation();
 
+    float getTeamScoreX(int team);
+
     ofColor getPlayerColor(int team, int id);
 
     const int PIECE_SIZE = getPlayerInnerRadius() * 2;

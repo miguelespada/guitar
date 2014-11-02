@@ -128,8 +128,12 @@ void Player::updateInBlock(){
 }
 
 bool Player::getInBlock(){
-
-    //  TODO: compute is a player is in block
+    if (blocks.size() > 0){
+        GameBlock* first_block = blocks.front();
+        if (first_block->pieceAtTheEnd() != -1){
+            return true;
+        }
+    }
     if(DEBUG){
         return bDown;
     }
@@ -138,16 +142,24 @@ bool Player::getInBlock(){
 }
 
 void Player::enterBlock(){
-    ofLogVerbose() << "[Player] enter block ";
+   // ofLogVerbose() << "[Player] enter block ";
     MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-    ofLogVerbose() << "[Player] exit block ";
+   // ofLogVerbose() << "[Player] exit block ";
     MidiAdapter::getInstance()->sendNoteOff(getGlobalId());
 }
 
 void Player::updateBlocks(){
+    if (blocks.size() > 0){
+        if (blocks.front()->isOutOfMap()){
+                Block* b_delete = blocks.front();
+                blocks.erase(blocks.begin());
+                delete b_delete;
+                b_delete = NULL;
+            }
+    }
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
