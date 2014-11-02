@@ -39,15 +39,13 @@ void RunningLogic::update(){
 
 void RunningLogic::generateBlocks(){
     RunningModel* model = getRunningModel();
-    for (int i = 0; i < 2; i++){
-        for (int j = 0; j < 2; j++){
-            int block_pieces = ofRandom(1, 6);
+    for (int team = 0; team < 2; team++){
+        for (int player = 0; player < 2; player++){
+            int block_pieces = round(ofRandom(1,3));
             bool position_down = round(ofRandom(0,1));
-            //if (model->getPlayer(i,j)->getRemainingPieces() >= block_pieces){
-                if (ofRandom(0,100) < 12){
-                    model->addNewBlock(i, j, position_down, block_pieces);
-                }
-            //}
+            if (ofRandom(0,100) < 12){
+                model->addNewBlock(team, player, position_down, block_pieces);
+            }
         }
     }
     model = NULL;

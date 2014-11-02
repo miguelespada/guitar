@@ -38,12 +38,14 @@ public:
     float getPlayerInnerRadius();
     float getPlayerMargin();
 
+    int getBlockSeparation();
+
     ofColor getPlayerColor(int team, int id);
 
     const int PIECE_SIZE = getPlayerInnerRadius() * 2;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
-    const int BLOCK_SEPARATION = 30;
+    const int BLOCK_SEPARATION = 2;
     const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
 
 
