@@ -40,7 +40,6 @@ void RunningLogic::update(){
 
 
 void RunningLogic::generateBlocks(){
-    cout << "generating" << endl;
     RunningModel* model = getRunningModel();
     for (int team = 0; team < 2; team++){
         for (int player = 0; player < 2; player++){
