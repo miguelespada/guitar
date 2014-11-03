@@ -52,6 +52,8 @@ public:
     const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
     const int PIECE_SCORE = 10;
 
+    float getMoveSize();
+
 private:
     static Settings* instance;
     Settings();

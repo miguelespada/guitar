@@ -32,24 +32,24 @@ void RunningLogic::playerOff(int player){
 void RunningLogic::update(){
     for (int i = 0; i < 2; i++){
         for (int j = 0; j < 2; j++){
-            getRunningModel()->getPlayer(i,j)->update();
+            getRunningModel()->getPlayer(i, j)->update();
+            getRunningModel()->getPlayer(i, j)->decrementQueues();
         }
     }
 }
 
+
 void RunningLogic::generateBlocks(){
+    cout << "generating" << endl;
     RunningModel* model = getRunningModel();
     for (int team = 0; team < 2; team++){
         for (int player = 0; player < 2; player++){
-            int block_pieces = round(ofRandom(1,3));
+            int block_pieces = round(ofRandom(1,4));
             bool position_down = round(ofRandom(0,1));
             ofColor color = Settings::getInstance()->getPlayerColor(team, player);
-            if (round(ofRandom(0,6) < 2)){
-                color = Settings::getInstance()->getPlayerColor(round(ofRandom(0,1)), round(ofRandom(0,1)));
-            }
-            if (ofRandom(0,100) < 12){
+            //if (ofRandom(0,100) < 12){
                 model->addNewBlock(team, player, position_down, block_pieces, color);
-            }
+           // }
         }
     }
     model = NULL;
