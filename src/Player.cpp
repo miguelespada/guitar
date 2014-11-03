@@ -175,17 +175,30 @@ void Player::updateBlockTouchedPieces(){
 
 void Player::drawPlayerScore(){
    if(isTouchingCircle()){
+
         float y = Settings::getInstance()->getPlayerCenterY();
-        float x = Settings::getInstance()->getWidth() - 50;
+        float x = Settings::getInstance()->getWidth();
         ofSetLogLevel(OF_LOG_SILENT);
 
         player_score_text.setText(getPlayerScoreToString());
         ofColor c = Settings::getInstance()->getPlayerColor(getTeam()->getId(), id);
         player_score_text.setColor(c.r,c.g,c.b,c.a);
-        //player_score_text.setColor(255,255,255,255);
-        player_score_text.drawLeft(x, y);
+
+        if(getTeam()->getId() == 1){
+            x += 10;
+            ofRotateY(180);
+            ofTranslate(-Settings::getInstance()->getWidth() * 2, 0);
+            player_score_text.drawLeft(x, y);
+            ofTranslate(Settings::getInstance()->getWidth() * 2, 0);
+            ofRotateY(180);
+        }else{
+           x -= 10;
+           player_score_text.drawRight(x, y);
+        }
+
         ofSetLogLevel(OF_LOG_VERBOSE);
         //has_scored = 0;
+
    }
 }
 string Player::getPlayerScoreToString(){

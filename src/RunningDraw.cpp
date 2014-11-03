@@ -12,7 +12,7 @@ RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
 
-    title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 18);
+    title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
 
 
 
@@ -67,7 +67,7 @@ void RunningDraw::drawTeams(){
         (*t)->draw();
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
-
+        //ofRotateX(-180);
     }
 
     ofPopMatrix();
