@@ -23,11 +23,12 @@ public:
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
     void draw();
-    void drawTeamScores(int team1, int team2);
+    void drawTeamScores(ofxTextBlock t1, ofxTextBlock t2);
     void drawTitle();
+    void drawGrid();
 protected:
 private:
-    ofxTextBlock  myText;
+    ofxTextBlock  title_text;
 
 
 // in draw:

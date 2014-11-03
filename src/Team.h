@@ -10,6 +10,7 @@
 #define __heinneken__Team__
 
 #include "ofMain.h"
+#include "ofxTextSuite.h"
 
 class Player;
 class Team
@@ -23,9 +24,11 @@ public:
     Player *getPlayer(int id);
     void modifyScore(int value);
     int getScore();
+    ofxTextBlock getTeamScoreFormatted();
 
 protected:
 private:
+    ofxTextBlock formatted_score;
     int id;
     vector<Player*> players;
     int team_score = 0;

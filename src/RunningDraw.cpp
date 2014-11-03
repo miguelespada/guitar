@@ -12,8 +12,8 @@ RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
 
-    myText.init("frabk.ttf", 18); //TODO: add font file
-    myText.setColor(255,255,255,255);
+    title_text.init("frabk.ttf", 18); //TODO: add font file
+
 }
 
 RunningDraw::~RunningDraw()
@@ -57,47 +57,77 @@ void RunningDraw::drawTeams(){
 
     vector<Team*>  teams = running_model->getTeams();
 
+    ofxTextBlock team1 =  teams.front()->getTeamScoreFormatted();
+    ofxTextBlock team2 =  teams.back()->getTeamScoreFormatted();
+
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw();
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
+
     }
 
     ofPopMatrix();
-    drawTeamScores(running_model->getTeams().at(0)->getScore(), running_model->getTeams().at(1)->getScore());
+    drawTeamScores(team1, team2);
     drawTitle();
+    drawGrid();
 }
-void RunningDraw::drawTeamScores(int team1, int team2){
-
-    //Conversion to string
-    string t1, t2;
-    ostringstream temp1, temp2;
-    temp1 << team1;
-    t1=temp1.str();
-    temp2 << team2;
-    t2=temp2.str();
+void RunningDraw::drawTeamScores(ofxTextBlock t1, ofxTextBlock t2){
 
     int team0_x = Settings::getInstance()->getTeamScoreX(0);
     int team1_x = Settings::getInstance()->getTeamScoreX(1);
 
-    myText.setColor(255,255,255,255); //TODO: set text color to white correctly
-    myText.setText(t1);
-    myText.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+    //ofSetLogLevel(OF_LOG_SILENT);
+    t1.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+    t2.wrapTextX(ofGetWidth());
+    t2.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
+    ofSetLogLevel(OF_LOG_VERBOSE);
 
-    myText.setText(t2);
-    myText.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
 
 }
 void RunningDraw::drawTitle(){
     int title_pos = Settings::getInstance()->getWidth() / 2;
 
-    myText.setText("NAVIGATE THE SUB");
-    myText.wrapTextForceLines(2);
-    myText.drawCenter(title_pos, 0);
+    ofSetLogLevel(OF_LOG_SILENT);
+    title_text.setText("NAVIGATE THE SUB");
+    title_text.wrapTextForceLines(2);
+    title_text.drawCenter(title_pos, 0);
+    ofSetLogLevel(OF_LOG_VERBOSE);
 }
 void RunningDraw::drawBeatCounter(){
     int beat = getRunningModel()->getBeatCounter();
     int x = ofGetWidth() - ( beat % ofGetWidth() );
     ofLine(x, ofGetHeight(), x, ofGetHeight() - 50);
+}
+void RunningDraw::drawGrid(){
+    ofSetColor(255,255,255);
+
+    float compass = Settings::getInstance()->getWidth() / 4;
+    float beat = compass / 4;
+    float subbeat = beat / 6;
+    float margin_circle = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
+    int scale = 3;
+
+    float d = 11.3125 * 3;
+    for (int i = 0; i < 16 ; i++){
+                if(i%4 == 0){
+                    ofSetColor(255,0,0);
+                }else{
+                    ofSetColor(255,255,255);
+                }
+
+                ofLine(i * d + margin_circle , 0, i * d  + margin_circle, Settings::getInstance()->getHeight());
+    }
+
+//    float x = compass;
+//    for (int i = 0; i < 4; i++){
+//        ofLine(i * x + margin_circle , 0, i * x + margin_circle, Settings::getInstance()->getHeight());
+//        for (int j = 0; j < 4 ; j++){
+//            ofLine(i * beat + margin_circle , 0, i * beat  + margin_circle, Settings::getInstance()->getHeight());
+//            for (int k = 0; k < 6 ; k++){
+//                ofLine(i * subbeat + margin_circle , 0, i * subbeat  + margin_circle, Settings::getInstance()->getHeight());
+//            }
+//        }
+//    }
 }

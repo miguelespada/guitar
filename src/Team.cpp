@@ -11,6 +11,7 @@
 
 Team::Team()
 {
+    formatted_score.init("frabk.ttf", 20);
 }
 
 Team::~Team(){
@@ -59,4 +60,19 @@ void Team::modifyScore(int value){
 }
 int Team::getScore(){
     return team_score;
+}
+ofxTextBlock Team::getTeamScoreFormatted(){
+
+    //Conversion to string
+    string t;
+    ostringstream temp;
+    temp << team_score;
+    t=temp.str();
+
+    ofSetLogLevel(OF_LOG_SILENT);
+    formatted_score.setColor(255,255,255,255); //TODO: set text color to white correctly
+    formatted_score.setText(t);
+    ofSetLogLevel(OF_LOG_VERBOSE);
+    return formatted_score;
+
 }
