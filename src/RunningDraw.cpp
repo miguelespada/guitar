@@ -12,7 +12,9 @@ RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
 
-    title_text.init("frabk.ttf", 18); //TODO: add font file
+    title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 18);
+    team_score_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
+    player_score_text.init(ofToDataPath("FuturaLT-CondensedExtraBold.ttf"), 28);
 
 }
 
@@ -57,8 +59,8 @@ void RunningDraw::drawTeams(){
 
     vector<Team*>  teams = running_model->getTeams();
 
-    ofxTextBlock team1 =  teams.front()->getTeamScoreFormatted();
-    ofxTextBlock team2 =  teams.back()->getTeamScoreFormatted();
+    string team1 =  teams.front()->getTeamScoreToString();
+    string team2 =  teams.back()->getTeamScoreToString();
 
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
@@ -73,15 +75,17 @@ void RunningDraw::drawTeams(){
     drawTitle();
     drawGrid();
 }
-void RunningDraw::drawTeamScores(ofxTextBlock t1, ofxTextBlock t2){
+void RunningDraw::drawTeamScores(string t1, string t2){
 
     int team0_x = Settings::getInstance()->getTeamScoreX(0);
     int team1_x = Settings::getInstance()->getTeamScoreX(1);
 
-    //ofSetLogLevel(OF_LOG_SILENT);
-    t1.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
-    t2.wrapTextX(ofGetWidth());
-    t2.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
+
+    ofSetLogLevel(OF_LOG_SILENT);
+    team_score_text.setText(t1);
+    team_score_text.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+    team_score_text.setText(t2);
+    team_score_text.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
     ofSetLogLevel(OF_LOG_VERBOSE);
 
 
@@ -90,8 +94,10 @@ void RunningDraw::drawTitle(){
     int title_pos = Settings::getInstance()->getWidth() / 2;
 
     ofSetLogLevel(OF_LOG_SILENT);
+
     title_text.setText("NAVIGATE THE SUB");
     title_text.wrapTextForceLines(2);
+    title_text.setColor(255,255,255,100);
     title_text.drawCenter(title_pos, 0);
     ofSetLogLevel(OF_LOG_VERBOSE);
 }
@@ -120,14 +126,4 @@ void RunningDraw::drawGrid(){
                 ofLine(i * d + margin_circle , 0, i * d  + margin_circle, Settings::getInstance()->getHeight());
     }
 
-//    float x = compass;
-//    for (int i = 0; i < 4; i++){
-//        ofLine(i * x + margin_circle , 0, i * x + margin_circle, Settings::getInstance()->getHeight());
-//        for (int j = 0; j < 4 ; j++){
-//            ofLine(i * beat + margin_circle , 0, i * beat  + margin_circle, Settings::getInstance()->getHeight());
-//            for (int k = 0; k < 6 ; k++){
-//                ofLine(i * subbeat + margin_circle , 0, i * subbeat  + margin_circle, Settings::getInstance()->getHeight());
-//            }
-//        }
-//    }
 }

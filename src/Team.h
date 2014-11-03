@@ -24,11 +24,10 @@ public:
     Player *getPlayer(int id);
     void modifyScore(int value);
     int getScore();
-    ofxTextBlock getTeamScoreFormatted();
+    string getTeamScoreToString();
 
 protected:
 private:
-    ofxTextBlock formatted_score;
     int id;
     vector<Player*> players;
     int team_score = 0;
