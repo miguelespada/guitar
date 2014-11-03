@@ -23,31 +23,31 @@ public:
     void draw(int y);
     bool isDown();
     void setBlockColor(ofColor color);
-    void setX(int x);
+    void setX(float x);
     int getNumberOfPieces();
     void setNumberOfPieces(int num);
     void paintBlock(int y);
     int pieceAtTheEnd();
     bool isOutOfMap();
-    int getPieceOn();
-    int getPieceOff();
     int getScore();
-    void setPieceOn(int p);
-    void setPieceOff(int p);
     int getLastTouchingPiece();
     bool isTouchingEnd();
-    bool hasStoppedBeingTouched();
-    bool hasBeenTouched();
     bool isInsideCircle();
+    void setPieceTouched(int index);
+    int getNumberOfTouchedPieces();
+
+    bool isEnabled();
 
 private:
     int last_touching_piece = 0;
-    int x;
+    float x;
     bool bDown;
+    bool piece_touched[4] = {false, false, false, false};
     ofColor block_color;
     int pieces; // Number of pieces
-    int piece_on; // Piece where player pressed on
-    int piece_off; // Piece where player pressed off
+    bool enabled;
+
+    bool hasPassedCircle();
 };
 
 #endif /* defined(__heinneken__GameBlock__) */

@@ -34,6 +34,8 @@ public:
     void update();
     void addNewBlock(bool position_down, int block_pieces, ofColor color);
 
+
+    void decrementQueues();
     void modifyScore(int value);
 
 protected:
@@ -52,8 +54,7 @@ private:
     void drawGradients();
 
     bool hasPlace(bool position_down);
-    void incrementQueue(bool position_down, int block_pieces);
-    void decrementQueues();
+    void incrementQueue(bool position_down, int pieces);
 
     int queue_up;
     int queue_down;
@@ -67,10 +68,9 @@ private:
     void enterBlock();
     void exitBlock();
 
-    int getBlockScoringIndex();
-    bool isPieceInsideCircle(int position);
-    bool isBlockTouchingCircle(int position);
-    void updateBlockRange();
+    bool isTouchingCircle();
+    void updateBlockTouchedPieces();
+    GameBlock* getFirstBlockEnabled();
 
 };
 

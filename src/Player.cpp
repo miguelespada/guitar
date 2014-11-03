@@ -134,11 +134,10 @@ void Player::update(){
 }
 
 
-
 void Player::updateInBlock(){
     bool prevInBlock = inBlock;
     inBlock = getInBlock();
-    updateBlockRange();
+    updateBlockTouchedPieces();
 
     if(prevInBlock && !inBlock)
         exitBlock();
@@ -149,56 +148,25 @@ void Player::updateInBlock(){
 
 
 bool Player::getInBlock(){
-    //Blocks at position 0 or 1 because they can be at the same time at the circle x position
-    return isBlockTouchingCircle(0) || isBlockTouchingCircle(1);
+    return isTouchingCircle();
 }
 
-bool Player::isBlockTouchingCircle(int position){
-    if (blocks.size() > position){
-        return blocks.at(position)->isDown() == bDown && blocks.at(position)->isInsideCircle();
+bool Player::isTouchingCircle(){
+    GameBlock* b = getFirstBlockEnabled();
+    if (b != NULL){
+        return b->isDown() == bDown && b->isInsideCircle();
     }
     return false;
 }
 
-bool Player::isPieceInsideCircle(int position){
-    if (blocks.size() > position){
-        return blocks.at(position)->isDown() == bDown && blocks.at(position)->isTouchingEnd();
-    }
-    return false;
-}
 
-void Player::updateBlockRange(){
-    if (blocks.size() > 0){
-        int block_scoring = getBlockScoringIndex();
-        if (block_scoring != -1){
-            last_block_touching = block_scoring;
-        } else {
-            if (last_block_touching != -1){
-                GameBlock* b = blocks.at(last_block_touching);
-                b->setPieceOff(b->getLastTouchingPiece());
-                modifyScore(b->getScore());
-                last_block_touching = block_scoring;
-            }
+void Player::updateBlockTouchedPieces(){
+    GameBlock* b = getFirstBlockEnabled();
+    if (b != NULL){
+        if (isTouchingCircle()){
+            b->setPieceTouched(b->pieceAtTheEnd());
         }
     }
-}
-
-int Player::getBlockScoringIndex(){
-    int touchable_blocks = 4;
-    if (blocks.size() < touchable_blocks){
-        touchable_blocks = blocks.size();
-    }
-
-    for(int i = 0; i < touchable_blocks; i++){
-        GameBlock* block = blocks.at(i);
-        if (!(block->hasStoppedBeingTouched()) && isPieceInsideCircle(i)){
-            if (!(block->hasBeenTouched())){
-                block->setPieceOn(block->pieceAtTheEnd());
-            }
-            return i;
-        }
-    }
-    return -1;
 }
 
 void Player::drawScore(){
@@ -229,7 +197,6 @@ void Player::updateBlocks(){
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
     }
-    decrementQueues();
 }
 
 void Player::drawBlocks(){
@@ -245,21 +212,20 @@ bool Player::hasPlace(bool position_down){
 }
 
 void Player::addNewBlock(bool position_down, int block_pieces, ofColor color){
-    Settings* settings = Settings::getInstance();
-    int margin = settings->getBlockSeparation();
-    int block_margin = (margin + block_pieces) * settings->PIECE_SIZE;
     if (hasPlace(position_down)){
-        incrementQueue(position_down, block_margin);
+        incrementQueue(position_down, block_pieces);
         blocks.push_back(new GameBlock(block_pieces, position_down, color));
     }
-    settings = NULL;
 }
 
-void Player::incrementQueue(bool position_down, int block_pieces){
+void Player::incrementQueue(bool position_down, int pieces){
+    float piece_size = Settings::getInstance()->PIECE_SIZE;
     if (position_down){
-        queue_down += block_pieces;
+        queue_down += (pieces + 4 + round(ofRandom(0,4))) * piece_size;
+        queue_up += pieces * piece_size;
     } else{
-        queue_up += block_pieces;
+        queue_up += (pieces + 4 + round(ofRandom(0,4))) * piece_size;
+        queue_down += pieces * piece_size;
     }
 }
 
@@ -271,6 +237,16 @@ void Player::decrementQueues(){
 void Player::modifyScore(int value){
     player_score += value;
     team->modifyScore(value);
+}
+
+GameBlock* Player::getFirstBlockEnabled(){
+    std::vector<GameBlock*>::const_iterator b;
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        if ((*b)->isEnabled()){
+            return (*b);
+        }
+    }
+    return NULL;
 }
 
 

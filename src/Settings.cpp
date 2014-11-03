@@ -116,3 +116,7 @@ ofColor Settings::getColor(string colorName){
     string color = Settings::getData(colorName).asString();
     return ofColor::fromHex(ofHexToInt("0x" + color));
 }
+
+float Settings::getMoveSize(){
+    return 1.7;
+}

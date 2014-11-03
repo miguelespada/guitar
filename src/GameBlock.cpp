@@ -15,12 +15,10 @@ GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
     GameBlock::bDown = bDown;
     x = Settings::getInstance()->getWidth();
     pieces = pieces_num;
-    piece_on = -1;
-    piece_off = -1;
 }
 
 void GameBlock::update(){
-    x--;
+    x = x - Settings::getInstance()->getMoveSize();
 }
 
 void GameBlock::draw(int y){
@@ -47,7 +45,7 @@ void GameBlock::setBlockColor(ofColor color){
     GameBlock::block_color = color;
 }
 
-void GameBlock::setX(int x){
+void GameBlock::setX(float x){
     GameBlock::x = x;
 }
 void GameBlock::setNumberOfPieces(int num){
@@ -70,6 +68,19 @@ int GameBlock::pieceAtTheEnd(){
     return -1; // Piece not touching endline
 }
 
+bool GameBlock::hasPassedCircle(){
+    int endline_x_left = Settings::getInstance()->getPlayerCenterX() - Settings::getInstance()->getPlayerInnerRadius();
+    int width = Settings::getInstance()->PIECE_SIZE * pieces;
+    int right_side = x + width;
+
+    return right_side < endline_x_left;
+}
+
+bool GameBlock::isEnabled(){
+    return enabled;
+}
+
+
 bool GameBlock::isInsideCircle(){
     int endline_x_right = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
     int endline_x_left = Settings::getInstance()->getPlayerCenterX() - Settings::getInstance()->getPlayerInnerRadius();
@@ -90,29 +101,25 @@ bool GameBlock::isTouchingEnd(){
 bool GameBlock::isOutOfMap(){
         return (x + (pieces * Settings::getInstance()->PIECE_SIZE)) < 0;
 }
-int GameBlock::getPieceOn(){
-    return piece_on;
-}
-int GameBlock::getPieceOff(){
-    return piece_off;
-}
-void GameBlock::setPieceOn(int p){
-    piece_on = p;
-}
-void GameBlock::setPieceOff(int p){
-    piece_off = p;
-}
+
 int GameBlock::getScore(){
-    return (piece_off - piece_on + 1) * Settings::getInstance()->PIECE_SCORE;
+    return getNumberOfTouchedPieces() * Settings::getInstance()->PIECE_SCORE;
 }
 int GameBlock::getLastTouchingPiece(){
     return last_touching_piece;
 }
 
-bool GameBlock::hasBeenTouched(){
-    return getPieceOn() != -1;
+void GameBlock::setPieceTouched(int index){
+    piece_touched[index] = true;
 }
 
-bool GameBlock::hasStoppedBeingTouched(){
-    return getPieceOff() != -1;
+int GameBlock::getNumberOfTouchedPieces(){
+    int counter = 0;
+    for (int i = 0; i < getNumberOfPieces(); i++){
+        if (piece_touched[i]){
+            counter++;
+        }
+    }
+    return counter;
 }
+
