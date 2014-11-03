@@ -213,8 +213,6 @@ bool Player::hasPlace(bool position_down){
 
 void Player::addNewBlock(bool position_down, int block_pieces, ofColor color){
     if (hasPlace(position_down)){
-        if (getTeam()->getId() == 0 && id == 0)
-        cout << hasPlace(position_down) << " " << position_down << " "  << queue_down << " " << queue_up << endl;
         incrementQueue(position_down, block_pieces);
         blocks.push_back(new GameBlock(block_pieces, position_down, color));
     }
@@ -229,9 +227,6 @@ void Player::incrementQueue(bool position_down, int pieces){
         queue_up += (pieces + 4 + round(ofRandom(0,4))) * piece_size;
         queue_down += pieces * piece_size;
     }
-
-    if (getTeam()->getId() == 0 && id == 0)
-        cout << queue_down << " up " << queue_up << " pieces " << pieces << endl;
 }
 
 void Player::decrementQueues(){
