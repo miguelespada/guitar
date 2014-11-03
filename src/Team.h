@@ -22,6 +22,7 @@ public:
     void draw();
     Player *getPlayer(int id);
     void modifyScore(int value);
+    int getScore();
 
 protected:
 private:

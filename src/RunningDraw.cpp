@@ -11,6 +11,9 @@
 RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
+
+    myText.init("frabk.ttf", 18); //TODO: add font file
+    myText.setColor(255,255,255,255);
 }
 
 RunningDraw::~RunningDraw()
@@ -60,13 +63,42 @@ void RunningDraw::drawTeams(){
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
     }
+
     ofPopMatrix();
+    drawTeamScores(running_model->getTeams().at(0)->getScore(), running_model->getTeams().at(1)->getScore());
+    drawTitle();
 }
-void RunningDraw::drawTeamScores(){
+void RunningDraw::drawTeamScores(int team1, int team2){
+
+    //Conversion to string
+    string t1, t2;
+    ostringstream temp1, temp2;
+    temp1 << team1;
+    t1=temp1.str();
+    temp2 << team2;
+    t2=temp2.str();
+
     int team0_x = Settings::getInstance()->getTeamScoreX(0);
     int team1_x = Settings::getInstance()->getTeamScoreX(1);
 
-    //TODO: render scores on the top of the screen
+    ofSetLogLevel(OF_LOG_SILENT);
+    myText.setColor(255,255,255,255); //TODO: set text color to white correctly
+    myText.setText(t1);
+    myText.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+
+    myText.setText(t2);
+    myText.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+}
+void RunningDraw::drawTitle(){
+    int title_pos = Settings::getInstance()->getWidth() / 2;
+
+    ofSetLogLevel(OF_LOG_SILENT);
+    myText.setText("NAVIGATE THE SUB");
+    myText.wrapTextForceLines(2);
+    myText.drawCenter(title_pos, 0);
+    ofSetLogLevel(OF_LOG_VERBOSE);
 }
 void RunningDraw::drawBeatCounter(){
     int beat = getRunningModel()->getBeatCounter();

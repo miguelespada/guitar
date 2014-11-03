@@ -57,3 +57,6 @@ void Team::draw(){
 void Team::modifyScore(int value){
     team_score += value;
 }
+int Team::getScore(){
+    return team_score;
+}

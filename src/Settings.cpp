@@ -100,11 +100,9 @@ int Settings::getBlockSeparation(){
 }
 
 float Settings::getTeamScoreX(int team){
-    int y;
-    if (team == 0){
-        y = (getBigHeaderPanelWidth() - getSmallHeaderPanelWidth()) / 2;
-    }else{
-        y =  (getBigHeaderPanelWidth() - getSmallHeaderPanelWidth()) / 2 + getSmallHeaderPanelWidth();
+    int y = getSmallHeaderPanelWidth();
+    if (team == 1){
+        y += getSmallHeaderPanelWidth() * 2 + getBigHeaderPanelWidth();
     }
     return y;
 }
