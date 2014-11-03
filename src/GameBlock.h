@@ -32,11 +32,14 @@ public:
     int getScore();
     int getLastTouchingPiece();
     bool isTouchingEnd();
-    bool isInsideCircle();
+    bool isTouchingCircle();
     void setPieceTouched(int index);
     int getNumberOfTouchedPieces();
 
+
+    bool hasPassedCircle();
     bool isEnabled();
+    void setDisabled();
 
 private:
     int last_touching_piece = 0;
@@ -47,7 +50,6 @@ private:
     int pieces; // Number of pieces
     bool enabled;
 
-    bool hasPassedCircle();
 };
 
 #endif /* defined(__heinneken__GameBlock__) */

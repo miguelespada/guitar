@@ -154,7 +154,7 @@ bool Player::getInBlock(){
 bool Player::isTouchingCircle(){
     GameBlock* b = getFirstBlockEnabled();
     if (b != NULL){
-        return b->isDown() == bDown && b->isInsideCircle();
+        return bDown == b->isDown() && b->isTouchingCircle();
     }
     return false;
 }
@@ -163,7 +163,7 @@ bool Player::isTouchingCircle(){
 void Player::updateBlockTouchedPieces(){
     GameBlock* b = getFirstBlockEnabled();
     if (b != NULL){
-        if (isTouchingCircle()){
+        if (isTouchingCircle() && b->isTouchingEnd()){
             b->setPieceTouched(b->pieceAtTheEnd());
         }
     }
@@ -186,11 +186,11 @@ void Player::exitBlock(){
 void Player::updateBlocks(){
     if (blocks.size() > 0){
         if (blocks.front()->isOutOfMap()){
-            GameBlock* b_delete = blocks.front();
-            blocks.erase(blocks.begin());
-
-            delete b_delete;
-            b_delete = NULL;
+            modifyScore(blocks.front()->getScore());
+            eraseBlock(0);
+        }
+        if (blocks.front()->hasPassedCircle()){
+            blocks.front()->setDisabled();
         }
     }
     std::vector<GameBlock*>::const_iterator b;
@@ -199,10 +199,18 @@ void Player::updateBlocks(){
     }
 }
 
+void Player::eraseBlock(int position){
+        GameBlock* b_delete = blocks.at(position);
+        blocks.erase(blocks.begin() + position);
+
+        delete b_delete;
+        b_delete = NULL;
+}
+
 void Player::drawBlocks(){
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
-        int yy = (*b)->isDown() ? y_down : y_up ;
+        int yy = (*b)->isDown() ? y_down : y_up;
         (*b)->draw(yy - inner_radius);
     }
 }

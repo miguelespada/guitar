@@ -28,9 +28,13 @@ void GameBlock::draw(int y){
 void GameBlock::paintBlock(int y){
 
     ofRectangle r;
-    r.x = x;
+
+    r.x = (x >= 0) ? x : 0;
     r.y = y;
     r.width = pieces * Settings::getInstance()->PIECE_SIZE;
+    if (x < 0){
+        r.width += x;
+    }
     r.height = Settings::getInstance()->PIECE_WIDTH;
 
     ofSetColor(block_color);
@@ -76,12 +80,16 @@ bool GameBlock::hasPassedCircle(){
     return right_side < endline_x_left;
 }
 
+void GameBlock::setDisabled(){
+    enabled = false;
+}
+
 bool GameBlock::isEnabled(){
     return enabled;
 }
 
 
-bool GameBlock::isInsideCircle(){
+bool GameBlock::isTouchingCircle(){
     int endline_x_right = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
     int endline_x_left = Settings::getInstance()->getPlayerCenterX() - Settings::getInstance()->getPlayerInnerRadius();
     int width = Settings::getInstance()->PIECE_SIZE * pieces;
