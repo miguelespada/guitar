@@ -72,6 +72,8 @@ private:
     void updateBlockTouchedPieces();
     GameBlock* getFirstBlockEnabled();
 
+    void eraseBlock(int position);
+
 };
 
 
