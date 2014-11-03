@@ -13,8 +13,8 @@ RunningDraw::RunningDraw(RunningModel* model){
     Settings* settings = Settings::getInstance();
 
     title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 18);
-    team_score_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
-    player_score_text.init(ofToDataPath("FuturaLT-CondensedExtraBold.ttf"), 28);
+
+
 
 }
 
@@ -59,8 +59,8 @@ void RunningDraw::drawTeams(){
 
     vector<Team*>  teams = running_model->getTeams();
 
-    string team1 =  teams.front()->getTeamScoreToString();
-    string team2 =  teams.back()->getTeamScoreToString();
+ //   string team1 =  teams.front()->getTeamScoreToString();
+ //   string team2 =  teams.back()->getTeamScoreToString();
 
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
@@ -71,25 +71,20 @@ void RunningDraw::drawTeams(){
     }
 
     ofPopMatrix();
-    drawTeamScores(team1, team2);
+   drawTeamScores();
     drawTitle();
     drawGrid();
 }
-void RunningDraw::drawTeamScores(string t1, string t2){
+void RunningDraw::drawTeamScores(){
+    vector<Team*>  teams = running_model->getTeams();
 
-    int team0_x = Settings::getInstance()->getTeamScoreX(0);
-    int team1_x = Settings::getInstance()->getTeamScoreX(1);
+    std::vector<Team*>::const_iterator t;
+    for(t=teams.begin(); t!=teams.end(); ++t){
+        (*t)->drawTeamScore();
 
-
-    ofSetLogLevel(OF_LOG_SILENT);
-    team_score_text.setText(t1);
-    team_score_text.draw(team0_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
-    team_score_text.setText(t2);
-    team_score_text.drawRight(team1_x - 5, Settings::getInstance()->getHeaderHeight() /2);
-    ofSetLogLevel(OF_LOG_VERBOSE);
-
-
+    }
 }
+
 void RunningDraw::drawTitle(){
     int title_pos = Settings::getInstance()->getWidth() / 2;
 

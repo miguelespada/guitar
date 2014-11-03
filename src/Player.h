@@ -13,6 +13,7 @@
 #include "Settings.h"
 #include "Team.h"
 #include "GameBlock.h"
+#include "ofxTextSuite.h"
 
 class Player
 {
@@ -34,23 +35,28 @@ public:
     void update();
     void addNewBlock(bool position_down, int block_pieces, ofColor color);
 
-
+    bool hasScored();
     void decrementQueues();
     void modifyScore(int value);
+    string getPlayerScoreToString();
+    void drawPlayerScore();
+    void setLastScore(int value);
+    bool isTouchingCircle();
 
 protected:
 private:
+    ofxTextBlock player_score_text;
     int id;
     Team* team;
     int player_score = 0;
     std::vector<GameBlock*> blocks;
     bool bDown = false;
     float height = 0;
-
+    int last_score = 0;
     void drawBlocks();
     void drawBackground();
     void drawIcon();
-    void drawScore();
+
     void drawGradients();
 
     bool hasPlace(bool position_down);
@@ -68,7 +74,7 @@ private:
     void enterBlock();
     void exitBlock();
 
-    bool isTouchingCircle();
+
     void updateBlockTouchedPieces();
     GameBlock* getFirstBlockEnabled();
 

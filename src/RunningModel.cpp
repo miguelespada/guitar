@@ -45,3 +45,4 @@ int RunningModel::getBeatCounter(){
 void RunningModel::incrementBeatCounter(){
     beatCounter += 1;
 }
+

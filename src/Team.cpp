@@ -11,7 +11,7 @@
 
 Team::Team()
 {
-
+    team_score_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
 }
 
 Team::~Team(){
@@ -31,6 +31,9 @@ Team::Team(int id)
         p = NULL;
     }
     Team::id = id;
+
+
+    team_score_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
 }
 
 
@@ -54,6 +57,8 @@ void Team::draw(){
     }
     ofTranslate(0, - Settings::getInstance()->getPlayerSeparation());
 
+
+
 }
 void Team::modifyScore(int value){
     team_score += value;
@@ -71,4 +76,40 @@ string Team::getTeamScoreToString(){
     t=temp.str();
     return t;
 
+}
+
+ofColor Team::getPlayerScoringColor(){
+    ofColor color = ofColor(255,255,255,255);
+    bool player_0_scored = players.front()->isTouchingCircle();// && players.front()->hasScored();
+    bool player_1_scored = players.back()->isTouchingCircle();// && players.back()->hasScored();
+
+    if(player_0_scored && !player_1_scored){
+        color =  Settings::getInstance()->getPlayerColor(id, 0);
+    }else if(player_1_scored && !player_0_scored){
+        color = Settings::getInstance()->getPlayerColor(id, 1);
+    }
+
+    return color;
+
+}
+
+
+void Team::drawTeamScore(){
+    int team_x = Settings::getInstance()->getTeamScoreX(id);
+
+    ofSetLogLevel(OF_LOG_SILENT);
+    team_score_text.setText(getTeamScoreToString());
+    ofColor color = getPlayerScoringColor();
+    team_score_text.setColor(color.r, color.g, color.b, color.a);
+    if(id == 0){
+        team_score_text.drawLeft(team_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+    }else{
+        team_score_text.drawRight(team_x - 5, Settings::getInstance()->getHeaderHeight() / 2);
+    }
+
+
+    ofSetLogLevel(OF_LOG_VERBOSE);
+}
+vector<Player*> Team::getPlayers(){
+    return players;
 }

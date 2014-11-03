@@ -26,6 +26,7 @@ public:
 
     int getBeatCounter();
     void incrementBeatCounter();
+
 protected:
 private:
     std::vector<Team*> teams;

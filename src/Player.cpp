@@ -26,6 +26,8 @@ Player::Player(int id, Team* team){
     y_down = y + Settings::getInstance()->getPlayerCenterY()/2;
     queue_down = 0;
     queue_up = 0;
+
+    player_score_text.init(ofToDataPath("FuturaLT-CondensedExtraBold.ttf"), 24);
 }
 
 Player::~Player(){
@@ -61,7 +63,9 @@ void Player::draw(){
     drawBlocks();
     drawGradients();
     drawIcon();
-    drawScore();
+
+    drawPlayerScore();
+
     ofPopStyle();
 }
 
@@ -169,8 +173,31 @@ void Player::updateBlockTouchedPieces(){
     }
 }
 
-void Player::drawScore(){
-    // TODO: draw score increment
+void Player::drawPlayerScore(){
+   if(isTouchingCircle()){
+        float y = Settings::getInstance()->getPlayerCenterY();
+        float x = Settings::getInstance()->getWidth() - 50;
+        ofSetLogLevel(OF_LOG_SILENT);
+
+        player_score_text.setText(getPlayerScoreToString());
+        ofColor c = Settings::getInstance()->getPlayerColor(getTeam()->getId(), id);
+        player_score_text.setColor(c.r,c.g,c.b,c.a);
+        //player_score_text.setColor(255,255,255,255);
+        player_score_text.drawLeft(x, y);
+        ofSetLogLevel(OF_LOG_VERBOSE);
+        //has_scored = 0;
+   }
+}
+string Player::getPlayerScoreToString(){
+
+    //Conversion to string
+
+    string t;
+    ostringstream temp;
+    temp << "+" << getFirstBlockEnabled()->getScore();
+    t=temp.str();
+    return t;
+
 }
 
 void Player::enterBlock(){
@@ -244,6 +271,7 @@ void Player::decrementQueues(){
 
 void Player::modifyScore(int value){
     player_score += value;
+    last_score = value;
     team->modifyScore(value);
 }
 
@@ -256,6 +284,12 @@ GameBlock* Player::getFirstBlockEnabled(){
     }
     return NULL;
 }
-
+bool Player::hasScored()
+{
+    return last_score > 0;
+}
+void Player::setLastScore(int value){
+    last_score = value;
+}
 
 
