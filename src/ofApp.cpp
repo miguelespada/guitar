@@ -43,7 +43,7 @@ void ofApp::setup(){
 void ofApp::update(){
 
     oscAdapter.update();
-    game.update();
+   if (!manual_mode) game.update();
 
     simulator.sendMidiSubbeat();
 
@@ -115,6 +115,12 @@ void ofApp::keyPressed(int key){
                 simulator.playerOn(key_player);
             }
             break;
+        case 'x':
+            game.update();
+            break;
+        case 'z':
+            manual_mode = !manual_mode;
+        break;
         default:
             break;
     }

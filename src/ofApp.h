@@ -28,10 +28,10 @@ public:
     OscAdapter oscAdapter;
     Simulator simulator;
     int song = 0;
-    bool keypressed[4] = { false, false, false, false };
 
     //DEBUG
-
+    bool keypressed[4] = { false, false, false, false };
+    bool manual_mode = false;
     bool canDoKeyActionDebug(int key, bool pressed);
 };
 
