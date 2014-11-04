@@ -85,6 +85,8 @@ RUNNING::RUNNING(Game *g, GameLogic* gLogic){
     game = g;
     gameLogic = gLogic;
     ofLogNotice() << "State: " << toString();
+    game->songManager->playNextSong();
+    game->songManager->playSong();
 };
 
 void RUNNING::draw(){
@@ -97,7 +99,10 @@ void RUNNING::update(){
 
 void RUNNING::push()
 {
+
     game->setCurrent(new FINISHING(game, gameLogic));
+
+    game->songManager->stopSong();
 };
 
 void RUNNING::notify(Action *action){

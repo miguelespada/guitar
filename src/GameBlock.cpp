@@ -9,9 +9,8 @@
 #include "GameBlock.h"
 
 
-GameBlock::GameBlock(int pieces_num, bool bDown, ofColor bColor)
+GameBlock::GameBlock(int pieces_num, bool bDown)
 {
-    GameBlock::block_color = bColor;
     GameBlock::bDown = bDown;
     x = Settings::getInstance()->getWidth();
     pieces = pieces_num;
@@ -21,37 +20,25 @@ void GameBlock::update(){
     x = x - Settings::getInstance()->getMoveSize();
 }
 
-void GameBlock::draw(int y){
-    paintBlock(y);
+void GameBlock::draw(int y, ofColor block_color){
+    paintBlock(y, block_color);
 }
 
-void GameBlock::paintBlock(int y){
+void GameBlock::paintBlock(int y, ofColor block_color){
 
     ofRectangle r;
-    r.width = pieces * Settings::getInstance()->PIECE_SIZE;
-    r.x = (x >= 0) ? x : -r.width;
+    r.x = x;
     r.y = y;
-    if (x < 0){
-        r.width += x + r.width;
-    }
+
     r.height = Settings::getInstance()->PIECE_WIDTH;
+    r.width = (pieces > 1) ? pieces * Settings::getInstance()->PIECE_SIZE : r.height;
 
     ofSetColor(block_color);
-    if(pieces == 1){
-            r.x = (x >= 0) ? x : 0;
-        r.width = r.height;
-        if (x < 0){
-            r.width += x;
-        }
-    }
     ofRectRounded(r, 10);
 
 }
 bool GameBlock::isDown(){
     return bDown;
-}
-void GameBlock::setBlockColor(ofColor color){
-    GameBlock::block_color = color;
 }
 
 void GameBlock::setX(float x){
@@ -116,8 +103,11 @@ bool GameBlock::isOutOfMap(){
 }
 
 int GameBlock::getScore(){
-    return getNumberOfTouchedPieces() * Settings::getInstance()->PIECE_SCORE;
+    int touched = getNumberOfTouchedPieces();
+    int extra = (touched == pieces) ? 1 : 0;
+    return (extra + touched) * Settings::getInstance()->PIECE_SCORE;
 }
+
 int GameBlock::getLastTouchingPiece(){
     return last_touching_piece;
 }

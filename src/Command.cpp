@@ -19,3 +19,14 @@ void Next::run(Action *_action, Commandable *g){
     if(_action->getAction() == action)
         ((Game *)g)->next();
 }
+
+EndSong::EndSong(string actionName){
+    action = actionName;
+    ofLogNotice() << toString("endSong");
+}
+
+void EndSong::run(Action *_action, Commandable *g){
+    if(_action->getAction() == action)
+        ((Game *)g)->next();
+    
+}

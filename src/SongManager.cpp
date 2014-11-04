@@ -32,6 +32,7 @@ void SongManager::playSong(){
 }
 
 void SongManager::stopSong(){
+    MidiAdapter::getInstance()->sendNoteOn(126);
 }
 
 void SongManager::playNextSong(){
@@ -58,5 +59,5 @@ string SongManager::toString(){
 }
 
 string SongManager::help(){
-    return "(.) Play current solo (+) Solo next song (*) send midi and inc (-) dec song ";
+    return "(.) Play current solo (+) Solo next song (*) send midi and inc (-) dec song (,) stop playing ";
 }

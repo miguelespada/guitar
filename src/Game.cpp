@@ -11,6 +11,7 @@
 
 Game::Game(){
     commands.push_back(new Next("/key_down"));
+    commands.push_back(new EndSong("/end_song"));
 }
 
 Game::~Game(){
@@ -31,6 +32,10 @@ void Game::setCurrent(State *s)
 void Game::setAssetsFacade(AssetsFacade *a)
 {
     assetsFacade = a;
+}
+
+void Game::setSongManager(SongManager *s){
+    songManager = s;
 }
 
 void Game::next()

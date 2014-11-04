@@ -54,6 +54,7 @@ void Player::setOn(){
 }
 
 void Player::setOff(){
+    inactivity_counter = 0;
     bDown = false;
     height = y_down - y_up;
 }
@@ -62,12 +63,19 @@ void Player::draw(bool start){
     ofPushStyle();
     drawBackground();
     drawBlocks();
+
     if(start){
-        drawGradients();
-        drawPlayerScore();
+        if (!isInactive()){
+            drawGradients();
+        }
+        drawIcon();
+
+        if (!isInactive()){
+            drawPlayerScore();
+        }
+    drawInactivityPanel();
     }
 
-    drawIcon();
 
 
 
@@ -78,6 +86,16 @@ void Player::drawForStarting(){
     drawBackground();
     drawIcon();
     ofPopStyle();
+}
+
+void Player::drawInactivityPanel(){
+    if (isInactive()){
+        int width = Settings::getInstance()->getWidth();
+        int height = Settings::getInstance()->getPlayerHeight();
+        ofSetColor(ofColor(0,0,0,180));
+        ofRect(0, 0, width, height);
+    }
+
 }
 
 void Player::drawBackground(){
@@ -146,13 +164,35 @@ void Player::drawIcon(){
 void Player::update(){
     updateInBlock();
     updateBlocks();
+    updateBonus();
+    updateInactivityCounter();
+}
+
+void Player::updateInactivityCounter(){
+    inactivity_counter++;
+}
+
+bool Player::isInactive(){
+    return inactivity_counter/60 > Settings::getInstance()->getInactivityTime();
+}
+
+void Player::updateBonus(){
+    Settings* settings = Settings::getInstance();
+    if (0 <= perfect_blocks && perfect_blocks < settings->getBonusMark(1)){
+        bonus = 0;
+    } else if (settings->getBonusMark(1) <= perfect_blocks && perfect_blocks < settings->getBonusMark(2)){
+        bonus = 1;
+    } else {
+        bonus = 2;
+    }
+    settings = NULL;
 }
 
 
 void Player::updateInBlock(){
     bool prevInBlock = inBlock;
     inBlock = getInBlock();
-   updateBlockTouchedPieces();
+    updateBlockTouchedPieces();
 
     if(prevInBlock && !inBlock)
         exitBlock();
@@ -167,7 +207,9 @@ bool Player::getInBlock(){
 }
 
 bool Player::isTouchingCircle(){
-
+    if (isInactive()){
+        return false;
+    }
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         if (bDown == (*b)->isDown() && (*b)->isTouchingCircle())
@@ -207,8 +249,6 @@ void Player::drawPlayerScore(){
            x -= 10;
            player_score_text.drawRight(x, y);
         }
-        //has_scored = 0;
-
    }
 }
 string Player::getPlayerScoreToString(){
@@ -217,12 +257,15 @@ string Player::getPlayerScoreToString(){
 
     string t;
     ostringstream temp;
-    if(getFirstBlockEnabled() != NULL){
-        temp << "+" << getFirstBlockEnabled()->getScore();
+    temp << "";
 
-    }else{
-        temp << "";
+    if (blocks.size() > 0){
+        int score = getBlockScore(getFirstBlockEnabled());
+        if (score > 0){
+            temp << "+" << score;
+        }
     }
+
     t=temp.str();
     return t;
 
@@ -240,18 +283,28 @@ void Player::exitBlock(){
 
 void Player::updateBlocks(){
     if (blocks.size() > 0){
-        if (blocks.front()->isOutOfMap()){
-            modifyScore(blocks.front()->getScore());
+        GameBlock* block = blocks.front();
+        if (block->hasPassedCircle()){
+            block->setDisabled();
+        }
+        if (block->isOutOfMap()){
+            if (!isInactive()){
+                modifyScore(getBlockScore(block));
+                perfect_blocks = (block->getNumberOfTouchedPieces() == block->getNumberOfPieces()) ? perfect_blocks + 1 : 0;
+            }
             eraseBlock(0);
         }
-        if (blocks.front()->hasPassedCircle()){
-            blocks.front()->setDisabled();
-        }
+        block = NULL;
+
     }
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
     }
+}
+
+int Player::getBlockScore(GameBlock* block){
+    return block->getScore() * (bonus+1);
 }
 
 void Player::eraseBlock(int position){
@@ -263,21 +316,39 @@ void Player::eraseBlock(int position){
 }
 
 void Player::drawBlocks(){
+    ofColor color = getBlockPaintingColor();
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         int yy = (*b)->isDown() ? y_down : y_up;
-        (*b)->draw(yy - inner_radius);
+        (*b)->draw(yy - inner_radius, color);
     }
+}
+
+ofColor Player::getBlockPaintingColor(){
+    Settings* settings = Settings::getInstance();
+    ofColor color;
+    switch (bonus){
+    case 1:
+        color = settings->getColor("green");
+        break;
+    case 2:
+        color = settings->getColor("red");
+        break;
+    default:
+        color = settings->getPlayerColor(getTeam()->getId(), id);
+    }
+    settings = NULL;
+    return color;
 }
 
 bool Player::hasPlace(bool position_down){
     return position_down ? queue_down == 0 : queue_up == 0;
 }
 
-void Player::addNewBlock(bool position_down, int block_pieces, ofColor color){
+void Player::addNewBlock(bool position_down, int block_pieces){
     if (hasPlace(position_down)){
         incrementQueue(position_down, block_pieces);
-        blocks.push_back(new GameBlock(block_pieces, position_down, color));
+        blocks.push_back(new GameBlock(block_pieces, position_down));
 
     }
 }
@@ -315,12 +386,25 @@ GameBlock* Player::getFirstBlockEnabled(){
     }
     return NULL;
 }
-bool Player::hasScored()
-{
+bool Player::hasScored(){
     return last_score > 0;
 }
 void Player::setLastScore(int value){
     last_score = value;
 }
+
+int Player::getBonus(){
+    return bonus;
+}
+void Player::setBonus(int value){
+    bonus = value;
+}
+int Player::getPerfectBlocks(){
+    return perfect_blocks;
+}
+void Player::setPerfectBlocks(int value){
+    perfect_blocks = value;
+}
+
 
 
