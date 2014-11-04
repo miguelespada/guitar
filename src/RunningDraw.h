@@ -25,6 +25,7 @@ public:
     void draw(bool start);
     void drawTeamScores();
     void drawHeader();
+    void drawWinner();
 
     void drawTitle();
     void drawGrid();
@@ -39,6 +40,7 @@ private:
 
     void drawTeams(bool start);
     void drawBeatCounter();
+
     RunningModel* running_model;
     Settings* settings;
 };

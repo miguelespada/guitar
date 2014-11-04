@@ -8,9 +8,16 @@
 
 #include "MidiAdapter.h"
 #include "MidiAction.h"
+#include "Settings.h"
 
 
-MidiAdapter::MidiAdapter(){}
+MidiAdapter::MidiAdapter(){
+    
+    beats = 0;
+    subbeats = 0;
+    ticks = 0;
+    compass = 0;
+}
 
 MidiAdapter* MidiAdapter::instance = 0;
 MidiAdapter* MidiAdapter::getInstance(){
@@ -35,12 +42,12 @@ void MidiAdapter::open(string input_port, string output_port){
 
 
 void MidiAdapter::sendNoteOn(int note){
-   // ofLogVerbose() << "Midi on: " << note;
+        ofLogVerbose() << "Midi on: " << note;
     midiOut.sendNoteOn(channel, note,  64);
 }
 
 void MidiAdapter::sendNoteOff(int note){
-    //ofLogVerbose() << "Midi off: " << note;
+    ofLogVerbose() << "Midi off: " << note;
     midiOut.sendNoteOff(channel, note,  64);
 }
 
@@ -87,4 +94,10 @@ void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
 
 void MidiAdapter::registerObserver(Observer *o){
     observer = o;
+}
+
+string MidiAdapter::toString(){
+    string ports = "[MIDI IN] " + Settings::getInstance()->getMidiIn() + "\n[MIDI OUT] " + Settings::getInstance()->getMidiOut();
+    string tempo = ofToString(compass) + "." + ofToString(beats) + "." + ofToString(subbeats) + "." + ofToString(ticks);
+    return ports + "\n" + tempo;
 }

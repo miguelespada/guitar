@@ -24,10 +24,10 @@ public:
     Player *getPlayer(int id);
     void modifyScore(int value);
     int getScore();
-    string getTeamScoreToString();
     ofColor getPlayerScoringColor();
     void drawTeamScore();
     vector<Player*> getPlayers();
+    void drawWinner();
 
 protected:
 private:
@@ -35,7 +35,9 @@ private:
     vector<Player*> players;
     int team_score = 0;
 
-    ofxTextBlock  team_score_text;
+    ofTrueTypeFont score_text;
+
+    ofxTextBlock *team_score_text;
 };
 
 

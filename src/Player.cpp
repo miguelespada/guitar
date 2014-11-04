@@ -191,7 +191,6 @@ void Player::drawPlayerScore(){
 
         float y = Settings::getInstance()->getPlayerCenterY();
         float x = Settings::getInstance()->getWidth();
-        ofSetLogLevel(OF_LOG_SILENT);
 
         player_score_text.setText(getPlayerScoreToString());
         ofColor c = Settings::getInstance()->getPlayerColor(getTeam()->getId(), id);
@@ -208,8 +207,6 @@ void Player::drawPlayerScore(){
            x -= 10;
            player_score_text.drawRight(x, y);
         }
-
-        ofSetLogLevel(OF_LOG_VERBOSE);
         //has_scored = 0;
 
    }
@@ -232,13 +229,13 @@ string Player::getPlayerScoreToString(){
 }
 
 void Player::enterBlock(){
-   // ofLogVerbose() << "[Player] enter block ";
-    MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
+    if(bDown)
+        MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-   // ofLogVerbose() << "[Player] exit block ";
-    MidiAdapter::getInstance()->sendNoteOff(getGlobalId());
+    if(!bDown)
+        MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::updateBlocks(){

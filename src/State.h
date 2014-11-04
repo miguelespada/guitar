@@ -91,7 +91,7 @@ public:
 class FINISHING: public State
 {
 public:
-    FINISHING(Game *c);
+    FINISHING(Game *c, GameLogic* gLogic);
     ~FINISHING(){};
 
     void push();
@@ -108,7 +108,7 @@ public:
 class WINNER: public State
 {
 public:
-    WINNER(Game *g);
+    WINNER(Game *g, GameLogic* gLogic);
     ~WINNER(){};
 
     float timer;

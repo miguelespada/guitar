@@ -75,7 +75,7 @@ void STARTING::push()
 
 void STARTING::jump()
 {
-    game->setCurrent(new WINNER(game));
+    game->setCurrent(new WINNER(game, gameLogic));
     delete this;
 };
 
@@ -97,7 +97,7 @@ void RUNNING::update(){
 
 void RUNNING::push()
 {
-    game->setCurrent(new FINISHING(game));
+    game->setCurrent(new FINISHING(game, gameLogic));
 };
 
 void RUNNING::notify(Action *action){
@@ -109,10 +109,10 @@ RUNNING::~RUNNING(){
 };
 
 //========================================================================
-FINISHING::FINISHING(Game *g){
+FINISHING::FINISHING(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
-
+    gameLogic = gLogic;
 }
 
 void FINISHING::draw(){
@@ -122,7 +122,7 @@ void FINISHING::draw(){
 
 void FINISHING::push()
 {
-    game->setCurrent(new WINNER(game));
+    game->setCurrent(new WINNER(game, gameLogic));
 };
 
 
@@ -134,15 +134,15 @@ void FINISHING::jump()
 //========================================================================
 
 
-WINNER::WINNER(Game *g){
+WINNER::WINNER(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
-
+    gameLogic = gLogic;
     timer = ofGetElapsedTimeMillis();
 }
 
 void WINNER::draw(){
-
+    gameLogic->getRunningDraw()->drawWinner();
 };
 
 void WINNER::push()

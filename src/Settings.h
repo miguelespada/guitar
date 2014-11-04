@@ -37,6 +37,10 @@ public:
     float getPlayerOuterRadius();
     float getPlayerInnerRadius();
     float getPlayerMargin();
+    int getNumberOfSongs();
+    string getMidiIn();
+    string getMidiOut();
+    
     ofColor getColor(string colorName);
     int getIntroTime();
     int getBlockSeparation();
@@ -54,6 +58,7 @@ public:
     const int PIECE_SCORE = 10;
 
     float getMoveSize();
+    int getScale();
 
 private:
     static Settings* instance;

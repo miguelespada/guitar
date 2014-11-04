@@ -9,10 +9,7 @@
 #include "Team.h"
 #include "Player.h"
 
-Team::Team()
-{
-    team_score_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
-}
+Team::Team(){}
 
 Team::~Team(){
     for (int i = 0; i < players.size(); i++){
@@ -32,8 +29,7 @@ Team::Team(int id)
     }
     Team::id = id;
 
-
-    team_score_text.init(ofToDataPath(Settings::getInstance()->getFont()), 25);
+    score_text.loadFont(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
 }
 
 
@@ -60,22 +56,22 @@ void Team::draw(bool start){
 
 
 }
+void Team::drawWinner(){
+
+    int width = Settings::getInstance()->getWidth();
+    int height = Settings::getInstance()->getPlayerHeight() * 2;
+    ofColor backgroundColor = Settings::getInstance()->getColor("gray");
+    ofSetColor(backgroundColor);
+    ofRect(0, 0, width, height);
+
+
+
+}
 void Team::modifyScore(int value){
     team_score += value;
 }
 int Team::getScore(){
     return team_score;
-}
-string Team::getTeamScoreToString(){
-
-    //Conversion to string
-
-    string t;
-    ostringstream temp;
-    temp << team_score;
-    t=temp.str();
-    return t;
-
 }
 
 ofColor Team::getPlayerScoringColor(){
@@ -96,19 +92,15 @@ ofColor Team::getPlayerScoringColor(){
 
 void Team::drawTeamScore(){
     int team_x = Settings::getInstance()->getTeamScoreX(id);
-
-    ofSetLogLevel(OF_LOG_SILENT);
-    team_score_text.setText(getTeamScoreToString());
-    ofColor color = getPlayerScoringColor();
-    team_score_text.setColor(color.r, color.g, color.b, color.a);
+    float stringWidth = score_text.stringWidth(ofToString(team_score));
+    float stringHeight = score_text.stringHeight(ofToString(team_score));
+    ofSetColor( getPlayerScoringColor());
     if(id == 0){
-        team_score_text.drawLeft(team_x + 5, Settings::getInstance()->getHeaderHeight() / 2);
+       score_text.drawString(ofToString(team_score), team_x + 5, Settings::getInstance()->getHeaderHeight() / 2 + stringHeight + 5);
     }else{
-        team_score_text.drawRight(team_x - 5, Settings::getInstance()->getHeaderHeight() / 2);
+        score_text.drawString(ofToString(team_score), team_x -5 - stringWidth, Settings::getInstance()->getHeaderHeight() / 2 + stringHeight + 5);
     }
 
-
-    ofSetLogLevel(OF_LOG_VERBOSE);
 }
 vector<Player*> Team::getPlayers(){
     return players;
