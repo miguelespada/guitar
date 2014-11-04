@@ -14,10 +14,6 @@ RunningDraw::RunningDraw(RunningModel* model){
 
     title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
 
-    title_text.setText("NAVIGATE THE SUB");
-    title_text.wrapTextForceLines(2);
-    title_text.setColor(255,255,255,100);
-
 }
 
 RunningDraw::~RunningDraw()
@@ -102,8 +98,21 @@ void RunningDraw::drawTeamScores(){
 }
 
 void RunningDraw::drawTitle(){
-    int title_pos = Settings::getInstance()->getWidth() / 2;
+    Settings* settings = Settings::getInstance();
+    int title_pos = settings->getWidth() / 2;
+    if (ofGetFrameNum() % settings->getTitleRUNNINGChangeTime() == 0){
+        changeText = !changeText;
+    }
+
+    if(changeText){
+        title_text.setText("NAVIGATE THE SUB");
+    }else{
+        title_text.setText("EXPERIENCIA THE SUB");
+    }
+    title_text.wrapTextForceLines(2);
+    title_text.setColor(255,255,255,100);
     title_text.drawCenter(title_pos, 0);
+    settings = NULL;
 }
 
 

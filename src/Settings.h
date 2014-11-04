@@ -61,6 +61,8 @@ public:
     int getScale();
     int getBonusMark(int bonus);
     int getInactivityTime();
+    int getTitleRUNNINGChangeTime();
+    int getTitleIDLEChangeTime();
 
 private:
     static Settings* instance;

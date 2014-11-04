@@ -34,6 +34,7 @@ protected:
 private:
     ofxTextBlock  title_text;
     ofxTextBlock player_score_text;
+    bool changeText = false;
 
 
 // in draw:
