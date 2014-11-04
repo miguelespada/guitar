@@ -59,6 +59,8 @@ RUNNING::RUNNING(Game *g){
     game = g;
     gameLogic = new GameLogic();
     ofLogNotice() << "State: " << toString();
+    game->songManager->playNextSong();
+    game->songManager->playSong();
 };
 
 void RUNNING::draw(){
@@ -71,6 +73,7 @@ void RUNNING::update(){
 
 void RUNNING::push()
 {
+    game->songManager->stopSong();
     game->setCurrent(new WINNER(game));
 };
 

@@ -16,4 +16,11 @@ public:
     void run(Action *_action, Commandable *g);
 };
 
+class EndSong: public Command{
+public:
+    EndSong(string actionName);
+    void run(Action *_action, Commandable *g);
+};
+
+
 #endif /* defined(__heinneken__Command__) */

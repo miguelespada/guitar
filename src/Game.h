@@ -8,6 +8,7 @@
 #include "Commandable.h"
 #include "State.h"
 #include "Action.h"
+#include "SongManager.h"
 
 
 class Game: public Observer, public Commandable
@@ -28,6 +29,9 @@ public:
     void jump();
     void draw();
     void update();
+    void setSongManager(SongManager *s);
+    
+    SongManager *songManager;
 };
 
 #endif
