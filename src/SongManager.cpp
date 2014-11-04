@@ -28,41 +28,35 @@ void SongManager::togglePlay(){
 void SongManager::playSong(){
     
     MidiAdapter::getInstance()->sendNoteOn(125);
-    bPlaying = !bPlaying;
-    
+    MidiAdapter::getInstance()->sendNoteOn(125);
 }
 
 void SongManager::stopSong(){
-    MidiAdapter::getInstance()->sendNoteOn(126);
-    bPlaying = !bPlaying;
 }
 
-void SongManager::nextSong(){
+void SongManager::playNextSong(){
     MidiAdapter::getInstance()->sendNoteOn(song + 10);
-    MidiAdapter::getInstance()->sendNoteOff(song + 10);
     song = (song + 1) % Settings::getInstance()->getNumberOfSongs();
+    MidiAdapter::getInstance()->sendNoteOn(song + 10);
 }
 
 void SongManager::prevSong(){
     if(song > 0) {
         song --;
     }
-    
 }
 
-void SongManager::setMidi(){
+void SongManager::setMidiAndNext(){
     MidiAdapter::getInstance()->sendNoteOn(song + 10);
+    song = (song + 1) % Settings::getInstance()->getNumberOfSongs();
 }
 
 string SongManager::toString(){
     string tmp = ofToString(song) + "/" + ofToString(Settings::getInstance()->getNumberOfSongs());
-    if (bPlaying)
-        return "Playing " + tmp;
-    else
-        return "Paused " + tmp;
+    return tmp;
         
 }
 
 string SongManager::help(){
-    return "(+/-) navigate songs (*) send midi (.) play/stop song ";
+    return "(.) Play current solo (+) Solo next song (*) send midi and inc (-) dec song ";
 }

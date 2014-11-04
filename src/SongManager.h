@@ -24,9 +24,9 @@ public:
     void playSong();
     void stopSong();
     void togglePlay();
-    void nextSong();
+    void playNextSong();
     void prevSong();
-    void setMidi();
+    void setMidiAndNext();
     string toString();
     string help();
 };
