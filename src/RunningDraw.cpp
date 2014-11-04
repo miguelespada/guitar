@@ -13,7 +13,11 @@ RunningDraw::RunningDraw(RunningModel* model){
     Settings* settings = Settings::getInstance();
 
     title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
-
+    
+    title_text.setText("NAVIGATE THE SUB");
+    title_text.wrapTextForceLines(2);
+    title_text.setColor(255,255,255,100);
+    
 }
 
 RunningDraw::~RunningDraw()
@@ -84,13 +88,7 @@ void RunningDraw::drawTeamScores(){
 
 void RunningDraw::drawTitle(){
     int title_pos = Settings::getInstance()->getWidth() / 2;
-
-    ofSetLogLevel(OF_LOG_SILENT);
-    title_text.setText("NAVIGATE THE SUB");
-    title_text.wrapTextForceLines(2);
-    title_text.setColor(255,255,255,100);
     title_text.drawCenter(title_pos, 0);
-    ofSetLogLevel(OF_LOG_VERBOSE);
 }
 
 
@@ -105,13 +103,13 @@ void RunningDraw::drawGrid(){
 
     float d = 11.3125 * scale;
     for (int i = 0; i < 16 ; i++){
-                if(i%4 == 0){
-                    ofSetColor(255,0,0);
-                }else{
-                    ofSetColor(255,255,255);
-                }
+        if(i%4 == 0){
+            ofSetColor(255,0,0);
+        }else{
+            ofSetColor(255,255,255);
+        }
 
-                ofLine(i * d + margin_circle , 0, i * d  + margin_circle, Settings::getInstance()->getHeight());
+        ofLine(i * d + margin_circle , 0, i * d  + margin_circle, Settings::getInstance()->getHeight());
     }
 
 }
