@@ -28,7 +28,6 @@ void RunningDraw::draw(){
     ofRect(0, 0, settings->getWidth(), settings->getHeight());
     drawHeader();
     drawTeams();
-    drawBeatCounter();
 }
 
 RunningModel* RunningDraw::getRunningModel(){
@@ -93,11 +92,8 @@ void RunningDraw::drawTitle(){
     title_text.drawCenter(title_pos, 0);
     ofSetLogLevel(OF_LOG_VERBOSE);
 }
-void RunningDraw::drawBeatCounter(){
-    int beat = getRunningModel()->getBeatCounter();
-    int x = ofGetWidth() - ( beat % ofGetWidth() );
-    ofLine(x, ofGetHeight(), x, ofGetHeight() - 50);
-}
+
+
 void RunningDraw::drawGrid(){
     ofSetColor(255,255,255);
 
@@ -105,9 +101,9 @@ void RunningDraw::drawGrid(){
     float beat = compass / 4;
     float subbeat = beat / 6;
     float margin_circle = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
-    int scale = 3;
+    int scale = Settings::getInstance()->getScale();
 
-    float d = 11.3125 * 3;
+    float d = 11.3125 * scale;
     for (int i = 0; i < 16 ; i++){
                 if(i%4 == 0){
                     ofSetColor(255,0,0);

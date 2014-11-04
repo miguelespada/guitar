@@ -21,7 +21,6 @@ public:
     void keyPressed(int key);
     void keyReleased(int key);
 
-    bool bInfo = false;
 
     Game game;
     Assets assets;
@@ -31,7 +30,9 @@ public:
     SongManager *songManager;
     
     int song = 0;
-
+    
+    bool bInfo = true;
+    
     //DEBUG
     bool keypressed[4] = { false, false, false, false };
     bool manual_mode = false;

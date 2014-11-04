@@ -56,6 +56,7 @@ public:
     const int PIECE_SCORE = 10;
 
     float getMoveSize();
+    int getScale();
 
 private:
     static Settings* instance;

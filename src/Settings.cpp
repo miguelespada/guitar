@@ -132,3 +132,7 @@ string Settings::getMidiIn(){
 string Settings::getMidiOut(){
     return Settings::getData("midi_out").asString();
 }
+
+int Settings::getScale(){
+    return SCALE;
+}

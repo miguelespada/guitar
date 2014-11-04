@@ -38,6 +38,7 @@ public:
     void sendNoteOn(int note);
     void sendNoteOff(int note);
     void registerObserver(Observer *o);
+    string toString();
 };
 
 #endif /* defined(__heinneken__MidiAdapter__) */

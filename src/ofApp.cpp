@@ -20,7 +20,7 @@ void ofApp::setup(){
     ofSetWindowPosition(0, 0);
     ofHideCursor();
 
-    ofSetLogLevel(OF_LOG_VERBOSE);
+    ofSetLogLevel(OF_LOG_NOTICE);
 
     assets.load();
 
@@ -59,13 +59,16 @@ void ofApp::draw(){
         game.draw();
         ofPopMatrix();
 
+    if(bInfo){
         ofSetColor(255, 0, 0);
         ofLine(ofGetMouseX(), 0, ofGetMouseX(), ofGetHeight());
         ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
         ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), ofGetMouseX() + 10, ofGetMouseY() + 10);
 
-    ofSetColor(0);
-    ofDrawBitmapString(songManager->toString() + "\n" + songManager->help(), 10, ofGetHeight() - 40);
+        ofSetColor(0);
+        ofDrawBitmapString(songManager->toString() + "\n" + songManager->help(), 10, ofGetHeight() - 40);
+        ofDrawBitmapString(MidiAdapter::getInstance()->toString(), 10, ofGetHeight() - 80);
+    }
     ofPopStyle();
 }
 
@@ -137,6 +140,10 @@ void ofApp::keyPressed(int key){
             break;
         case '.':
             songManager->togglePlay();
+            break;
+            
+        case 'i':
+            bInfo = !bInfo;
             break;
         default:
             break;

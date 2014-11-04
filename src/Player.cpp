@@ -223,12 +223,14 @@ string Player::getPlayerScoreToString(){
 
 void Player::enterBlock(){
    // ofLogVerbose() << "[Player] enter block ";
-    MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
+    if(bDown)
+        MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-   // ofLogVerbose() << "[Player] exit block ";
-    MidiAdapter::getInstance()->sendNoteOff(getGlobalId());
+    // ofLogVerbose() << "[Player] exit block ";
+    if(!bDown)
+        MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::updateBlocks(){
