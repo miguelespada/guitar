@@ -18,6 +18,7 @@
 class Player
 {
 
+
 private:
     int id;
     Team* team;
@@ -46,6 +47,8 @@ private:
     void drawBlocks();
     void drawBackground();
     void drawIcon();
+    void drawHeader();
+
 
     void drawGradients();
 
@@ -71,6 +74,7 @@ private:
 protected:
 
 public:
+     void drawForStarting();
     Player();
     Player(int id, Team* team);
     virtual ~Player();
@@ -80,7 +84,7 @@ public:
 
     Team* getTeam();
 
-    void draw();
+     void draw(bool start);
     void setOn();
     void setOff();
 

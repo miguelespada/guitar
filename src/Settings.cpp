@@ -120,6 +120,13 @@ ofColor Settings::getColor(string colorName){
 float Settings::getMoveSize(){
     return 181/(16*6);
 }
+string Settings::getFont(){
+    return "FuturaLT-CondensedLight.ttf";
+}
+string Settings::getBoldFont(){
+    return "FuturaLT-CondensedExtraBold.ttf";
+}
+
 
 int Settings::getNumberOfSongs(){
     return Settings::getData("number_of_songs").asInt();

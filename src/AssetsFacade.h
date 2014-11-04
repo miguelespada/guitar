@@ -28,6 +28,7 @@ public:
     void setAssets(Assets *a);
     void drawIntro();
     void draw_background();
+    void drawText(string t);
 };
 
 #endif /* defined(__carrousel__AssetsFacade__) */

@@ -30,4 +30,12 @@ void AssetsFacade::draw_background(){
 void AssetsFacade::drawIntro(){
     Settings * settings = Settings::getInstance();
     assets->intro_background.draw(0, 0, settings->getWidth(), settings->getHeight());
+
+}
+void AssetsFacade::drawText(string t){
+    float x = settings->getSmallHeaderPanelWidth() * 2 + settings->getBigHeaderPanelWidth()/ 1.5;
+    float y = settings->getPlayerCenterY() * 2;
+    assets->text.setText(t);
+    assets->text.setColor(255,255,255,255);
+    assets->text.drawCenter(x,y);
 }

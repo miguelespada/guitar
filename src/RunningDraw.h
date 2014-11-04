@@ -22,8 +22,10 @@ public:
     RunningDraw(RunningModel* model);
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
-    void draw();
+    void draw(bool start);
     void drawTeamScores();
+    void drawHeader();
+    void drawWinner();
 
     void drawTitle();
     void drawGrid();
@@ -36,8 +38,9 @@ private:
 
 // in draw:
 
-    void drawTeams();
-    void drawHeader();
+    void drawTeams(bool start);
+    void drawBeatCounter();
+
     RunningModel* running_model;
     Settings* settings;
 };

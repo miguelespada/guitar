@@ -15,10 +15,25 @@
 IDLE::IDLE(Game *g){
     game = g;
     ofLogNotice() << "State: " << toString();
+    changeText = false;
+
 };
 
 void IDLE::draw(){
-    game->assetsFacade->draw_background();
+    ofBackground(255);
+    ofTranslate(40, 40);
+    ofSetColor(255,255,255,255);
+    game->assetsFacade->drawIntro();
+    if (ofGetFrameNum() % 360 == 0){
+        changeText = !changeText;
+    }
+
+    if(changeText){
+        game->assetsFacade->drawText("HOLA CAPITANES");
+    }else{
+        game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
+    }
+    ofTranslate(-40,-40);
 };
 
 void IDLE::push()
@@ -33,31 +48,42 @@ void IDLE::push()
 STARTING::STARTING(Game *g){
     game = g;
     ofLogNotice() << "State: " << toString();
+    gameLogic = new GameLogic();
+
 }
 
 void STARTING::draw(){
-    game->assetsFacade->drawIntro();
+    gameLogic->constructRunningServices();
+    ofBackground(255);
+    ofTranslate(40, 40);
+    ofSetColor(0);
+    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
+    gameLogic->getRunningDraw()->draw(false);
+
+
+
+
 };
 
 
 void STARTING::push()
 {
-    game->setCurrent(new RUNNING(game));
+    game->setCurrent(new RUNNING(game, gameLogic));
     delete this;
 };
 
 
 void STARTING::jump()
 {
-    game->setCurrent(new WINNER(game));
+    game->setCurrent(new WINNER(game, gameLogic));
     delete this;
 };
 
 //========================================================================
 
-RUNNING::RUNNING(Game *g){
+RUNNING::RUNNING(Game *g, GameLogic* gLogic){
     game = g;
-    gameLogic = new GameLogic();
+    gameLogic = gLogic;
     ofLogNotice() << "State: " << toString();
     game->songManager->playNextSong();
     game->songManager->playSong();
@@ -73,8 +99,10 @@ void RUNNING::update(){
 
 void RUNNING::push()
 {
+
+    game->setCurrent(new FINISHING(game, gameLogic));
+
     game->songManager->stopSong();
-    game->setCurrent(new WINNER(game));
 };
 
 void RUNNING::notify(Action *action){
@@ -86,23 +114,67 @@ RUNNING::~RUNNING(){
 };
 
 //========================================================================
-
-WINNER::WINNER(Game *g){
+FINISHING::FINISHING(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
+    gameLogic = gLogic;
+}
 
+void FINISHING::draw(){
+
+
+};
+
+void FINISHING::push()
+{
+    game->setCurrent(new WINNER(game, gameLogic));
+};
+
+
+void FINISHING::jump()
+{
+    game->setCurrent(new MESSAGES(game));
+};
+
+//========================================================================
+
+
+WINNER::WINNER(Game *g, GameLogic* gLogic){
+    game = g;
+    ofLogNotice() << "State: " << toString();
+    gameLogic = gLogic;
     timer = ofGetElapsedTimeMillis();
 }
 
 void WINNER::draw(){
-    if((ofGetElapsedTimeMillis() - timer) > 1000){
-        game->setCurrent(new IDLE(game));
-        delete this;
-    }
+    gameLogic->getRunningDraw()->drawWinner();
 };
 
 void WINNER::push()
 {
+    game->setCurrent(new MESSAGES(game));
+};
+
+//========================================================================
+
+
+MESSAGES::MESSAGES(Game *g){
+    game = g;
+    ofLogNotice() << "State: " << toString();
+
+}
+
+void MESSAGES::draw(){
+};
+
+void MESSAGES::push()
+{
+    game->setCurrent(new IDLE(game));
+};
+
+void MESSAGES::jump()
+{
+    game->setCurrent(new STARTING(game));
 };
 
 //========================================================================
