@@ -136,14 +136,14 @@ void Player::drawIcon(){
 void Player::update(){
     updateInBlock();
     updateBlocks();
-   // updateBonus();
+    updateBonus();
 }
 
 void Player::updateBonus(){
     Settings* settings = Settings::getInstance();
-    if (0 <= perfect_blocks < settings->getBonusMark(1)){
+    if (0 <= perfect_blocks && perfect_blocks < settings->getBonusMark(1)){
         bonus = 0;
-    } else if (settings->getBonusMark(1) <= perfect_blocks < settings->getBonusMark(2)){
+    } else if (settings->getBonusMark(1) <= perfect_blocks && perfect_blocks < settings->getBonusMark(2)){
         bonus = 1;
     } else {
         bonus = 2;
@@ -225,7 +225,7 @@ string Player::getPlayerScoreToString(){
     temp << "";
 
     if (blocks.size() > 0){
-        int score = getFirstBlockEnabled()->getScore();
+        int score = getBlockScore(getFirstBlockEnabled());
         if (score > 0){
             temp << "+" << score;
         }
@@ -255,7 +255,7 @@ void Player::updateBlocks(){
             block->setDisabled();
         }
         if (block->isOutOfMap()){
-            modifyScore(block->getScore());
+            modifyScore(getBlockScore(block));
             perfect_blocks = (block->getNumberOfTouchedPieces() == block->getNumberOfPieces()) ? perfect_blocks + 1 : 0;
             eraseBlock(0);
         }
@@ -266,6 +266,10 @@ void Player::updateBlocks(){
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         (*b)->update();
     }
+}
+
+int Player::getBlockScore(GameBlock* block){
+    return block->getScore() * (bonus+1);
 }
 
 void Player::eraseBlock(int position){

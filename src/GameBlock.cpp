@@ -103,8 +103,11 @@ bool GameBlock::isOutOfMap(){
 }
 
 int GameBlock::getScore(){
-    return getNumberOfTouchedPieces() * Settings::getInstance()->PIECE_SCORE;
+    int touched = getNumberOfTouchedPieces();
+    int extra = (touched == pieces) ? 1 : 0;
+    return (extra + touched) * Settings::getInstance()->PIECE_SCORE;
 }
+
 int GameBlock::getLastTouchingPiece(){
     return last_touching_piece;
 }

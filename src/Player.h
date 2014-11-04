@@ -62,6 +62,7 @@ private:
     GameBlock* getFirstBlockEnabled();
 
     void eraseBlock(int position);
+    int getBlockScore(GameBlock* block);
 
 protected:
 
