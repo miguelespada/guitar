@@ -32,13 +32,16 @@ void GameBlock::paintBlock(int y){
     r.x = (x >= 0) ? x : 0;
     r.y = y;
     r.width = pieces * Settings::getInstance()->PIECE_SIZE;
+
     if (x < 0){
         r.width += x;
     }
     r.height = Settings::getInstance()->PIECE_WIDTH;
 
     ofSetColor(block_color);
-
+    if(pieces == 1){
+        r.width = r.height;
+    }
     ofRectRounded(r, 10);
 
 }
@@ -60,7 +63,7 @@ int GameBlock::getNumberOfPieces(){
 }
 int GameBlock::pieceAtTheEnd(){
     int endline_x = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
-    int piece_size = Settings::getInstance()->PIECE_SIZE;
+    float piece_size = Settings::getInstance()->PIECE_SIZE;
 
     for(int i = last_touching_piece; i < pieces; i++){
         if((i* piece_size + x )<= endline_x && ((i+1)*piece_size + x > endline_x)){

@@ -118,5 +118,5 @@ ofColor Settings::getColor(string colorName){
 }
 
 float Settings::getMoveSize(){
-    return 1.7;
+    return 181/(16*6);
 }

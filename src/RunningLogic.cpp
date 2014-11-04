@@ -14,7 +14,8 @@ RunningLogic::RunningLogic(RunningModel* model)
 }
 RunningLogic::~RunningLogic()
 {
-    //dtor
+    delete running_model;
+    running_model = NULL;
 }
 
 RunningModel* RunningLogic::getRunningModel(){
@@ -43,7 +44,7 @@ void RunningLogic::generateBlocks(){
     RunningModel* model = getRunningModel();
     for (int team = 0; team < 2; team++){
         for (int player = 0; player < 2; player++){
-            int block_pieces = round(ofRandom(1,4));
+            int block_pieces = round(ofRandom(1,6));
             bool position_down = round(ofRandom(0,1));
             ofColor color = Settings::getInstance()->getPlayerColor(team, player);
             //if (ofRandom(0,100) < 12){
