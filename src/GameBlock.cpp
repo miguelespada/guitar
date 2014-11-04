@@ -31,8 +31,6 @@ void GameBlock::paintBlock(int y){
     r.width = pieces * Settings::getInstance()->PIECE_SIZE;
     r.x = (x >= 0) ? x : -r.width;
     r.y = y;
-
-
     if (x < 0){
         r.width += x + r.width;
     }
@@ -40,7 +38,11 @@ void GameBlock::paintBlock(int y){
 
     ofSetColor(block_color);
     if(pieces == 1){
+            r.x = (x >= 0) ? x : 0;
         r.width = r.height;
+        if (x < 0){
+            r.width += x;
+        }
     }
     ofRectRounded(r, 10);
 

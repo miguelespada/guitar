@@ -157,7 +157,7 @@ bool Player::getInBlock(){
 }
 
 bool Player::isTouchingCircle(){
-    
+
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         if (bDown == (*b)->isDown() && (*b)->isTouchingCircle())
@@ -210,7 +210,12 @@ string Player::getPlayerScoreToString(){
 
     string t;
     ostringstream temp;
-    temp << "+" << getFirstBlockEnabled()->getScore();
+    if(getFirstBlockEnabled() != NULL){
+        temp << "+" << getFirstBlockEnabled()->getScore();
+
+    }else{
+        temp << "";
+    }
     t=temp.str();
     return t;
 
