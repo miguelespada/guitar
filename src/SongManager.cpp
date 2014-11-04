@@ -27,7 +27,6 @@ void SongManager::togglePlay(){
 
 void SongManager::playSong(){
     
-    MidiAdapter::getInstance()->sendNoteOn(song + 10);
     MidiAdapter::getInstance()->sendNoteOn(125);
     bPlaying = !bPlaying;
     
@@ -39,13 +38,15 @@ void SongManager::stopSong(){
 }
 
 void SongManager::nextSong(){
+    MidiAdapter::getInstance()->sendNoteOn(song + 10);
+    MidiAdapter::getInstance()->sendNoteOff(song + 10);
     song = (song + 1) % Settings::getInstance()->getNumberOfSongs();
-    
 }
 
 void SongManager::prevSong(){
-    song --;
-    if(song < 0) song = 0;
+    if(song > 0) {
+        song --;
+    }
     
 }
 

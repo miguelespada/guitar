@@ -10,6 +10,6 @@
   "green" : "6daf22",
   "white" : "ffffff",
   "number_of_songs" : 10,
-  "midi_in" : "Network",
-  "midi_out" : "Network" 
+  "midi_in" : "IAC Driver Bus 1",
+  "midi_out" : "IAC Driver Bus 1" 
 }
