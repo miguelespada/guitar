@@ -144,6 +144,9 @@ void ofApp::keyPressed(int key){
         case '.':
             songManager.togglePlay();
             break;
+        case ',':
+            songManager.stopSong();
+            break;
             
         case 'i':
             bInfo = !bInfo;

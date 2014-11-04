@@ -73,6 +73,7 @@ void RUNNING::update(){
 
 void RUNNING::push()
 {
+    game->songManager->stopSong();
     game->setCurrent(new WINNER(game));
 };
 

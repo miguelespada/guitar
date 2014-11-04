@@ -11,6 +11,7 @@
 
 Game::Game(){
     commands.push_back(new Next("/key_down"));
+    commands.push_back(new EndSong("/end_song"));
 }
 
 Game::~Game(){
