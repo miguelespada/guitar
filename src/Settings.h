@@ -40,7 +40,7 @@ public:
     int getNumberOfSongs();
     string getMidiIn();
     string getMidiOut();
-    
+
     ofColor getColor(string colorName);
 
     int getBlockSeparation();
@@ -57,6 +57,7 @@ public:
 
     float getMoveSize();
     int getScale();
+    int getBonusMark(int bonus);
 
 private:
     static Settings* instance;

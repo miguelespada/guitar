@@ -136,3 +136,14 @@ string Settings::getMidiOut(){
 int Settings::getScale(){
     return SCALE;
 }
+
+int Settings::getBonusMark(int bonus){
+    switch (bonus){
+    case 1:
+        return 10;
+        break;
+    case 2:
+        return 20;
+        break;
+    }
+}

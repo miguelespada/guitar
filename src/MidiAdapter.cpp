@@ -12,7 +12,7 @@
 
 
 MidiAdapter::MidiAdapter(){
-    
+
     beats = 0;
     subbeats = 0;
     ticks = 0;
