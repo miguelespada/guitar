@@ -121,3 +121,14 @@ float Settings::getMoveSize(){
     return 181/(16*6);
 }
 
+int Settings::getNumberOfSongs(){
+    return Settings::getData("number_of_songs").asInt();
+}
+
+string Settings::getMidiIn(){
+    return Settings::getData("midi_in").asString();
+}
+
+string Settings::getMidiOut(){
+    return Settings::getData("midi_out").asString();
+}

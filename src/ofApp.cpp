@@ -32,10 +32,11 @@ void ofApp::setup(){
     game.setAssetsFacade(&assetsFacade);
     game.setCurrent(new RUNNING(&game));
 
-    MidiAdapter::getInstance()->open("IAC Driver Bus 1", "Network");
+    MidiAdapter::getInstance()->open(Settings::getInstance()->getMidiIn(), Settings::getInstance()->getMidiOut());
     MidiAdapter::getInstance()->registerObserver(&game);
 
     ofEnableAlphaBlending();
+    songManager = new SongManager();
 
 }
 
@@ -53,27 +54,31 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofPushMatrix();
-    game.draw();
-    ofPopMatrix();
+    ofPushStyle();
+        ofPushMatrix();
+        game.draw();
+        ofPopMatrix();
 
-    ofSetColor(255, 0, 0);
-    ofLine(ofGetMouseX(), 0, ofGetMouseX(), ofGetHeight());
-    ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
-    ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), ofGetMouseX() + 10, ofGetMouseY() + 10);
+        ofSetColor(255, 0, 0);
+        ofLine(ofGetMouseX(), 0, ofGetMouseX(), ofGetHeight());
+        ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
+        ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), ofGetMouseX() + 10, ofGetMouseY() + 10);
+
+    ofSetColor(0);
+    ofDrawBitmapString(songManager->toString() + "\n" + songManager->help(), 10, ofGetHeight() - 40);
+    ofPopStyle();
 }
+
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     int key_player = 0;
     switch (key) {
 
-        case '0' ... '9':
-            // TODO stop song
-            MidiAdapter::getInstance()->sendNoteOn(song);
-            song = key - '0';
-            MidiAdapter::getInstance()->sendNoteOn(126);
-            MidiAdapter::getInstance()->sendNoteOn(song);
+        case '1' ... '4':
+            ofLogNotice() << "[MIDI for player] " << key - '1';
+            MidiAdapter::getInstance()->sendNoteOn(key - '1');
             break;
         case 'f':
             ofToggleFullscreen();
@@ -120,7 +125,19 @@ void ofApp::keyPressed(int key){
             break;
         case 'z':
             manual_mode = !manual_mode;
-        break;
+            break;
+        case '+':
+            songManager->nextSong();
+            break;
+        case '-':
+            songManager->prevSong();
+            break;
+        case '*':
+            songManager->setMidi();
+            break;
+        case '.':
+            songManager->togglePlay();
+            break;
         default:
             break;
     }

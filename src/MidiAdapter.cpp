@@ -35,12 +35,12 @@ void MidiAdapter::open(string input_port, string output_port){
 
 
 void MidiAdapter::sendNoteOn(int note){
-   // ofLogVerbose() << "Midi on: " << note;
+        ofLogVerbose() << "Midi on: " << note;
     midiOut.sendNoteOn(channel, note,  64);
 }
 
 void MidiAdapter::sendNoteOff(int note){
-    //ofLogVerbose() << "Midi off: " << note;
+    ofLogVerbose() << "Midi off: " << note;
     midiOut.sendNoteOff(channel, note,  64);
 }
 

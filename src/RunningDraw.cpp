@@ -14,8 +14,6 @@ RunningDraw::RunningDraw(RunningModel* model){
 
     title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
 
-
-
 }
 
 RunningDraw::~RunningDraw()
@@ -89,7 +87,6 @@ void RunningDraw::drawTitle(){
     int title_pos = Settings::getInstance()->getWidth() / 2;
 
     ofSetLogLevel(OF_LOG_SILENT);
-
     title_text.setText("NAVIGATE THE SUB");
     title_text.wrapTextForceLines(2);
     title_text.setColor(255,255,255,100);

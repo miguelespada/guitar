@@ -37,6 +37,10 @@ public:
     float getPlayerOuterRadius();
     float getPlayerInnerRadius();
     float getPlayerMargin();
+    int getNumberOfSongs();
+    string getMidiIn();
+    string getMidiOut();
+    
     ofColor getColor(string colorName);
 
     int getBlockSeparation();

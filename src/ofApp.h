@@ -7,6 +7,7 @@
 #include "OscAdapter.h"
 #include "Simulator.h"
 #include "MidiAdapter.h"
+#include "SongManager.h"
 
 class ofApp : public ofBaseApp{
 public:
@@ -27,6 +28,8 @@ public:
     AssetsFacade assetsFacade;
     OscAdapter oscAdapter;
     Simulator simulator;
+    SongManager *songManager;
+    
     int song = 0;
 
     //DEBUG
