@@ -79,6 +79,7 @@ private:
     GameBlock* getFirstBlockEnabled();
 
     void eraseBlock(int position);
+    bool bInNote = false;
 
 };
 
