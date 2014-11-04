@@ -130,13 +130,13 @@ void ofApp::keyPressed(int key){
             manual_mode = !manual_mode;
             break;
         case '+':
-            songManager->nextSong();
+            songManager->playNextSong();
             break;
         case '-':
             songManager->prevSong();
             break;
         case '*':
-            songManager->setMidi();
+            songManager->setMidiAndNext();
             break;
         case '.':
             songManager->togglePlay();

@@ -72,7 +72,9 @@ void RunningDraw::drawTeams(){
     }
 
     ofPopMatrix();
-   drawTeamScores();
+    
+    drawTeamScores();
+    
     drawTitle();
     drawGrid();
 }

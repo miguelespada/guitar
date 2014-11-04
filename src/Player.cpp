@@ -54,6 +54,7 @@ void Player::setOn(){
 }
 
 void Player::setOff(){
+    inactivity_counter = 0;
     bDown = false;
     height = y_down - y_up;
 }
@@ -62,12 +63,28 @@ void Player::draw(){
     ofPushStyle();
     drawBackground();
     drawBlocks();
-    drawGradients();
+
+    if (!isInactive()){
+        drawGradients();
+    }
     drawIcon();
 
-    drawPlayerScore();
+    if (!isInactive()){
+        drawPlayerScore();
+    }
 
+    drawInactivityPanel();
     ofPopStyle();
+}
+
+void Player::drawInactivityPanel(){
+    if (isInactive()){
+        int width = Settings::getInstance()->getWidth();
+        int height = Settings::getInstance()->getPlayerHeight();
+        ofSetColor(ofColor(0,0,0,180));
+        ofRect(0, 0, width, height);
+    }
+
 }
 
 void Player::drawBackground(){
@@ -137,6 +154,15 @@ void Player::update(){
     updateInBlock();
     updateBlocks();
     updateBonus();
+    updateInactivityCounter();
+}
+
+void Player::updateInactivityCounter(){
+    inactivity_counter++;
+}
+
+bool Player::isInactive(){
+    return inactivity_counter/60 > Settings::getInstance()->getInactivityTime();
 }
 
 void Player::updateBonus(){
@@ -170,7 +196,9 @@ bool Player::getInBlock(){
 }
 
 bool Player::isTouchingCircle(){
-
+    if (isInactive()){
+        return false;
+    }
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         if (bDown == (*b)->isDown() && (*b)->isTouchingCircle())
@@ -194,7 +222,6 @@ void Player::drawPlayerScore(){
 
         float y = Settings::getInstance()->getPlayerCenterY();
         float x = Settings::getInstance()->getWidth();
-        ofSetLogLevel(OF_LOG_SILENT);
 
         player_score_text.setText(getPlayerScoreToString());
         ofColor c = Settings::getInstance()->getPlayerColor(getTeam()->getId(), id);
@@ -211,9 +238,6 @@ void Player::drawPlayerScore(){
            x -= 10;
            player_score_text.drawRight(x, y);
         }
-
-        ofSetLogLevel(OF_LOG_VERBOSE);
-
    }
 }
 string Player::getPlayerScoreToString(){
@@ -237,13 +261,11 @@ string Player::getPlayerScoreToString(){
 }
 
 void Player::enterBlock(){
-   // ofLogVerbose() << "[Player] enter block ";
     if(bDown)
         MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
 
 void Player::exitBlock(){
-    // ofLogVerbose() << "[Player] exit block ";
     if(!bDown)
         MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
 }
@@ -255,8 +277,10 @@ void Player::updateBlocks(){
             block->setDisabled();
         }
         if (block->isOutOfMap()){
-            modifyScore(getBlockScore(block));
-            perfect_blocks = (block->getNumberOfTouchedPieces() == block->getNumberOfPieces()) ? perfect_blocks + 1 : 0;
+            if (!isInactive()){
+                modifyScore(getBlockScore(block));
+                perfect_blocks = (block->getNumberOfTouchedPieces() == block->getNumberOfPieces()) ? perfect_blocks + 1 : 0;
+            }
             eraseBlock(0);
         }
         block = NULL;
@@ -351,8 +375,7 @@ GameBlock* Player::getFirstBlockEnabled(){
     }
     return NULL;
 }
-bool Player::hasScored()
-{
+bool Player::hasScored(){
     return last_score > 0;
 }
 void Player::setLastScore(int value){

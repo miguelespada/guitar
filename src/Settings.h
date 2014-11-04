@@ -58,6 +58,7 @@ public:
     float getMoveSize();
     int getScale();
     int getBonusMark(int bonus);
+    int getInactivityTime();
 
 private:
     static Settings* instance;

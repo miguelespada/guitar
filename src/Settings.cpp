@@ -147,3 +147,7 @@ int Settings::getBonusMark(int bonus){
         break;
     }
 }
+
+int Settings::getInactivityTime(){
+    return 10;
+}

@@ -39,6 +39,8 @@ private:
 
     int last_score = 0;
 
+    int inactivity_counter = 100000;
+
 private:
 
     void drawBlocks();
@@ -63,6 +65,8 @@ private:
 
     void eraseBlock(int position);
     int getBlockScore(GameBlock* block);
+    void updateInactivityCounter();
+    void drawInactivityPanel();
 
 protected:
 
@@ -96,6 +100,7 @@ public:
     void setPerfectBlocks(int value);
     void updateBonus();
     ofColor getBlockPaintingColor();
+    bool isInactive();
 
 };
 
