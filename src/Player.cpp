@@ -28,7 +28,7 @@ Player::Player(int id, Team* team){
     queue_down = 0;
     queue_up = 0;
 
-    player_score_text.init(ofToDataPath("FuturaLT-CondensedExtraBold.ttf"), 24);
+    player_score_text.init(ofToDataPath(Settings::getInstance()->getBoldFont()), 24);
 }
 
 Player::~Player(){
@@ -58,15 +58,25 @@ void Player::setOff(){
     height = y_down - y_up;
 }
 
-void Player::draw(){
+void Player::draw(bool start){
     ofPushStyle();
     drawBackground();
     drawBlocks();
-    drawGradients();
+    if(start){
+        drawGradients();
+        drawPlayerScore();
+    }
+
     drawIcon();
 
-    drawPlayerScore();
 
+
+    ofPopStyle();
+}
+void Player::drawForStarting(){
+    ofPushStyle();
+    drawBackground();
+    drawIcon();
     ofPopStyle();
 }
 

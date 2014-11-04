@@ -11,8 +11,7 @@
 RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
-
-    title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
+    title_text.init(ofToDataPath(Settings::getInstance()->getFont()), 22);
 
 
 
@@ -23,13 +22,15 @@ RunningDraw::~RunningDraw()
     //dtor
 }
 
-void RunningDraw::draw(){
-    ofBackground(255);
-    ofTranslate(40, 40);
-    ofSetColor(0);
-    ofRect(0, 0, settings->getWidth(), settings->getHeight());
-    drawHeader();
-    drawTeams();
+void RunningDraw::draw(bool start){
+    if (start){
+        ofBackground(255);
+        ofTranslate(40, 40);
+        ofSetColor(0);
+        ofRect(0, 0, settings->getWidth(), settings->getHeight());
+    }
+        drawHeader();
+    drawTeams(start);
     drawBeatCounter();
 }
 
@@ -53,7 +54,7 @@ void RunningDraw::drawHeader(){
 
 }
 
-void RunningDraw::drawTeams(){
+void RunningDraw::drawTeams(bool start){
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
 
@@ -64,7 +65,7 @@ void RunningDraw::drawTeams(){
 
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
-        (*t)->draw();
+        (*t)->draw(start);
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
         //ofRotateX(-180);

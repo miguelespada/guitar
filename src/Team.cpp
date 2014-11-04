@@ -33,7 +33,7 @@ Team::Team(int id)
     Team::id = id;
 
 
-    team_score_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
+    team_score_text.init(ofToDataPath(Settings::getInstance()->getFont()), 25);
 }
 
 
@@ -45,13 +45,13 @@ Player *Team::getPlayer(int id){
     return players.at(id);
 }
 
-void Team::draw(){
+void Team::draw(bool start){
     std::vector<Player*>::const_iterator p;
 
     for(p=players.begin(); p!=players.end(); ++p){
         if(p == players.begin())
             ofTranslate(0, Settings::getInstance()->getPlayerMargin());
-        (*p)->draw();
+        (*p)->draw(start);
 
         ofTranslate(0, Settings::getInstance()->getPlayerHeight() + Settings::getInstance()->getPlayerSeparation());
     }

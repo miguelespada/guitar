@@ -30,7 +30,7 @@ void ofApp::setup(){
     oscAdapter.init();
 
     game.setAssetsFacade(&assetsFacade);
-    game.setCurrent(new RUNNING(&game));
+    game.setCurrent(new IDLE(&game));
 
     MidiAdapter::getInstance()->open("IAC Driver Bus 1", "Network");
     MidiAdapter::getInstance()->registerObserver(&game);

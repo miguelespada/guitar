@@ -28,7 +28,7 @@ public:
 
     Team* getTeam();
 
-    void draw();
+    void draw(bool start);
     void setOn();
     void setOff();
 
@@ -42,9 +42,11 @@ public:
     void drawPlayerScore();
     void setLastScore(int value);
     bool isTouchingCircle();
+    void drawForStarting();
 
 protected:
 private:
+    void drawIcon();
     ofxTextBlock player_score_text;
     int id;
     Team* team;
@@ -55,7 +57,7 @@ private:
     int last_score = 0;
     void drawBlocks();
     void drawBackground();
-    void drawIcon();
+
 
     void drawGradients();
 

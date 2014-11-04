@@ -31,7 +31,7 @@ void GameLogic::notify(Action *action){
 };
 
 void GameLogic::draw(){
-    running_draw->draw();
+    running_draw->draw(true);
 };
 
 void GameLogic::update(){
@@ -75,4 +75,11 @@ void GameLogic::destroyRunningServices(){
     running_model = NULL;
     running_logic = NULL;
     running_draw = NULL;
+}
+
+RunningModel* GameLogic::getRunningModel(){
+    return running_model;
+}
+RunningDraw* GameLogic::getRunningDraw(){
+    return running_draw;
 }

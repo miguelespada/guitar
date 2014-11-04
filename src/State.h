@@ -21,13 +21,14 @@ class State
 public:
     Game *game;
     virtual void push() =0;
-    
+    GameLogic* gameLogic;
     virtual void jump() {};
     virtual std::string toString() {}
     virtual void draw() {}
     virtual void update() {};
     virtual void notify(Action *action) {}
-    
+
+
 };
 
 //========================================================================
@@ -35,12 +36,12 @@ public:
 class IDLE: public State
 {
 public:
-    
+
     IDLE(Game *g);
     ~IDLE(){};
-    
+
     void push();
-    
+    bool changeText;
     std::string toString() {
         return "Idle";
     }
@@ -54,10 +55,10 @@ class STARTING: public State
 public:
     STARTING(Game *c);
     ~STARTING(){};
-    
+
     void push();
     void jump();
-    
+
     std::string toString() {
         return "Starting";
     }
@@ -68,22 +69,38 @@ public:
 
 class RUNNING: public State
 {
-    GameLogic *gameLogic;
-    
+   // GameLogic *gameLogic;
+
 public:
-    RUNNING(Game *g);
+    RUNNING(Game *g, GameLogic* gLogic);
     ~RUNNING();
-    
+
     void push();
-    
+
     std::string toString() {
         return "Running";
     }
     void draw();
     void update();
-    
+
     void notify(Action *action);
 
+};
+//========================================================================
+
+class FINISHING: public State
+{
+public:
+    FINISHING(Game *c);
+    ~FINISHING(){};
+
+    void push();
+    void jump();
+
+    std::string toString() {
+        return "Finishing";
+    }
+    void draw();
 };
 
 //========================================================================
@@ -93,16 +110,33 @@ class WINNER: public State
 public:
     WINNER(Game *g);
     ~WINNER(){};
-    
+
     float timer;
     void push();
-    
+
     std::string toString() {
         return "Winner";
     }
     void draw();
 };
 
-#endif 
+//========================================================================
+
+class MESSAGES: public State
+{
+public:
+    MESSAGES(Game *c);
+    ~MESSAGES(){};
+
+    void push();
+    void jump();
+
+    std::string toString() {
+        return "Messages";
+    }
+    void draw();
+};
+
+#endif
 
 //========================================================================

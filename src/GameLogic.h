@@ -20,13 +20,16 @@
 
 class GameLogic: public Observer, public Commandable
 {
-    
+
     RunningLogic* running_logic;
     RunningDraw* running_draw;
     RunningModel* running_model;
-    void constructRunningServices();
+
     void destroyRunningServices();
 public:
+    RunningModel* getRunningModel();
+    RunningDraw* getRunningDraw();
+    void constructRunningServices();
     GameLogic();
     ~GameLogic();
     void draw();
@@ -37,6 +40,6 @@ public:
     void beat();
     void subbeat();
     bool bBeat, bSubbeat;
-    
+
 };
 #endif /* defined(__heinneken__GameLogic__) */

@@ -11,6 +11,7 @@
 
 Assets::Assets(){
     ofLogVerbose() << "Constructing Assets ";
+    text.init(ofToDataPath(settings->getFont()), 24);
 }
 
 Assets::~Assets(){

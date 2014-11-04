@@ -20,7 +20,7 @@ public:
     Team(int team_number);
     virtual ~Team();
     int getId();
-    void draw();
+    void draw(bool start);
     Player *getPlayer(int id);
     void modifyScore(int value);
     int getScore();
