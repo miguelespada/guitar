@@ -142,7 +142,7 @@ void Player::update(){
 void Player::updateInBlock(){
     bool prevInBlock = inBlock;
     inBlock = getInBlock();
-    updateBlockTouchedPieces();
+   updateBlockTouchedPieces();
 
     if(prevInBlock && !inBlock)
         exitBlock();
@@ -157,19 +157,21 @@ bool Player::getInBlock(){
 }
 
 bool Player::isTouchingCircle(){
+    bool ret = false;
     GameBlock* b = getFirstBlockEnabled();
     if (b != NULL){
-        return bDown == b->isDown() && b->isTouchingCircle();
+        ret =  (bDown == b->isDown()) && b->isTouchingCircle();
     }
-    return false;
+    b = NULL;
+    return ret;
 }
 
-
 void Player::updateBlockTouchedPieces(){
-    GameBlock* b = getFirstBlockEnabled();
-    if (b != NULL){
-        if (isTouchingCircle() && b->isTouchingEnd()){
-            b->setPieceTouched(b->pieceAtTheEnd());
+
+    std::vector<GameBlock*>::const_iterator b;
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        if (isTouchingCircle() && (*b)->isTouchingEnd()){
+           (*b)->setPieceTouched((*b)->pieceAtTheEnd());
         }
     }
 }

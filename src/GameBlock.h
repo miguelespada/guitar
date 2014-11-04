@@ -40,12 +40,14 @@ public:
     bool hasPassedCircle();
     bool isEnabled();
     void setDisabled();
+    const static int N = 6;
 
 private:
+
     int last_touching_piece = 0;
     float x;
     bool bDown;
-    bool piece_touched[4] = {false, false, false, false};
+    bool piece_touched[N] = {false};
     ofColor block_color;
     int pieces; // Number of pieces
     bool enabled;

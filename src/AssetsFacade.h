@@ -16,17 +16,17 @@
 using namespace std;
 class AssetsFacade
 {
-    
+
 public:
     class Assets *assets;
-    
+
     AssetsFacade();
     ~AssetsFacade();
-    
+
     Settings *settings;
-    
+
     void setAssets(Assets *a);
-    
+    void drawIntro();
     void draw_background();
 };
 

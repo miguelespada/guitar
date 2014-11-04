@@ -65,7 +65,7 @@ int GameBlock::pieceAtTheEnd(){
     int endline_x = Settings::getInstance()->getPlayerCenterX() + Settings::getInstance()->getPlayerOuterRadius();
     float piece_size = Settings::getInstance()->PIECE_SIZE;
 
-    for(int i = last_touching_piece; i < pieces; i++){
+    for(int i = 0; i < pieces; i++){
         if((i* piece_size + x )<= endline_x && ((i+1)*piece_size + x > endline_x)){
             //Piece touching endline
             last_touching_piece = i;

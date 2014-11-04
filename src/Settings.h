@@ -40,12 +40,11 @@ public:
     ofColor getColor(string colorName);
 
     int getBlockSeparation();
-
     float getTeamScoreX(int team);
 
     ofColor getPlayerColor(int team, int id);
 
-    const float PIECE_SIZE = 181/(2*16) *3;
+    const float PIECE_SIZE = 181/(2*16) * SCALE;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
     const int BLOCK_SEPARATION = 2;

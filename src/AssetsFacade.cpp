@@ -27,3 +27,7 @@ void AssetsFacade::draw_background(){
     Settings * settings = Settings::getInstance();
     assets->background.draw(0, 0, settings->getWidth(), settings->getHeight());
 }
+void AssetsFacade::drawIntro(){
+    Settings * settings = Settings::getInstance();
+    assets->intro_background.draw(0, 0, settings->getWidth(), settings->getHeight());
+}

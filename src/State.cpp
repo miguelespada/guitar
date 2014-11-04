@@ -36,6 +36,7 @@ STARTING::STARTING(Game *g){
 }
 
 void STARTING::draw(){
+    game->assetsFacade->drawIntro();
 };
 
 
@@ -71,7 +72,6 @@ void RUNNING::update(){
 void RUNNING::push()
 {
     game->setCurrent(new WINNER(game));
-    delete this;
 };
 
 void RUNNING::notify(Action *action){
@@ -87,7 +87,7 @@ RUNNING::~RUNNING(){
 WINNER::WINNER(Game *g){
     game = g;
     ofLogNotice() << "State: " << toString();
-    
+
     timer = ofGetElapsedTimeMillis();
 }
 

@@ -17,15 +17,16 @@
 
 class Assets{
 public:
-    
+
     Assets();
     ~Assets();
-    
+
     void load();
     Settings *settings;
-    
+
     ofImage background;
-    
+    ofImage intro_background;
+
 private:
 };
 
