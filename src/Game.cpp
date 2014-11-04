@@ -33,6 +33,10 @@ void Game::setAssetsFacade(AssetsFacade *a)
     assetsFacade = a;
 }
 
+void Game::setSongManager(SongManager *s){
+    songManager = s;
+}
+
 void Game::next()
 {
     current_state->push();

@@ -27,7 +27,7 @@ public:
     AssetsFacade assetsFacade;
     OscAdapter oscAdapter;
     Simulator simulator;
-    SongManager *songManager;
+    SongManager songManager;
     
     int song = 0;
     

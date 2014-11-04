@@ -25,18 +25,21 @@ void ofApp::setup(){
     assets.load();
 
     assetsFacade.setAssets(&assets);
-
+    
     oscAdapter.registerObserver(&game);
     oscAdapter.init();
 
     game.setAssetsFacade(&assetsFacade);
-    game.setCurrent(new RUNNING(&game));
+    
+    
+    game.setSongManager(&songManager);
+    game.setCurrent(new IDLE(&game));
+    
 
     MidiAdapter::getInstance()->open(Settings::getInstance()->getMidiIn(), Settings::getInstance()->getMidiOut());
     MidiAdapter::getInstance()->registerObserver(&game);
 
     ofEnableAlphaBlending();
-    songManager = new SongManager();
 
 }
 
@@ -66,7 +69,7 @@ void ofApp::draw(){
         ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), ofGetMouseX() + 10, ofGetMouseY() + 10);
 
         ofSetColor(0);
-        ofDrawBitmapString(songManager->toString() + "\n" + songManager->help(), 10, ofGetHeight() - 40);
+        ofDrawBitmapString(songManager.toString() + "\n" + songManager.help(), 10, ofGetHeight() - 40);
         ofDrawBitmapString(MidiAdapter::getInstance()->toString(), 10, ofGetHeight() - 80);
     }
     ofPopStyle();
@@ -130,16 +133,16 @@ void ofApp::keyPressed(int key){
             manual_mode = !manual_mode;
             break;
         case '+':
-            songManager->playNextSong();
+            songManager.playNextSong();
             break;
         case '-':
-            songManager->prevSong();
+            songManager.prevSong();
             break;
         case '*':
-            songManager->setMidiAndNext();
+            songManager.setMidiAndNext();
             break;
         case '.':
-            songManager->togglePlay();
+            songManager.togglePlay();
             break;
             
         case 'i':
