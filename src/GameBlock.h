@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "Settings.h"
 
+#define N 6
 class GameBlock
 {
 public:
@@ -40,8 +41,6 @@ public:
     bool hasPassedCircle();
     bool isEnabled();
     void setDisabled();
-    const static int N = 6;
-
 private:
 
     int last_touching_piece = 0;
