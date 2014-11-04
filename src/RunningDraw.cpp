@@ -36,6 +36,10 @@ void RunningDraw::draw(bool start){
         drawTeams(start);
 }
 void RunningDraw::drawWinner(){
+    ofBackground(255);
+        ofTranslate(40, 40);
+        ofSetColor(0);
+        ofRect(0, 0, settings->getWidth(), settings->getHeight());
     drawHeader();
     vector<Team*> teams = running_model->getTeams();
     std::vector<Team*>::const_iterator t;
@@ -43,7 +47,6 @@ void RunningDraw::drawWinner(){
         (*t)->drawWinner();
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
-        //ofRotateX(-180);
     }
 }
 
@@ -72,10 +75,6 @@ void RunningDraw::drawTeams(bool start){
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
 
     vector<Team*>  teams = running_model->getTeams();
-
- //   string team1 =  teams.front()->getTeamScoreToString();
- //   string team2 =  teams.back()->getTeamScoreToString();
-
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw(start);

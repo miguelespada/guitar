@@ -62,13 +62,14 @@ void Player::setOff(){
 void Player::draw(bool start){
     ofPushStyle();
     drawBackground();
-    drawBlocks();
 
+    drawIcon();
     if(start){
+            drawBlocks();
         if (!isInactive()){
             drawGradients();
         }
-        drawIcon();
+
 
         if (!isInactive()){
             drawPlayerScore();

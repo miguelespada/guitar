@@ -42,7 +42,7 @@ private:
 
     int inactivity_counter = 100000;
 
-private:
+
 
     void drawBlocks();
     void drawBackground();
