@@ -157,13 +157,13 @@ bool Player::getInBlock(){
 }
 
 bool Player::isTouchingCircle(){
-    bool ret = false;
-    GameBlock* b = getFirstBlockEnabled();
-    if (b != NULL){
-        ret =  (bDown == b->isDown()) && b->isTouchingCircle();
+    
+    std::vector<GameBlock*>::const_iterator b;
+    for(b=blocks.begin(); b!=blocks.end(); ++b){
+        if (bDown == (*b)->isDown() && (*b)->isTouchingCircle())
+            return true;
     }
-    b = NULL;
-    return ret;
+    return false;
 }
 
 void Player::updateBlockTouchedPieces(){
