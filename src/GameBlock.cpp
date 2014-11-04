@@ -28,13 +28,13 @@ void GameBlock::draw(int y){
 void GameBlock::paintBlock(int y){
 
     ofRectangle r;
-
-    r.x = (x >= 0) ? x : 0;
-    r.y = y;
     r.width = pieces * Settings::getInstance()->PIECE_SIZE;
+    r.x = (x >= 0) ? x : -r.width;
+    r.y = y;
+
 
     if (x < 0){
-        r.width += x;
+        r.width += x + r.width;
     }
     r.height = Settings::getInstance()->PIECE_WIDTH;
 
