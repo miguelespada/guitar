@@ -24,7 +24,7 @@ void IDLE::draw(){
     ofTranslate(40, 40);
     ofSetColor(255,255,255,255);
     game->assetsFacade->drawIntro();
-    if (ofGetFrameNum() % 360 == 0){
+    if (ofGetFrameNum() % Settings::getInstance()->getTitleIDLEChangeTime() == 0){
         changeText = !changeText;
     }
 

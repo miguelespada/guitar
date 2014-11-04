@@ -163,7 +163,9 @@ void Player::drawIcon(){
 }
 
 void Player::update(){
-    updateInBlock();
+    if (!isInactive()){
+        updateInBlock();
+    }
     updateBlocks();
     updateBonus();
     updateInactivityCounter();
