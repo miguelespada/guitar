@@ -136,3 +136,11 @@ string Settings::getMidiOut(){
 int Settings::getScale(){
     return SCALE;
 }
+
+int Settings::getSpeed(){
+    return speed;
+}
+
+void Settings::setSpeed(int _speed){
+    speed = _speed;
+}

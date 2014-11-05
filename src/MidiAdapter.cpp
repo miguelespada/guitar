@@ -73,6 +73,7 @@ void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
         delete(action);
 
         if(ticks == 6){
+            
             subbeats += 1;
             ticks = 0;
             MidiAction *action = new MidiAction("/beat", beats);
@@ -89,6 +90,10 @@ void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
             if(compass == 65){
                 ofLogNotice() << "End song" << endl;
                 MidiAction *action = new MidiAction("/end_song", 0);
+                observer->notify(action);
+            }
+            else{
+                MidiAction *action = new MidiAction("/compass", compass);
                 observer->notify(action);
             }
         }
