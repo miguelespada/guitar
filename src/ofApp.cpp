@@ -65,7 +65,7 @@ void ofApp::draw(){
         ofLine(0, ofGetMouseY(), ofGetWidth(), ofGetMouseY());
         ofDrawBitmapString(ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()), ofGetMouseX() + 10, ofGetMouseY() + 10);
 
-        ofSetColor(0);
+        ofSetColor(255);
         ofDrawBitmapString(songManager.toString() + "\n" + songManager.help(), 10, ofGetHeight() - 40);
         ofDrawBitmapString(MidiAdapter::getInstance()->toString(), 10, ofGetHeight() - 80);
     }

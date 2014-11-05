@@ -38,6 +38,7 @@ void SongManager::stopSong(){
 void SongManager::playNextSong(){
     MidiAdapter::getInstance()->sendNoteOn(song + 10);
     song = (song + 1) % Settings::getInstance()->getNumberOfSongs();
+    MidiAdapter::getInstance()->resetCompass();
     MidiAdapter::getInstance()->sendNoteOn(song + 10);
 }
 

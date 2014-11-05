@@ -12,11 +12,8 @@
 
 
 MidiAdapter::MidiAdapter(){
-
-    beats = 0;
-    subbeats = 0;
-    ticks = 0;
-    compass = 0;
+    
+    resetCompass();
 }
 
 MidiAdapter* MidiAdapter::instance = 0;
@@ -42,7 +39,7 @@ void MidiAdapter::open(string input_port, string output_port){
 
 
 void MidiAdapter::sendNoteOn(int note){
-        ofLogVerbose() << "Midi on: " << note;
+    ofLogVerbose() << "Midi on: " << note;
     midiOut.sendNoteOn(channel, note,  64);
 }
 
@@ -60,10 +57,7 @@ MidiAdapter::~MidiAdapter(){
 void MidiAdapter::newMidiMessage(ofxMidiMessage& msg) {
 
     if(msg.status == 250) {
-        beats = 0;
-        subbeats = 0;
-        ticks = 0;
-        compass = 0;
+        resetCompass();
     }
     if(msg.status == 248){
         ticks += 1;
@@ -109,6 +103,14 @@ void MidiAdapter::registerObserver(Observer *o){
 
 string MidiAdapter::toString(){
     string ports = "[MIDI IN] " + Settings::getInstance()->getMidiIn() + "\n[MIDI OUT] " + Settings::getInstance()->getMidiOut();
-    string tempo = ofToString(compass) + "." + ofToString(beats) + "." + ofToString(subbeats) + "." + ofToString(ticks);
+    string tempo = ofToString(compass + 1) + "." + ofToString(beats) + "." + ofToString(subbeats) + "." + ofToString(ticks);
     return ports + "\n" + tempo;
+}
+
+void MidiAdapter::resetCompass(){
+    
+    beats = 0;
+    subbeats = 0;
+    ticks = 0;
+    compass = 0;
 }
