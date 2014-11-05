@@ -33,18 +33,20 @@ void IDLE::draw(){
 //    }else{
 //        game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
 //    }
-    ofScale(0.5, 0.5);
+    ofScale(SCALE, SCALE);
     game->assetsFacade->drawVideo(0,0);
-    ofScale(2,2);
+    ofScale(1/SCALE, 1/SCALE);
 
 };
 void IDLE::update(){
    // gameLogic->update();
    game->assetsFacade->updateVideo();
+
 }
 void IDLE::push()
 {
     game->setCurrent(new STARTING(game));
+    game->assetsFacade->stopVideo();
     delete this;
 };
 

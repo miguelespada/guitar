@@ -32,6 +32,7 @@ public:
     void updateVideo();
     void drawVideo(float x, float y);
     void playVideo();
+    void stopVideo();
 
 
 };

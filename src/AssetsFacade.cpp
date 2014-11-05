@@ -47,6 +47,10 @@ void AssetsFacade::drawVideo(float x, float y){
     assets->video.draw(x,y);
 }
 void AssetsFacade::playVideo(){
+    assets->video.setLoopState(OF_LOOP_NORMAL);
     assets->video.play();
+}
+void AssetsFacade::stopVideo(){
+    assets->video.stop();
 }
 
