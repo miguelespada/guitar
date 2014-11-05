@@ -145,7 +145,7 @@ void RunningDraw::drawGrid(){
 
     float d = 11.3125 * scale;
     for (int i = 0; i < 16 ; i++){
-        if(i%4 == 0){
+        if(i % 4 == 0){
             ofSetColor(255,0,0);
         }else{
             ofSetColor(255,255,255);
