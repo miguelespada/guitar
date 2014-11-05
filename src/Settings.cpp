@@ -237,8 +237,8 @@ ofImage Settings::getTitleImage(bool mayday){
     return img;
 }
 ofImage Settings::getRandomPhrase(bool winner){
-    int i = round(ofRandom(1,10));
     string s = winner ? "winner" : "loser";
+    int i = winner ? round(ofRandom(1,6)) : round(ofRandom(1,5));
     string filename = s + ofToString(i);
     ofImage img;
     img.loadImage(ofToDataPath(assetsPath() + "glows/" + filename + ".png"));
