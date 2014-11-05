@@ -41,6 +41,15 @@ public:
 };
 
 
+class Compass: public Command{
+public:
+    Compass(string actionName);
+    void run(Action *_action, Commandable *g);
+};
+
+
+
+
 
 
 

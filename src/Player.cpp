@@ -270,13 +270,17 @@ string Player::getPlayerScoreToString(){
 }
 
 void Player::enterBlock(){
-    if(bDown)
+    if(bDown){
         MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
+        bInNote = true;
+    }
 }
 
 void Player::exitBlock(){
-    if(!bDown)
+    if(bInNote){
         MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
+        bInNote = false;
+    }
 }
 
 void Player::updateBlocks(){

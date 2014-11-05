@@ -67,6 +67,8 @@ private:
     GameBlock* getFirstBlockEnabled();
 
     void eraseBlock(int position);
+    bool bInNote = false;
+
     int getBlockScore(GameBlock* block);
     void updateInactivityCounter();
     void drawInactivityPanel();
@@ -104,7 +106,6 @@ public:
     void updateBonus();
     ofColor getBlockPaintingColor();
     bool isInactive();
-
 };
 
 

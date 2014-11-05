@@ -144,6 +144,14 @@ int Settings::getScale(){
     return SCALE;
 }
 
+int Settings::getSpeed(){
+    return speed;
+}
+
+void Settings::setSpeed(int _speed){
+    speed = _speed;
+    
+}
 int Settings::getBonusMark(int bonus){
     switch (bonus){
     case 1:

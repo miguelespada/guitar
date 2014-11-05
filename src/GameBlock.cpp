@@ -17,7 +17,7 @@ GameBlock::GameBlock(int pieces_num, bool bDown)
 }
 
 void GameBlock::update(){
-    x = x - Settings::getInstance()->getMoveSize();
+    x = x - Settings::getInstance()->getMoveSize() * Settings::getInstance()->getSpeed();
 }
 
 void GameBlock::draw(int y, ofColor block_color){
