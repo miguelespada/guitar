@@ -47,6 +47,7 @@ public:
     int getIntroTime();
     int getBlockSeparation();
     float getTeamScoreX(int team);
+    float getTeamScoreY();
 
     ofColor getPlayerColor(int team, int id);
     string getFont();

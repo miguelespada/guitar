@@ -36,8 +36,6 @@ private:
     int team_score = 0;
 
     ofTrueTypeFont score_text;
-
-    ofxTextBlock *team_score_text;
 };
 
 

@@ -36,7 +36,7 @@ private:
     float height = 0;
     int x, y_up, y_down, outer_radius, inner_radius;
 
-    ofxTextBlock player_score_text;
+    ofTrueTypeFont player_score_text;
 
     int last_score = 0;
 
