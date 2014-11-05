@@ -24,7 +24,7 @@ RunningDraw::~RunningDraw()
 }
 void RunningDraw::drawLogo(){
     Settings * settings = Settings::getInstance();
-    running_model->assets->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
+    Assets::getInstance()->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
 }
 void RunningDraw::draw(bool start){
     Settings* s = Settings::getInstance();
@@ -105,9 +105,6 @@ void RunningDraw::drawTeams(bool start){
     ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
     ofSetColor(255);
     //drawNavigate();
-    //ofScale(1/s->getCentralImageWidth(), 1/s->getCentralImageHeight());
-    running_model->assets->loop.draw(s->getCentralImageX(),s->getCentralImageHeight());
-   // ofScale(s->getCentralImageWidth(), s->getCentralImageHeight());
     //drawTitle(s->getRunningTitle());
     //drawGrid();
     //drawGrid();
@@ -174,5 +171,5 @@ void RunningDraw::drawFinalScore(){
 }
 void RunningDraw::drawNavigate(){
     Settings * settings = Settings::getInstance();
-    running_model->assets->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
+    Assets::getInstance()->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
 }

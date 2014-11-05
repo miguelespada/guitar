@@ -23,7 +23,6 @@ public:
 
 
     Game game;
-    Assets assets;
     AssetsFacade assetsFacade;
     OscAdapter oscAdapter;
     Simulator simulator;

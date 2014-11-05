@@ -9,15 +9,13 @@
 
 RunningModel::RunningModel()
 {
-    assets = new Assets();
-    assets->load();
 
     for (int i = 0; i < 2; i++){
         Team* team = new Team(i);
         teams.push_back(team);
         team = NULL;
     }
-    assets->loop.setLoopState(OF_LOOP_NORMAL);
+    Assets::getInstance()->loop.setLoopState(OF_LOOP_NORMAL);
 
 }
 

@@ -22,10 +22,6 @@ void ofApp::setup(){
 
     ofSetLogLevel(OF_LOG_NOTICE);
 
-    assets.load();
-
-    assetsFacade.setAssets(&assets);
-
     oscAdapter.registerObserver(&game);
     oscAdapter.init();
 

@@ -37,12 +37,12 @@ void IDLE::draw(){
     game->assetsFacade->drawVideo(0,0);
 };
 void IDLE::update(){
-   // gameLogic->update();
+
    game->assetsFacade->updateVideo();
 
 }
 void IDLE::push()
-{
+{   game->assetsFacade->stopVideo();
     game->setCurrent(new STARTING(game));
     game->assetsFacade->stopVideo();
     delete this;
@@ -56,16 +56,20 @@ STARTING::STARTING(Game *g){
     ofLogNotice() << "State: " << toString();
     gameLogic = new GameLogic();
     gameLogic->constructRunningServices();
+    Assets::getInstance()->tunnel.play();
 
 }
 
 void STARTING::draw(){
 
-    ofSetColor(0);
-    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
-    //gameLogic->getRunningDraw()->draw(false);
+    Assets::getInstance()->tunnel.draw(0,0);
 
 };
+void STARTING::update(){
+
+   Assets::getInstance()->tunnel.update();
+
+}
 
 
 void STARTING::push()
