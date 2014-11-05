@@ -28,7 +28,7 @@ Player::Player(int id, Team* team){
     queue_down = 0;
     queue_up = 0;
 
-    player_score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 24);
+    player_score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48);
 }
 
 Player::~Player(){
@@ -104,7 +104,7 @@ void Player::drawGradients(){
     int width = Settings::getInstance()->getPlayerWidth();
     int height = Settings::getInstance()->getPlayerHeight();
 
-    if(inBlock){
+    if(inBlock && !isInactive()){
         ofColor color =  Settings::getInstance()->getPlayerColor(team->getId(), id);
         for(int i = 0; i < width/2; i ++){
             ofSetColor(color, ofMap(i, 0, width/2, 255, 0));
@@ -113,7 +113,7 @@ void Player::drawGradients(){
     }
 
     ofColor backgroundColor = Settings::getInstance()->getColor("black");
-    for(int i = width/2; i < width; i ++){
+    for(int i = width/2; i <= width; i ++){
         ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
         ofLine(i, 0, i, height);
     }

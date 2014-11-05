@@ -29,7 +29,7 @@ Team::Team(int id)
     }
     Team::id = id;
 
-    score_text.loadFont(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
+    score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48);
 }
 
 
@@ -112,7 +112,7 @@ void Team::drawTeamScore(bool start){
     if(id == 0){
        score_text.drawString(ofToString(team_score), team_x - stringWidth/2, team_y);
     }else{
-        score_text.drawString(ofToString(team_score), team_x + stringWidth/2, team_y);
+        score_text.drawString(ofToString(team_score), team_x - stringWidth/2, team_y);
     }
 
 }

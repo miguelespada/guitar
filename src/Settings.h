@@ -57,7 +57,7 @@ public:
     const float PLAYER_WIDTH = 600 * SCALE;
 
 
-    const float PIECE_SIZE = getPlayerWidth()/32 * SCALE;
+    const float PIECE_SIZE = getPlayerWidth()/32;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
     const int BLOCK_SEPARATION = 2;
