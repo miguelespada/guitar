@@ -12,7 +12,7 @@
 GameBlock::GameBlock(int pieces_num, bool bDown)
 {
     GameBlock::bDown = bDown;
-    x = Settings::getInstance()->getPlayerMargin() + Settings::getInstance()->getPlayerWidth();
+    x = Settings::getInstance()->getPlayerWidth();
     pieces = pieces_num;
 }
 
@@ -28,24 +28,24 @@ void GameBlock::draw(int y, ofColor block_color){
 void GameBlock::paintBlock(int y, ofColor block_color){
 
     ofRectangle r;
-    cout << x << endl;
     r.x = x;
     r.y = y;
 
     r.height = Settings::getInstance()->PIECE_WIDTH;
     r.width = (pieces > 1) ? pieces * Settings::getInstance()->PIECE_SIZE : r.height;
-
+    //ofTranslate(-Settings::getInstance()->getPlayerMargin(), 0);
     ofSetColor(block_color);
     ofRectRounded(r, 10);
+   // ofTranslate(Settings::getInstance()->getPlayerMargin(), 0);
 
 }
 bool GameBlock::isDown(){
     return bDown;
 }
 
-void GameBlock::setX(float x){
+/*void GameBlock::setX(float x){
     GameBlock::x = x;
-}
+}*/
 void GameBlock::setNumberOfPieces(int num){
     GameBlock::pieces = num;
 }
