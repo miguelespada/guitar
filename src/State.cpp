@@ -170,6 +170,7 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
     gameLogic = gLogic;
+    gameLogic->getRunningLogic()->calculateWinners();
     timer = ofGetElapsedTimeMillis();
 }
 

@@ -28,15 +28,18 @@ public:
     vector<Player*> getPlayers();
     void drawWinner();
     void drawWinnerPlayer(float team_x, float team_y);
+    void setWinner(bool winner);
 
 protected:
 private:
     int id;
     vector<Player*> players;
     int team_score = 0;
+    bool winner;
 
     ofTrueTypeFont score_text;
     ofTrueTypeFont big_score_text;
+    ofImage winner_image;
 };
 
 

@@ -90,15 +90,9 @@ void Team::drawWinnerPlayer(float team_x, float team_y){
         float stringWidth = score_text.stringWidth(ofToString(score));
         float stringHeight = score_text.stringHeight(ofToString(score));
         ofSetColor(settings->getPlayerColor(id, (*p)->getId()));
-        float team_y = settings->getHeaderHeight() + settings->getPlayerCenterY() - stringHeight/2;
         float aux_team_x = team_x - stringWidth/2;
-        float aux_team_y = team_y;
+        float aux_team_y = settings->getHeaderHeight() + settings->getPlayerCenterY() - stringHeight/2;
 
-        /*if(id == 0){
-            aux_team_x += x_margin;
-        }else{
-            aux_team_x -= x_margin;
-        }*/
         if((*p)->getId() == 0){
             aux_team_y += settings->getPlayerMargin();
         }else{
@@ -107,6 +101,11 @@ void Team::drawWinnerPlayer(float team_x, float team_y){
 
         score_text.drawString(ofToString(score), aux_team_x , aux_team_y);
     }
+
+    float aux_team_y = settings->getHeaderHeight() + settings->getPlayerCenterY();
+    ofSetColor(255);
+
+    winner_image.draw(team_x - (winner_image.getWidth()/2)*SCALE, (team_y + aux_team_y)/2 - (winner_image.getHeight()/2)*SCALE, winner_image.getWidth()*SCALE, winner_image.getHeight()*SCALE);
 }
 
 void Team::modifyScore(int value){
@@ -148,4 +147,9 @@ void Team::drawTeamScore(){
 }
 vector<Player*> Team::getPlayers(){
     return players;
+}
+
+void Team::setWinner(bool winner){
+    winner_image = Settings::getInstance()->getRandomPhrase(winner);
+    Team::winner = winner;
 }

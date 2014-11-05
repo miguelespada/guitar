@@ -28,6 +28,7 @@ class GameLogic: public Observer, public Commandable
 public:
     RunningModel* getRunningModel();
     RunningDraw* getRunningDraw();
+    RunningLogic* getRunningLogic();
     void constructRunningServices();
     void destroyRunningServices();
     GameLogic();
