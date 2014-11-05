@@ -22,10 +22,6 @@ void ofApp::setup(){
 
     ofSetLogLevel(OF_LOG_NOTICE);
 
-    assets.load();
-
-    assetsFacade.setAssets(&assets);
-
     oscAdapter.registerObserver(&game);
     oscAdapter.init();
 
@@ -38,7 +34,8 @@ void ofApp::setup(){
     MidiAdapter::getInstance()->registerObserver(&game);
 
     ofEnableAlphaBlending();
-
+    
+    ofSetWindowShape(1920 * SCALE, 1080 * SCALE);
 }
 
 //--------------------------------------------------------------

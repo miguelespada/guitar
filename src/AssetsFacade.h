@@ -18,20 +18,19 @@ class AssetsFacade
 {
 
 public:
-    class Assets *assets;
-
     AssetsFacade();
     ~AssetsFacade();
 
     Settings *settings;
 
-    void setAssets(Assets *a);
     void drawIntro();
     void draw_background();
     void drawText(string t);
     void updateVideo();
     void drawVideo(float x, float y);
     void playVideo();
+    void stopVideo();
+    ofVideoPlayer video;
 
 
 };
