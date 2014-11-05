@@ -19,34 +19,33 @@ AssetsFacade::~AssetsFacade(){
      ofLogVerbose() << "Destroying Assets Facade";
 }
 
-void AssetsFacade::setAssets(Assets *a){
-    assets = a;
-}
-
 void AssetsFacade::draw_background(){
     Settings * settings = Settings::getInstance();
-    assets->background.draw(0, 0, settings->getWidth(), settings->getHeight());
+    Assets::getInstance()->background.draw(0, 0, settings->getWidth(), settings->getHeight());
 }
 void AssetsFacade::drawIntro(){
     Settings * settings = Settings::getInstance();
-    assets->intro_background.draw(0, 0, settings->getWidth(), settings->getHeight());
+   Assets::getInstance()->intro_background.draw(0, 0, settings->getWidth(), settings->getHeight());
 
 }
 
 void AssetsFacade::drawText(string t){
     float x = settings->getSmallHeaderPanelWidth() * 2 + settings->getBigHeaderPanelWidth()/ 1.5;
     float y = settings->getPlayerCenterY() * 2;
-    assets->text.setText(t);
-    assets->text.setColor(255,255,255,255);
-    assets->text.drawCenter(x,y);
+    Assets::getInstance()->text.setText(t);
+    Assets::getInstance()->text.setColor(255,255,255,255);
+    Assets::getInstance()->text.drawCenter(x,y);
 }
 void AssetsFacade::updateVideo(){
-    assets->video.update();
+    Assets::getInstance()->video.update();
 }
 void AssetsFacade::drawVideo(float x, float y){
-    assets->video.draw(x,y,ofGetWidth(), ofGetHeight());
+    Assets::getInstance()->video.draw(x,y,ofGetWidth(), ofGetHeight());
 }
 void AssetsFacade::playVideo(){
-    assets->video.play();
+    Assets::getInstance()->video.play();
+}
+void AssetsFacade::stopVideo(){
+    Assets::getInstance()->video.stop();
 }
 

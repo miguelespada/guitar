@@ -40,7 +40,7 @@ void IDLE::update(){
    game->assetsFacade->updateVideo();
 }
 void IDLE::push()
-{
+{   game->assetsFacade->stopVideo();
     game->setCurrent(new STARTING(game));
     delete this;
 };

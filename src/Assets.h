@@ -19,8 +19,8 @@
 class Assets{
 public:
 
-    Assets();
     ~Assets();
+    static Assets* getInstance();
 
     void load();
     Settings *settings;
@@ -31,10 +31,13 @@ public:
     ofImage logo;
 
     ofxTextBlock text;
+    
     ofVideoPlayer video;
 
-
 private:
+    static Assets* instance;
+
+    Assets();
 };
 
 #endif /* defined(__carrousel__Assets__) */

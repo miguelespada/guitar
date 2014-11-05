@@ -24,7 +24,7 @@ RunningDraw::~RunningDraw()
 }
 void RunningDraw::drawLogo(){
     Settings * settings = Settings::getInstance();
-    running_model->assets->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
+    Assets::getInstance()->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
 }
 void RunningDraw::draw(bool start){
     Settings* s = Settings::getInstance();
@@ -171,5 +171,5 @@ void RunningDraw::drawFinalScore(){
 }
 void RunningDraw::drawNavigate(){
     Settings * settings = Settings::getInstance();
-    running_model->assets->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
+    Assets::getInstance()->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
 }

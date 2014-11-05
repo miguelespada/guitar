@@ -17,10 +17,21 @@ Assets::~Assets(){
     ofLogVerbose() << "Destroying Assets ";
 }
 
+
+Assets* Assets::instance = 0;
+Assets* Assets::getInstance(){
+    if (instance == 0){
+        instance = new Assets();
+        instance->load();
+    }
+    return instance;
+};
+
+
 void Assets::load(){
      string assets_path = Settings::getInstance()->assetsPath();
-    video.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
-
+     video.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
+    
     text.init(ofToDataPath(settings->getFont()), 24);
 
     ofLogNotice() << "Loading assets from..." << assets_path;
