@@ -44,7 +44,7 @@ void AssetsFacade::updateVideo(){
     assets->video.update();
 }
 void AssetsFacade::drawVideo(float x, float y){
-    assets->video.draw(x,y);
+    assets->video.draw(x,y,ofGetWidth(), ofGetHeight());
 }
 void AssetsFacade::playVideo(){
     assets->video.setLoopState(OF_LOOP_NORMAL);

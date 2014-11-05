@@ -20,6 +20,8 @@ Assets::~Assets(){
 void Assets::load(){
      string assets_path = Settings::getInstance()->assetsPath();
     video.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
+     loop.loadMovie(ofToDataPath(assets_path + "the_sub_loop.mov"));
+
 
     text.init(ofToDataPath(settings->getFont()), 24);
 

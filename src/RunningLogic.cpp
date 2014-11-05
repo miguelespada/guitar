@@ -31,6 +31,7 @@ void RunningLogic::playerOff(int player){
 }
 
 void RunningLogic::update(){
+    //running_model->assets->loop.update();
     for (int i = 0; i < 2; i++){
         for (int j = 0; j < 2; j++){
             getRunningModel()->getPlayer(i, j)->update();

@@ -31,7 +31,7 @@ public:
     
     int song = 0;
     
-    bool bInfo = true;
+    bool bInfo = false;
     
     //DEBUG
     bool keypressed[4] = { false, false, false, false };

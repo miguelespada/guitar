@@ -32,6 +32,7 @@ public:
 
     ofxTextBlock text;
     ofVideoPlayer video;
+    ofVideoPlayer loop;
 
 
 private:

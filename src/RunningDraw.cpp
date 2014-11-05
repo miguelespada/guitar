@@ -104,7 +104,10 @@ void RunningDraw::drawTeams(bool start){
     ofSetColor(0);
     ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
     ofSetColor(255);
-    drawNavigate();
+    //drawNavigate();
+    //ofScale(1/s->getCentralImageWidth(), 1/s->getCentralImageHeight());
+    running_model->assets->loop.draw(s->getCentralImageX(),s->getCentralImageHeight());
+   // ofScale(s->getCentralImageWidth(), s->getCentralImageHeight());
     //drawTitle(s->getRunningTitle());
     //drawGrid();
     //drawGrid();

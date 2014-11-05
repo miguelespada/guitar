@@ -53,6 +53,7 @@ public:
     string getFont();
     string getBoldFont();
     string getRunningTitle();
+    
 
     //new design
     const float PLAYER_WIDTH = 600 * SCALE;

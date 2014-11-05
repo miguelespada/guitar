@@ -18,8 +18,9 @@ GameLogic::GameLogic(){
     commands.push_back(new Subbeat("/subbeat"));
     commands.push_back(new Compass("/compass"));
     constructRunningServices();
-    
+
     setSpeed(1);
+    running_model->assets->loop.play();
 };
 
 
@@ -37,6 +38,7 @@ void GameLogic::draw(){
 };
 
 void GameLogic::update(){
+    running_model->assets->loop.update();
     if(bSubbeat){
         running_logic->update();
         bSubbeat = false;
