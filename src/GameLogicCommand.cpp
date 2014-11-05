@@ -55,7 +55,9 @@ Compass::Compass(string actionName){
 
 void Compass::run(Action *_action, Commandable *g){
     if(_action->getAction() == action){
-        
+        float beat =ofClamp(_action->getArgAsInt(0), 1, 60);
+        float s = ofMap(beat, 1, 60, 0.5, 2);
+        ((GameLogic *)g)->setSpeed(s);
     }
 }
 

@@ -46,17 +46,17 @@ void RunningLogic::generateBlocks(){
 
             float r = ofRandom(1);
             int block_pieces = 0;
-            if(r < 0.4)
+            if(r < 0.3)
                 block_pieces = 1;
-            else if(r < 0.6)
+            else if(r < 0.5)
                 block_pieces = 2;
-            else if(r < 0.8)
-                block_pieces = 3;
-            else if(r < 0.9)
-                block_pieces = 4;
-            else
+            else if(r < 0.7)
                 block_pieces = 5;
-
+            else if(r < 0.85)
+                block_pieces = 7;
+            else{
+                block_pieces = 10;
+            }
             bool position_down = round(ofRandom(0,1));
             ofColor color = Settings::getInstance()->getPlayerColor(team, player);
             //if (ofRandom(0,100) < 12){

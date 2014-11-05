@@ -45,11 +45,7 @@ void RunningDraw::draw(bool start){
 }
 void RunningDraw::drawWinner(){
     Settings* settings = Settings::getInstance();
- //   ofBackground(255);
 
-  //  ofSetColor(0);
-  //  ofRect(0, 0, settings->getWidth(), settings->getHeight());
-   // drawHeader();
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
 

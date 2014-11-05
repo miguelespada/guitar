@@ -37,7 +37,7 @@ public:
     void notify(Action *action);
     void playerOn(int value);
     void playerOff(int value);
-    void setSpeed(int v);
+    void setSpeed(float v);
     void beat();
     void subbeat();
     bool bBeat, bSubbeat;

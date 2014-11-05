@@ -96,7 +96,7 @@ float Settings::getTeamSeparation(){
 }
 
 int Settings::getBlockSeparation(){
-    return BLOCK_SEPARATION;
+    return BLOCK_SEPARATION * 2;
 }
 
 float Settings::getTeamScoreX(int team){
@@ -144,11 +144,11 @@ int Settings::getScale(){
     return SCALE;
 }
 
-int Settings::getSpeed(){
+float Settings::getSpeed(){
     return speed;
 }
 
-void Settings::setSpeed(int _speed){
+void Settings::setSpeed(float _speed){
     speed = _speed;
 
 }

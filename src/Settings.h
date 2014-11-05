@@ -38,8 +38,8 @@ public:
     float getPlayerInnerRadius();
     float getPlayerMargin();
     int getNumberOfSongs();
-    int getSpeed();
-    void setSpeed(int _speed);
+    float getSpeed();
+    void setSpeed(float _speed);
     string getMidiIn();
     string getMidiOut();
 
@@ -66,7 +66,6 @@ public:
     const float PIECE_SIZE = getPlayerWidth()/32;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
-    const int BLOCK_SEPARATION = 2;
     const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
     const int PIECE_SCORE = 10;
 
@@ -97,7 +96,9 @@ private:
 
     ofxJSONElement json_file;
     Json::Value getData(string key);
-    int speed = 1;
+    float speed = 1;
+
+    int BLOCK_SEPARATION = 4;
 
 
 };

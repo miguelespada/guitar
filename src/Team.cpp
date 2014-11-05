@@ -29,7 +29,7 @@ Team::Team(int id)
     }
     Team::id = id;
 
-    score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48);
+    score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48*SCALE);
 }
 
 
