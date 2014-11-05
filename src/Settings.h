@@ -52,6 +52,7 @@ public:
     ofColor getPlayerColor(int team, int id);
     string getFont();
     string getBoldFont();
+    string getRunningTitle();
 
     //new design
     const float PLAYER_WIDTH = 600 * SCALE;
@@ -76,6 +77,13 @@ public:
     float getPlayerCentralImageSeparation();
     float getCentralImageHeight();
     float getCentralImageWidth();
+    float getTitleY();
+
+    float getLogoX();
+    float getLogoY();
+    float getLogoWidth();
+    float getLogoHeight();
+
 private:
     static Settings* instance;
     Settings();

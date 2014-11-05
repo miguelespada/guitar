@@ -9,6 +9,9 @@
 
 RunningModel::RunningModel()
 {
+    assets = new Assets();
+    assets->load();
+
     for (int i = 0; i < 2; i++){
         Team* team = new Team(i);
         teams.push_back(team);

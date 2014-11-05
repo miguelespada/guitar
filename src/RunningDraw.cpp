@@ -9,21 +9,23 @@
 #include "RunningDraw.h"
 
 RunningDraw::RunningDraw(RunningModel* model){
-     assets = new Assets();
-     assets->load();
     running_model = model;
     Settings* settings = Settings::getInstance();
 
 
-    title_font.loadFont(Settings::getInstance()->getFont(), 22);
+    title_font.loadFont(Settings::getInstance()->getFont(), 25);
     final_score_font.loadFont(Settings::getInstance()->getFont(), 70);
+
 }
 
 RunningDraw::~RunningDraw()
 {
     //dtor
 }
-
+void RunningDraw::drawLogo(){
+    Settings * settings = Settings::getInstance();
+    running_model->assets->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
+}
 void RunningDraw::draw(bool start){
     Settings* s = Settings::getInstance();
     if (start){
@@ -37,6 +39,8 @@ void RunningDraw::draw(bool start){
     }
        // drawHeader();
         drawTeams(start);
+        drawLogo();
+
 }
 void RunningDraw::drawWinner(){
     Settings* settings = Settings::getInstance();
@@ -101,7 +105,8 @@ void RunningDraw::drawTeams(bool start){
     ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
     ofSetColor(255);
     drawNavigate();
-    drawTitle();
+    //drawTitle(s->getRunningTitle());
+    //drawGrid();
     //drawGrid();
 }
 void RunningDraw::drawTeamScores(bool start){
@@ -114,23 +119,17 @@ void RunningDraw::drawTeamScores(bool start){
     }
 }
 
-void RunningDraw::drawTitle(){
-//    Settings* settings = Settings::getInstance();
-//    float title_x= settings->getWidth() / 2;
-//
+void RunningDraw::drawTitle(string title){
+    Settings* settings = Settings::getInstance();
+    float width = title_font.stringWidth(title);
+    float title_x= settings->getWidth() / 2 - width/2;
+    float title_y = settings->getTitleY();
+
 //    if (ofGetFrameNum() % settings->getTitleRUNNINGChangeTime() == 0){
 //        changeText = !changeText;
 //    }
-//
-//    if(changeText){
-//        title_text.setText("NAVIGATE THE SUB");
-//    }else{
-//        title_text.setText("EXPERIENCIA THE SUB");
-//    }
-//    title_text.wrapTextForceLines(2);
-//    title_text.setColor(255,255,255,100);
-//    title_text.drawCenter(title_x, 0);
-//    settings = NULL;
+
+        title_font.drawString(title, title_x, title_y);
 }
 
 
@@ -172,5 +171,5 @@ void RunningDraw::drawFinalScore(){
 }
 void RunningDraw::drawNavigate(){
     Settings * settings = Settings::getInstance();
-    assets->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
+    running_model->assets->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
 }

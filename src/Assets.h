@@ -28,8 +28,11 @@ public:
     ofImage background;
     ofImage intro_background;
     ofImage navigate_the_sub;
+    ofImage logo;
 
     ofxTextBlock text;
+    ofVideoPlayer video;
+
 
 private:
 };

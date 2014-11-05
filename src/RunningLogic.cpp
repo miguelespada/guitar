@@ -44,7 +44,7 @@ void RunningLogic::generateBlocks(){
     RunningModel* model = getRunningModel();
     for (int team = 0; team < 2; team++){
         for (int player = 0; player < 2; player++){
-            
+
             float r = ofRandom(1);
             int block_pieces = 0;
             if(r < 0.4)
@@ -57,7 +57,7 @@ void RunningLogic::generateBlocks(){
                 block_pieces = 4;
             else
                 block_pieces = 5;
-            
+
             bool position_down = round(ofRandom(0,1));
             ofColor color = Settings::getInstance()->getPlayerColor(team, player);
             //if (ofRandom(0,100) < 12){
