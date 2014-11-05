@@ -115,12 +115,13 @@ public:
     ~WINNER(){};
 
     float timer;
+    void draw();
     void push();
+    void notify(Action *action);
 
     std::string toString() {
         return "Winner";
     }
-    void draw();
 };
 
 //========================================================================

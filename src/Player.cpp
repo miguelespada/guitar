@@ -62,7 +62,9 @@ void Player::setOff(){
 
 void Player::draw(bool start){
     ofPushStyle();
-    drawBackground();
+    if(start){
+        drawBackground();
+    }
 
     drawIcon(start);
     if(start){
@@ -238,11 +240,11 @@ void Player::drawPlayerScore(){
 
         if(getTeam()->getId() == 1){
             x += margin;
-            ofScale(-1,-1);
-            ofTranslate(-x * 2, -settings->getPlayerHeight());
+            ofScale(-1,1);
+            ofTranslate((-x * 2) - stringWidth/2, 0);
             player_score_text.drawString(getPlayerScoreToString(), x, y);
-            ofTranslate(settings->getWidth() * 2, settings->getPlayerHeight());
-            ofScale(-1,-1);
+            ofTranslate((x * 2) + stringWidth/2, 0);
+            ofScale(-1,1);
         }else{
            x -= margin;
            player_score_text.drawString(getPlayerScoreToString(), x, y);
