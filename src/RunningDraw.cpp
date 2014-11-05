@@ -45,11 +45,11 @@ void RunningDraw::draw(bool start){
 }
 void RunningDraw::drawWinner(){
     Settings* settings = Settings::getInstance();
-    ofBackground(255);
+ //   ofBackground(255);
 
-    ofSetColor(0);
-    ofRect(0, 0, settings->getWidth(), settings->getHeight());
-    drawHeader();
+  //  ofSetColor(0);
+  //  ofRect(0, 0, settings->getWidth(), settings->getHeight());
+   // drawHeader();
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
 
@@ -103,9 +103,10 @@ void RunningDraw::drawTeams(bool start){
 
     if (start){
         drawTeamScores();
+        ofSetColor(0);
+        ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
     }
-    ofSetColor(0);
-    ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
+
     ofSetColor(255);
 
 
@@ -162,21 +163,7 @@ void RunningDraw::drawGrid(){
     }
 
 }
-void RunningDraw::drawFinalScore(){
-    Settings* settings = Settings::getInstance();
-    ofSetColor(255);
-    string str = ofToString(running_model->getTeams().front()->getScore());
-    float x = Settings::getInstance()->getWidth() / 2 - final_score_font.stringWidth(str) / 2;
-    float y = Settings::getInstance()->getPlayerHeight() * 3;
-    final_score_font.drawString(str,x ,y );
 
-    str = ofToString(running_model->getTeams().back()->getScore());
-    x = Settings::getInstance()->getWidth() / 2 - final_score_font.stringWidth(str) / 2;
-    y = Settings::getInstance()->getPlayerHeight() * 6 - settings->getPlayerSeparation() * 2;
-    final_score_font.drawString(str,x ,y );
-
-
-}
 void RunningDraw::drawNavigate(){
     Settings * settings = Settings::getInstance();
     Assets::getInstance()->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());

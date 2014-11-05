@@ -38,8 +38,10 @@ class IDLE: public State
 public:
 
     IDLE(Game *g);
+    IDLE(Game *g, GameLogic* gLogic);
     ~IDLE(){};
 
+    void notify(Action *action);
     void push();
     bool changeText;
     std::string toString() {
@@ -54,7 +56,7 @@ public:
 class STARTING: public State
 {
 public:
-    STARTING(Game *c);
+    STARTING(Game *c, GameLogic* gLogic);
     ~STARTING(){};
 
     void push();
@@ -113,31 +115,14 @@ class WINNER: public State
 {
 public:
     WINNER(Game *g, GameLogic* gLogic);
-    ~WINNER(){};
+    ~WINNER();
 
     float timer;
-    void draw();
     void push();
     void notify(Action *action);
 
     std::string toString() {
         return "Winner";
-    }
-};
-
-//========================================================================
-
-class MESSAGES: public State
-{
-public:
-    MESSAGES(Game *c);
-    ~MESSAGES(){};
-
-    void push();
-    void jump();
-
-    std::string toString() {
-        return "Messages";
     }
     void draw();
 };
