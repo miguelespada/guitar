@@ -20,13 +20,14 @@ public:
     Team(int team_number);
     virtual ~Team();
     int getId();
-    void draw();
+    void draw(bool start);
     Player *getPlayer(int id);
     void modifyScore(int value);
     int getScore();
     ofColor getPlayerScoringColor();
     void drawTeamScore();
     vector<Player*> getPlayers();
+    void drawWinner();
 
 protected:
 private:
@@ -35,7 +36,7 @@ private:
     int team_score = 0;
 
     ofTrueTypeFont score_text;
-    
+
     ofxTextBlock *team_score_text;
 };
 

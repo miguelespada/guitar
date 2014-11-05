@@ -13,6 +13,7 @@
 #include "ofMain.h"
 #include "ofxJSON.h"
 #include "Settings.h"
+#include "ofxTextSuite.h"
 
 
 class Assets{
@@ -26,6 +27,8 @@ public:
 
     ofImage background;
     ofImage intro_background;
+
+    ofxTextBlock text;
 
 private:
 };

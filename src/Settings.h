@@ -42,13 +42,15 @@ public:
     void setSpeed(int _speed);
     string getMidiIn();
     string getMidiOut();
-    
-    ofColor getColor(string colorName);
 
+    ofColor getColor(string colorName);
+    int getIntroTime();
     int getBlockSeparation();
     float getTeamScoreX(int team);
 
     ofColor getPlayerColor(int team, int id);
+    string getFont();
+    string getBoldFont();
 
     const float PIECE_SIZE = 181/(2*16) * SCALE;
     const int MAX_BLOCK_PIECES = 20;
@@ -59,6 +61,10 @@ public:
 
     float getMoveSize();
     int getScale();
+    int getBonusMark(int bonus);
+    int getInactivityTime();
+    int getTitleRUNNINGChangeTime();
+    int getTitleIDLEChangeTime();
 
 private:
     static Settings* instance;

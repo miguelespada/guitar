@@ -120,6 +120,13 @@ ofColor Settings::getColor(string colorName){
 float Settings::getMoveSize(){
     return 181/(16*6);
 }
+string Settings::getFont(){
+    return "FuturaLT-CondensedLight.ttf";
+}
+string Settings::getBoldFont(){
+    return "FuturaLT-CondensedExtraBold.ttf";
+}
+
 
 int Settings::getNumberOfSongs(){
     return Settings::getData("number_of_songs").asInt();
@@ -143,4 +150,27 @@ int Settings::getSpeed(){
 
 void Settings::setSpeed(int _speed){
     speed = _speed;
+    
+}
+int Settings::getBonusMark(int bonus){
+    switch (bonus){
+    case 1:
+        return 10;
+        break;
+    case 2:
+        return 20;
+        break;
+    }
+}
+
+int Settings::getInactivityTime(){
+    return 10;
+}
+
+int Settings::getTitleRUNNINGChangeTime(){
+    return 60 * 2;
+}
+
+int Settings::getTitleIDLEChangeTime(){
+    return 60 * 6;
 }

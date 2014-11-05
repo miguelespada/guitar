@@ -61,7 +61,7 @@ void RunningLogic::generateBlocks(){
             bool position_down = round(ofRandom(0,1));
             ofColor color = Settings::getInstance()->getPlayerColor(team, player);
             //if (ofRandom(0,100) < 12){
-                model->addNewBlock(team, player, position_down, block_pieces, color);
+                model->addNewBlock(team, player, position_down, block_pieces);
            // }
         }
     }

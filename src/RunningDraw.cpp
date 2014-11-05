@@ -13,11 +13,7 @@ RunningDraw::RunningDraw(RunningModel* model){
     Settings* settings = Settings::getInstance();
 
     title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
-    
-    title_text.setText("NAVIGATE THE SUB");
-    title_text.wrapTextForceLines(2);
-    title_text.setColor(255,255,255,100);
-    
+
 }
 
 RunningDraw::~RunningDraw()
@@ -25,13 +21,29 @@ RunningDraw::~RunningDraw()
     //dtor
 }
 
-void RunningDraw::draw(){
+void RunningDraw::draw(bool start){
+    if (start){
+        ofBackground(255);
+        ofTranslate(40, 40);
+        ofSetColor(0);
+        ofRect(0, 0, settings->getWidth(), settings->getHeight());
+    }
+        drawHeader();
+        drawTeams(start);
+}
+void RunningDraw::drawWinner(){
     ofBackground(255);
-    ofTranslate(40, 40);
-    ofSetColor(0);
-    ofRect(0, 0, settings->getWidth(), settings->getHeight());
+        ofTranslate(40, 40);
+        ofSetColor(0);
+        ofRect(0, 0, settings->getWidth(), settings->getHeight());
     drawHeader();
-    drawTeams();
+    vector<Team*> teams = running_model->getTeams();
+    std::vector<Team*>::const_iterator t;
+    for(t=teams.begin(); t!=teams.end(); ++t){
+        (*t)->drawWinner();
+        ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
+        ofScale(-1, 1);
+    }
 }
 
 RunningModel* RunningDraw::getRunningModel(){
@@ -54,27 +66,23 @@ void RunningDraw::drawHeader(){
 
 }
 
-void RunningDraw::drawTeams(){
+void RunningDraw::drawTeams(bool start){
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
 
     vector<Team*>  teams = running_model->getTeams();
-
- //   string team1 =  teams.front()->getTeamScoreToString();
- //   string team2 =  teams.back()->getTeamScoreToString();
-
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
-        (*t)->draw();
+        (*t)->draw(start);
         ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
         ofScale(-1, 1);
         //ofRotateX(-180);
     }
 
     ofPopMatrix();
-    
+
     drawTeamScores();
-    
+
     drawTitle();
     drawGrid();
 }
@@ -89,8 +97,21 @@ void RunningDraw::drawTeamScores(){
 }
 
 void RunningDraw::drawTitle(){
-    int title_pos = Settings::getInstance()->getWidth() / 2;
+    Settings* settings = Settings::getInstance();
+    int title_pos = settings->getWidth() / 2;
+    if (ofGetFrameNum() % settings->getTitleRUNNINGChangeTime() == 0){
+        changeText = !changeText;
+    }
+
+    if(changeText){
+        title_text.setText("NAVIGATE THE SUB");
+    }else{
+        title_text.setText("EXPERIENCIA THE SUB");
+    }
+    title_text.wrapTextForceLines(2);
+    title_text.setColor(255,255,255,100);
     title_text.drawCenter(title_pos, 0);
+    settings = NULL;
 }
 
 

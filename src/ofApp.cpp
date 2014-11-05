@@ -25,16 +25,14 @@ void ofApp::setup(){
     assets.load();
 
     assetsFacade.setAssets(&assets);
-    
+
     oscAdapter.registerObserver(&game);
     oscAdapter.init();
 
     game.setAssetsFacade(&assetsFacade);
-    
-    
+
     game.setSongManager(&songManager);
     game.setCurrent(new IDLE(&game));
-    
 
     MidiAdapter::getInstance()->open(Settings::getInstance()->getMidiIn(), Settings::getInstance()->getMidiOut());
     MidiAdapter::getInstance()->registerObserver(&game);
@@ -147,7 +145,7 @@ void ofApp::keyPressed(int key){
         case ',':
             songManager.stopSong();
             break;
-            
+
         case 'i':
             bInfo = !bInfo;
             break;

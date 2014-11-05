@@ -22,8 +22,10 @@ public:
     RunningDraw(RunningModel* model);
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
-    void draw();
+    void draw(bool start);
     void drawTeamScores();
+    void drawHeader();
+    void drawWinner();
 
     void drawTitle();
     void drawGrid();
@@ -32,12 +34,14 @@ protected:
 private:
     ofxTextBlock  title_text;
     ofxTextBlock player_score_text;
+    bool changeText = false;
 
 
 // in draw:
 
-    void drawTeams();
-    void drawHeader();
+    void drawTeams(bool start);
+    void drawBeatCounter();
+
     RunningModel* running_model;
     Settings* settings;
 };
