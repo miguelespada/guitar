@@ -72,11 +72,11 @@ float Settings::getPlayerSeparation(){
 }
 
 float Settings::getPlayerCenterX(){
-    return 8 * SCALE;
+    return 55 * SCALE;
 }
 
 float Settings::getPlayerCenterY(){
-    return 8 * SCALE;
+    return 100 * SCALE;
 }
 
 float Settings::getPlayerOuterRadius(){
