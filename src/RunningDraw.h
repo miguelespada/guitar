@@ -33,6 +33,7 @@ public:
     void drawFinalScore();
     void drawNavigate();
     void drawLogo();
+    void drawLateralBands();
 protected:
 
 private:

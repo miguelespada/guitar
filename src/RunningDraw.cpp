@@ -112,6 +112,7 @@ void RunningDraw::drawTeams(bool start){
     if (start){
         drawNavigate();
     }
+    drawLateralBands();
 
     //drawTitle(s->getRunningTitle());
     //drawGrid();
@@ -140,7 +141,12 @@ void RunningDraw::drawTitle(string title){
         title_font.drawString(title, title_x, title_y);
 }
 
-
+void RunningDraw::drawLateralBands(){
+    ofSetColor(0);
+    ofRect(0,0,Settings::getInstance()->getPlayerMargin(), Settings::getInstance()->getHeight());
+    ofRect(Settings::getInstance()->getWidth() - Settings::getInstance()->getPlayerMargin(),0,Settings::getInstance()->getPlayerMargin(), Settings::getInstance()->getHeight());
+    ofSetColor(255);
+}
 void RunningDraw::drawGrid(){
     ofSetColor(255,255,255);
 
