@@ -25,11 +25,11 @@ class GameLogic: public Observer, public Commandable
     RunningDraw* running_draw;
     RunningModel* running_model;
 
-    void destroyRunningServices();
 public:
     RunningModel* getRunningModel();
     RunningDraw* getRunningDraw();
     void constructRunningServices();
+    void destroyRunningServices();
     GameLogic();
     ~GameLogic();
     void draw();

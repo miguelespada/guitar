@@ -13,7 +13,6 @@
 #include "RunningModel.h"
 #include "Settings.h"
 #include "GameBlock.h"
-#include "ofxTextSuite.h"
 #include "Assets.h"
 
 class RunningDraw
@@ -30,7 +29,6 @@ public:
 
     void drawTitle(string title);
     void drawGrid();
-    void drawFinalScore();
     void drawNavigate();
     void drawLogo();
     void drawLateralBands();

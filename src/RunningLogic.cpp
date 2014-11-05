@@ -14,8 +14,6 @@ RunningLogic::RunningLogic(RunningModel* model)
 }
 RunningLogic::~RunningLogic()
 {
-    delete running_model;
-    running_model = NULL;
 }
 
 RunningModel* RunningLogic::getRunningModel(){
