@@ -194,7 +194,7 @@ float Settings::getCentralImageWidth(){
     return 450 * SCALE;
 }
 float Settings::getTitleY(){
-    return getHeaderHeight() - 120 * SCALE;
+    return   120 * SCALE;
 }
 string Settings::getRunningTitle(){
     return "¡VAMOS, ATRÉVETE Y DEMUESTRA QUE ERES UN AUTÉNTICO CAPITÁN!";
@@ -211,14 +211,41 @@ float Settings::getLogoWidth(){
 float Settings::getLogoHeight(){
     return 150 * SCALE;
 }
-//float Settings::getVideoScaleX(){
-//    return
-//}
-//float Settings::getVideoScaleY(){
-//
-//}
 
+ofImage Settings::getIntroImage(){
+    string assets_path = assetsPath();
+    ofImage img;
+    img.loadImage(ofToDataPath(assets_path + "glows/"+ "intro.png"));
+    return img;
+}
+ofImage Settings::getResultTitleImage(){
+    string assets_path = assetsPath();
+    ofImage img;
+    img.loadImage(ofToDataPath(assets_path + "glows/"+ "resultados1.png"));
+    return img;
+}
+ofImage Settings::getTitleImage(bool mayday){
+    string filename;
+    if(mayday){
+        filename = "juego3.png";
+    }else{
+        filename = "juego1.png";
+    }
+    string assets_path = assetsPath();
+    ofImage img;
+    img.loadImage(ofToDataPath(assets_path + "glows/"+ filename));
+    return img;
+}
+ofImage Settings::getRandomPhrase(bool winner){
+    int i = round(ofRandom(1,10));
+    string s = winner ? "winner" : "loser";
+    string filename = s + ofToString(i);
+    ofImage img;
+    img.loadImage(ofToDataPath(assetsPath() + "glows/" + filename + ".png"));
 
+    return img;
+
+}
 float Settings::getTeamScoreY(){
     return getHeaderHeight() + getPlayerHeight()*2 + getPlayerSeparation() + 120 * SCALE;
 }

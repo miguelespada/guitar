@@ -114,9 +114,10 @@ void RunningDraw::drawTeams(bool start){
         drawNavigate();
 
     drawLateralBands();
+    drawTitle(s->getTitleImage(false));
     }
 
-    //drawTitle(s->getRunningTitle());
+
     //drawGrid();
     //drawGrid();
 }
@@ -130,17 +131,13 @@ void RunningDraw::drawTeamScores(){
     }
 }
 
-void RunningDraw::drawTitle(string title){
+void RunningDraw::drawTitle(ofImage title){
     Settings* settings = Settings::getInstance();
-    float width = title_font.stringWidth(title);
-    float title_x= settings->getWidth() / 2 - width/2;
+
+    float title_x= settings->getWidth() / 2 - title.getWidth() * SCALE/2;
     float title_y = settings->getTitleY();
 
-//    if (ofGetFrameNum() % settings->getTitleRUNNINGChangeTime() == 0){
-//        changeText = !changeText;
-//    }
-
-        title_font.drawString(title, title_x, title_y);
+    title.draw(title_x, title_y, title.getWidth() * SCALE, title.getHeight() * SCALE);
 }
 
 void RunningDraw::drawLateralBands(){

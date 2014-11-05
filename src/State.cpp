@@ -36,22 +36,10 @@ IDLE::IDLE(Game *g, GameLogic* gLogic){
 };
 
 void IDLE::draw(){
-//    ofBackground(255);
-//    ofSetColor(255,255,255,255);
-//    game->assetsFacade->drawIntro();
-//    if (ofGetFrameNum() % Settings::getInstance()->getTitleIDLEChangeTime() == 0){
-//        changeText = !changeText;
-//    }
-//
-//    if(changeText){
-//        game->assetsFacade->drawText("HOLA CAPITANES");
-//    }else{
-//        game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
-//    }
-
-
     Assets::getInstance()->theSub.draw(0, 0, ofGetWidth(), ofGetHeight());
     gameLogic->getRunningDraw()->draw(false);
+    ofImage i = Settings::getInstance()->getIntroImage();
+    i.draw(0,0,ofGetWidth(),ofGetHeight());
 };
 
 void IDLE::notify(Action *action){
@@ -195,6 +183,7 @@ void WINNER::draw(){
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
     gameLogic->getRunningDraw()->draw(false);
     gameLogic->getRunningDraw()->drawWinner();
+    gameLogic->getRunningDraw()->drawTitle(Settings::getInstance()->getResultTitleImage());
 };
 
 void WINNER::notify(Action *action){

@@ -53,6 +53,10 @@ public:
     string getFont();
     string getBoldFont();
     string getRunningTitle();
+    ofImage getIntroImage();
+    ofImage getTitleImage(bool mayday);
+    ofImage getRandomPhrase(bool winner);
+    ofImage getResultTitleImage();
 
 
     //new design

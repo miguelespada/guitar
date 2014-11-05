@@ -27,7 +27,7 @@ public:
     void drawHeader();
     void drawWinner();
 
-    void drawTitle(string title);
+    void drawTitle(ofImage title);
     void drawGrid();
     void drawNavigate();
     void drawLogo();
