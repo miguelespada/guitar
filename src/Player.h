@@ -74,7 +74,6 @@ private:
 protected:
 
 public:
-     void drawForStarting();
     Player();
     Player(int id, Team* team);
     virtual ~Player();

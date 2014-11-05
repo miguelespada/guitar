@@ -54,6 +54,7 @@ void Player::setOn(){
 }
 
 void Player::setOff(){
+
     inactivity_counter = 0;
     bDown = false;
     height = y_down - y_up;
@@ -80,12 +81,6 @@ void Player::draw(bool start){
 
 
 
-    ofPopStyle();
-}
-void Player::drawForStarting(){
-    ofPushStyle();
-    drawBackground();
-    drawIcon();
     ofPopStyle();
 }
 

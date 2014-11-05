@@ -49,19 +49,16 @@ STARTING::STARTING(Game *g){
     game = g;
     ofLogNotice() << "State: " << toString();
     gameLogic = new GameLogic();
+    gameLogic->constructRunningServices();
 
 }
 
 void STARTING::draw(){
-    gameLogic->constructRunningServices();
     ofBackground(255);
     ofTranslate(40, 40);
     ofSetColor(0);
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
     gameLogic->getRunningDraw()->draw(false);
-
-
-
 
 };
 
@@ -70,6 +67,10 @@ void STARTING::push()
 {
     game->setCurrent(new RUNNING(game, gameLogic));
     delete this;
+};
+
+void STARTING::notify(Action *action){
+    gameLogic->notify(action);
 };
 
 
