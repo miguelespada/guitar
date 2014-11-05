@@ -18,7 +18,7 @@ GameLogic::GameLogic(){
     commands.push_back(new Subbeat("/subbeat"));
     commands.push_back(new Compass("/compass"));
     constructRunningServices();
-    
+
     setSpeed(1);
 };
 

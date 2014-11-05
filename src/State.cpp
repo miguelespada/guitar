@@ -17,6 +17,19 @@ IDLE::IDLE(Game *g){
     ofLogNotice() << "State: " << toString();
     changeText = false;
     game->assetsFacade->playVideo();
+    gameLogic = new GameLogic();
+    gameLogic->constructRunningServices();
+
+};
+
+IDLE::IDLE(Game *g, GameLogic* gLogic){
+    game = g;
+    ofLogNotice() << "State: " << toString();
+    changeText = false;
+    game->assetsFacade->playVideo();
+    gameLogic = gLogic;//new GameLogic();
+    gameLogic->destroyRunningServices();
+    gameLogic->constructRunningServices();
 
 };
 
@@ -41,18 +54,17 @@ void IDLE::update(){
 }
 void IDLE::push()
 {   game->assetsFacade->stopVideo();
-    game->setCurrent(new STARTING(game));
+    game->setCurrent(new STARTING(game, gameLogic));
     delete this;
 };
 
 
 //========================================================================
 
-STARTING::STARTING(Game *g){
+STARTING::STARTING(Game *g, GameLogic* gLogic){
     game = g;
+    gameLogic = gLogic;
     ofLogNotice() << "State: " << toString();
-    gameLogic = new GameLogic();
-    gameLogic->constructRunningServices();
 
 }
 
@@ -63,7 +75,6 @@ void STARTING::draw(){
     //gameLogic->getRunningDraw()->draw(false);
 
 };
-
 
 void STARTING::push()
 {
@@ -102,12 +113,10 @@ void RUNNING::update(){
     gameLogic->update();
 }
 
-void RUNNING::push()
-{
-
+void RUNNING::push(){
     game->setCurrent(new FINISHING(game, gameLogic));
-
     game->songManager->stopSong();
+    delete this;
 };
 
 void RUNNING::notify(Action *action){
@@ -115,7 +124,6 @@ void RUNNING::notify(Action *action){
 };
 
 RUNNING::~RUNNING(){
-    delete gameLogic;
 };
 
 //========================================================================
@@ -132,9 +140,9 @@ void FINISHING::draw(){
 
 };
 
-void FINISHING::push()
-{
+void FINISHING::push(){
     game->setCurrent(new WINNER(game, gameLogic));
+    delete this;
 };
 
 void FINISHING::notify(Action *action){
@@ -143,7 +151,6 @@ void FINISHING::notify(Action *action){
 
 void FINISHING::jump()
 {
-    game->setCurrent(new MESSAGES(game));
 };
 
 //========================================================================
@@ -154,6 +161,10 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
     ofLogNotice() << "State: " << toString();
     gameLogic = gLogic;
     timer = ofGetElapsedTimeMillis();
+}
+
+WINNER::~WINNER(){
+    //delete gameLogic;
 }
 
 void WINNER::draw(){
@@ -169,31 +180,9 @@ void WINNER::notify(Action *action){
     gameLogic->notify(action);
 };
 
-void WINNER::push()
-{
-    game->setCurrent(new MESSAGES(game));
-};
-
-//========================================================================
-
-
-MESSAGES::MESSAGES(Game *g){
-    game = g;
-    ofLogNotice() << "State: " << toString();
-
-}
-
-void MESSAGES::draw(){
-};
-
-void MESSAGES::push()
-{
-    game->setCurrent(new IDLE(game));
-};
-
-void MESSAGES::jump()
-{
-    game->setCurrent(new STARTING(game));
+void WINNER::push(){
+    game->setCurrent(new IDLE(game, gameLogic));
+    delete this;
 };
 
 //========================================================================
