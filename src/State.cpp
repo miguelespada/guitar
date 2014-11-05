@@ -21,7 +21,6 @@ IDLE::IDLE(Game *g){
 
 void IDLE::draw(){
     ofBackground(255);
-    ofTranslate(40, 40);
     ofSetColor(255,255,255,255);
     game->assetsFacade->drawIntro();
     if (ofGetFrameNum() % Settings::getInstance()->getTitleIDLEChangeTime() == 0){
@@ -33,7 +32,6 @@ void IDLE::draw(){
     }else{
         game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
     }
-    ofTranslate(-40,-40);
 };
 
 void IDLE::push()
@@ -55,11 +53,9 @@ STARTING::STARTING(Game *g){
 
 void STARTING::draw(){
 
-    ofTranslate(40, 40);
     ofSetColor(0);
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
     //gameLogic->getRunningDraw()->draw(false);
-    ofTranslate(-40,-40);
 
 };
 
@@ -92,9 +88,7 @@ RUNNING::RUNNING(Game *g, GameLogic* gLogic){
 };
 
 void RUNNING::draw(){
-    ofTranslate(40,40);
     gameLogic->draw();
-    ofTranslate(-40,-40);
 };
 
 void RUNNING::update(){
@@ -126,7 +120,6 @@ FINISHING::FINISHING(Game *g, GameLogic* gLogic){
 
 void FINISHING::draw(){
     ofBackground(255);
-    ofTranslate(40, 40);
     ofSetColor(0);
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
     gameLogic->getRunningDraw()->draw(false);

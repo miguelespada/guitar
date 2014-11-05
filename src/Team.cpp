@@ -68,6 +68,8 @@ void Team::drawWinner(){
         ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
         ofLine(i, 0, i, height);
     }
+
+    ofTranslate(0, -Settings::getInstance()->getPlayerMargin());
         //ofTranslate(0, Settings::getInstance()->getPlayerHeight());
 
 
