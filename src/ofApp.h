@@ -36,7 +36,9 @@ public:
     //DEBUG
     bool keypressed[4] = { false, false, false, false };
     bool manual_mode = false;
+    bool bSimulate = false;
     bool canDoKeyActionDebug(int key, bool pressed);
+    
 };
 
 
