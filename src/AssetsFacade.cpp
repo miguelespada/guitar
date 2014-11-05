@@ -32,10 +32,7 @@ void AssetsFacade::drawIntro(){
     assets->intro_background.draw(0, 0, settings->getWidth(), settings->getHeight());
 
 }
-void AssetsFacade::drawNavigate(){
-    Settings * settings = Settings::getInstance();
-    assets->navigate_the_sub.draw(0, 0, settings->getWidth(), settings->getHeight());
-}
+
 void AssetsFacade::drawText(string t){
     float x = settings->getSmallHeaderPanelWidth() * 2 + settings->getBigHeaderPanelWidth()/ 1.5;
     float y = settings->getPlayerCenterY() * 2;

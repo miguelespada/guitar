@@ -14,6 +14,7 @@
 #include "Settings.h"
 #include "GameBlock.h"
 #include "ofxTextSuite.h"
+#include "Assets.h"
 
 class RunningDraw
 {
@@ -30,6 +31,7 @@ public:
     void drawTitle();
     void drawGrid();
     void drawFinalScore();
+    void drawNavigate();
 protected:
 
 private:
@@ -38,7 +40,7 @@ private:
     ofTrueTypeFont title_font;
     ofTrueTypeFont final_score_font;
     bool changeText = false;
-
+    Assets* assets;
 
 // in draw:
 

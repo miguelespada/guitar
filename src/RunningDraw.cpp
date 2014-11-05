@@ -9,6 +9,8 @@
 #include "RunningDraw.h"
 
 RunningDraw::RunningDraw(RunningModel* model){
+     assets = new Assets();
+     assets->load();
     running_model = model;
     Settings* settings = Settings::getInstance();
 
@@ -29,9 +31,9 @@ void RunningDraw::draw(bool start){
         //ofTranslate(40, 40);
         ofSetColor(0);
         ofRect(0, 0, s->getWidth(), s->getHeight());
-        ofSetColor(255);
 
-        ofRect(s->getCentralImageX(), s->getCentralImageY(), s->getCentralImageWidth(), s->getCentralImageHeight());
+
+
     }
        // drawHeader();
         drawTeams(start);
@@ -79,7 +81,7 @@ void RunningDraw::drawHeader(){
 }
 
 void RunningDraw::drawTeams(bool start){
-    Settings* settings = Settings::getInstance();
+    Settings* s = Settings::getInstance();
     ofPushMatrix();
     ofTranslate(Settings::getInstance()->getPlayerMargin(), Settings::getInstance()->getHeaderHeight());
 
@@ -88,16 +90,19 @@ void RunningDraw::drawTeams(bool start){
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw(start);
-        ofTranslate(settings->getWidth() - settings->getPlayerMargin()*2, 0);
+        ofTranslate(s->getWidth() - s->getPlayerMargin()*2, 0);
         ofScale(-1, -1);
     }
 
     ofPopMatrix();
 
     drawTeamScores(start);
-
+    ofSetColor(0);
+    ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
+    ofSetColor(255);
+    drawNavigate();
     drawTitle();
-    drawGrid();
+    //drawGrid();
 }
 void RunningDraw::drawTeamScores(bool start){
     vector<Team*>  teams = running_model->getTeams();
@@ -163,4 +168,8 @@ void RunningDraw::drawFinalScore(){
     final_score_font.drawString(str,x ,y );
 
 
+}
+void RunningDraw::drawNavigate(){
+    Settings * settings = Settings::getInstance();
+    assets->navigate_the_sub.draw(settings->getCentralImageX(), settings->getCentralImageY(), settings->getCentralImageWidth(), settings->getCentralImageHeight());
 }

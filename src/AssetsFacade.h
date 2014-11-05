@@ -29,7 +29,7 @@ public:
     void drawIntro();
     void draw_background();
     void drawText(string t);
-    void drawNavigate();
+
 };
 
 #endif /* defined(__carrousel__AssetsFacade__) */

@@ -85,5 +85,6 @@ private:
     Json::Value getData(string key);
     int speed = 1;
 
+
 };
 #endif /* defined(__carrousel__Settings__) */
