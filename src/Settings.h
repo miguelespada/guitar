@@ -12,7 +12,7 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
-#define SCALE 0.5
+#define SCALE 1
 
 class Settings{
 public:
@@ -94,7 +94,7 @@ private:
     Json::Value getData(string key);
     float speed = 1;
 
-    int BLOCK_SEPARATION = 4;
+    int BLOCK_SEPARATION = 2;
 
 
 };
