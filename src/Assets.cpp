@@ -18,10 +18,11 @@ Assets::~Assets(){
 }
 
 void Assets::load(){
-
+     string assets_path = Settings::getInstance()->assetsPath();
+    video.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
 
     text.init(ofToDataPath(settings->getFont()), 24);
-    string assets_path = Settings::getInstance()->assetsPath();
+
     ofLogNotice() << "Loading assets from..." << assets_path;
 
     string filename = assets_path + "background.jpg";
@@ -34,6 +35,10 @@ void Assets::load(){
 
     filename = assets_path + "navigate-the-sub.jpg";
     navigate_the_sub.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+
+    filename = assets_path + "logo.jpg";
+    logo.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
 }
 

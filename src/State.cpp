@@ -16,24 +16,32 @@ IDLE::IDLE(Game *g){
     game = g;
     ofLogNotice() << "State: " << toString();
     changeText = false;
+    game->assetsFacade->playVideo();
 
 };
 
 void IDLE::draw(){
-    ofBackground(255);
-    ofSetColor(255,255,255,255);
-    game->assetsFacade->drawIntro();
-    if (ofGetFrameNum() % Settings::getInstance()->getTitleIDLEChangeTime() == 0){
-        changeText = !changeText;
-    }
+//    ofBackground(255);
+//    ofSetColor(255,255,255,255);
+//    game->assetsFacade->drawIntro();
+//    if (ofGetFrameNum() % Settings::getInstance()->getTitleIDLEChangeTime() == 0){
+//        changeText = !changeText;
+//    }
+//
+//    if(changeText){
+//        game->assetsFacade->drawText("HOLA CAPITANES");
+//    }else{
+//        game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
+//    }
+    ofScale(0.5, 0.5);
+    game->assetsFacade->drawVideo(0,0);
+    ofScale(2,2);
 
-    if(changeText){
-        game->assetsFacade->drawText("HOLA CAPITANES");
-    }else{
-        game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
-    }
 };
-
+void IDLE::update(){
+   // gameLogic->update();
+   game->assetsFacade->updateVideo();
+}
 void IDLE::push()
 {
     game->setCurrent(new STARTING(game));
@@ -85,10 +93,12 @@ RUNNING::RUNNING(Game *g, GameLogic* gLogic){
     ofLogNotice() << "State: " << toString();
     game->songManager->playNextSong();
     game->songManager->playSong();
+
 };
 
 void RUNNING::draw(){
     gameLogic->draw();
+
 };
 
 void RUNNING::update(){

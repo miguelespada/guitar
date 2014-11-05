@@ -28,10 +28,11 @@ public:
     void drawHeader();
     void drawWinner();
 
-    void drawTitle();
+    void drawTitle(string title);
     void drawGrid();
     void drawFinalScore();
     void drawNavigate();
+    void drawLogo();
 protected:
 
 private:
@@ -39,8 +40,6 @@ private:
     ofTrueTypeFont title_font;
     ofTrueTypeFont final_score_font;
     bool changeText = false;
-    Assets* assets;
-
 // in draw:
 
     void drawTeams(bool start);

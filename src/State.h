@@ -45,6 +45,7 @@ public:
     std::string toString() {
         return "Idle";
     }
+    void update();
     void draw();
 };
 

@@ -40,4 +40,13 @@ void AssetsFacade::drawText(string t){
     assets->text.setColor(255,255,255,255);
     assets->text.drawCenter(x,y);
 }
+void AssetsFacade::updateVideo(){
+    assets->video.update();
+}
+void AssetsFacade::drawVideo(float x, float y){
+    assets->video.draw(x,y);
+}
+void AssetsFacade::playVideo(){
+    assets->video.play();
+}
 

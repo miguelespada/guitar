@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Team.h"
 #include "GameBlock.h"
+#include "Assets.h"
 
 class RunningModel
 {
@@ -26,7 +27,7 @@ public:
 
     int getBeatCounter();
     void incrementBeatCounter();
-
+    Assets * assets;
 protected:
 private:
     std::vector<Team*> teams;

@@ -193,5 +193,28 @@ float Settings::getCentralImageHeight(){
 float Settings::getCentralImageWidth(){
     return 450 * SCALE;
 }
-
+float Settings::getTitleY(){
+    return getHeaderHeight() - 120 * SCALE;
+}
+string Settings::getRunningTitle(){
+    return "¡VAMOS, ATRÉVETE Y DEMUESTRA QUE ERES UN AUTÉNTICO CAPITÁN!";
+}
+float Settings::getLogoX(){
+    return getWidth() / 2 - getLogoWidth() /2;
+}
+float Settings::getLogoY(){
+    return getHeaderHeight() + getPlayerHeight() *2 + getPlayerSeparation() + 75 * SCALE;
+}
+float Settings::getLogoWidth(){
+    return 200 * SCALE;
+}
+float Settings::getLogoHeight(){
+    return 150 * SCALE;
+}
+//float Settings::getVideoScaleX(){
+//    return
+//}
+//float Settings::getVideoScaleY(){
+//
+//}
 
