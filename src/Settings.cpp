@@ -144,11 +144,11 @@ int Settings::getScale(){
     return SCALE;
 }
 
-int Settings::getSpeed(){
+float Settings::getSpeed(){
     return speed;
 }
 
-void Settings::setSpeed(int _speed){
+void Settings::setSpeed(float _speed){
     speed = _speed;
 
 }
@@ -211,13 +211,6 @@ float Settings::getLogoWidth(){
 float Settings::getLogoHeight(){
     return 150 * SCALE;
 }
-//float Settings::getVideoScaleX(){
-//    return
-//}
-//float Settings::getVideoScaleY(){
-//
-//}
-
 
 float Settings::getTeamScoreY(){
     return getHeaderHeight() + getPlayerHeight()*2 + getPlayerSeparation() + 120 * SCALE;

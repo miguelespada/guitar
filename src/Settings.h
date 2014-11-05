@@ -38,8 +38,8 @@ public:
     float getPlayerInnerRadius();
     float getPlayerMargin();
     int getNumberOfSongs();
-    int getSpeed();
-    void setSpeed(int _speed);
+    float getSpeed();
+    void setSpeed(float _speed);
     string getMidiIn();
     string getMidiOut();
 
@@ -93,7 +93,7 @@ private:
 
     ofxJSONElement json_file;
     Json::Value getData(string key);
-    int speed = 1;
+    float speed = 1;
 
 
 };

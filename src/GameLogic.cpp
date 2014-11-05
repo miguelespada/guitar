@@ -19,7 +19,7 @@ GameLogic::GameLogic(){
     commands.push_back(new Compass("/compass"));
     constructRunningServices();
 
-    setSpeed(1);
+    setSpeed(0.5);
 };
 
 
@@ -79,7 +79,7 @@ void GameLogic::destroyRunningServices(){
     running_draw = NULL;
 }
 
-void GameLogic::setSpeed(int v){
+void GameLogic::setSpeed(float v){
     Settings::getInstance()->setSpeed(v);
 }
 
