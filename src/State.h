@@ -41,6 +41,7 @@ public:
     IDLE(Game *g, GameLogic* gLogic);
     ~IDLE(){};
 
+    void notify(Action *action);
     void push();
     bool changeText;
     std::string toString() {

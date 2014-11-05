@@ -51,7 +51,13 @@ void IDLE::draw(){
 
 
     Assets::getInstance()->theSub.draw(0, 0, ofGetWidth(), ofGetHeight());
+    gameLogic->getRunningDraw()->draw(false);
 };
+
+void IDLE::notify(Action *action){
+    gameLogic->notify(action);
+};
+
 void IDLE::update(){
    // gameLogic->update();
     Assets::getInstance()->theSub.update();
@@ -188,8 +194,7 @@ void WINNER::draw(){
     ofSetColor(0);
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
     gameLogic->getRunningDraw()->draw(false);
-  //  gameLogic->getRunningDraw()->drawWinner();
-  //  gameLogic->getRunningDraw()->drawFinalScore();
+    gameLogic->getRunningDraw()->drawWinner();
 };
 
 void WINNER::notify(Action *action){

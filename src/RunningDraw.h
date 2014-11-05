@@ -30,7 +30,6 @@ public:
 
     void drawTitle(string title);
     void drawGrid();
-    void drawFinalScore();
     void drawNavigate();
     void drawLogo();
 protected:

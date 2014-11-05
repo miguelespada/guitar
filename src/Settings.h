@@ -12,7 +12,7 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
-#define SCALE 0.5
+#define SCALE 1
 
 class Settings{
 public:
@@ -53,7 +53,7 @@ public:
     string getFont();
     string getBoldFont();
     string getRunningTitle();
-    
+
 
     //new design
     const float PLAYER_WIDTH = 600 * SCALE;

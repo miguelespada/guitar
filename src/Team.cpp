@@ -57,26 +57,20 @@ void Team::draw(bool start){
 }
 void Team::drawWinner(){
 
-    ofTranslate(0, Settings::getInstance()->getPlayerMargin());
-    int width = Settings::getInstance()->getWidth();
-    int height = Settings::getInstance()->getPlayerHeight() * 2;
-    ofColor backgroundColor = Settings::getInstance()->getColor("gray");
-    ofSetColor(backgroundColor);
-    ofRect(0, 0, width, height);
-    backgroundColor = Settings::getInstance()->getColor("black");
-    for(int i = width/2; i < width; i ++){
-        ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
-        ofLine(i, 0, i, height);
+    Settings* settings = Settings::getInstance();
+    float stringWidth = score_text.stringWidth(ofToString(team_score));
+    float stringHeight = score_text.stringHeight(ofToString(team_score));
+    ofSetColor(getPlayerScoringColor());
+    int team_x = settings->getTeamScoreX(id);
+    float team_y = settings->getTeamScoreY() + stringHeight/2;
+    if(id == 0){
+       score_text.drawString(ofToString(team_score), team_x - stringWidth/2, team_y);
+    }else{
+        score_text.drawString(ofToString(team_score), team_x - stringWidth/2, team_y);
     }
 
-    ofTranslate(0, -Settings::getInstance()->getPlayerMargin());
-
-
-
-
-
-
 }
+
 void Team::modifyScore(int value){
     team_score += value;
 }
