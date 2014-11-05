@@ -28,7 +28,7 @@ Player::Player(int id, Team* team){
     queue_down = 0;
     queue_up = 0;
 
-    player_score_text.init(ofToDataPath(Settings::getInstance()->getBoldFont()), 24);
+    player_score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48);
 }
 
 Player::~Player(){
@@ -104,7 +104,7 @@ void Player::drawGradients(){
     int width = Settings::getInstance()->getPlayerWidth();
     int height = Settings::getInstance()->getPlayerHeight();
 
-    if(inBlock){
+    if(inBlock && !isInactive()){
         ofColor color =  Settings::getInstance()->getPlayerColor(team->getId(), id);
         for(int i = 0; i < width/2; i ++){
             ofSetColor(color, ofMap(i, 0, width/2, 255, 0));
@@ -113,7 +113,7 @@ void Player::drawGradients(){
     }
 
     ofColor backgroundColor = Settings::getInstance()->getColor("black");
-    for(int i = width/2; i < width; i ++){
+    for(int i = width/2; i <= width; i ++){
         ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
         ofLine(i, 0, i, height);
     }
@@ -224,44 +224,43 @@ void Player::updateBlockTouchedPieces(){
 
 void Player::drawPlayerScore(){
    if(isTouchingCircle()){
+        Settings* settings = Settings::getInstance();
 
-        float y = Settings::getInstance()->getPlayerCenterY();
-        float x = Settings::getInstance()->getWidth();
+        float stringWidth = player_score_text.stringWidth(getPlayerScoreToString());
+        float stringHeight = player_score_text.stringHeight(getPlayerScoreToString());
 
-        player_score_text.setText(getPlayerScoreToString());
-        ofColor c = Settings::getInstance()->getPlayerColor(getTeam()->getId(), id);
-        player_score_text.setColor(c.r,c.g,c.b,c.a);
+        float y = settings->getPlayerCenterY() + stringHeight/2;
+        float x = settings->getPlayerWidth() - stringWidth ;
+
+        ofSetColor(settings->getPlayerColor(getTeam()->getId(), id));
+
+        float margin = 27;
 
         if(getTeam()->getId() == 1){
-            x += 10;
-            ofRotateY(180);
-            ofTranslate(-Settings::getInstance()->getWidth() * 2, 0);
-            player_score_text.drawLeft(x, y);
-            ofTranslate(Settings::getInstance()->getWidth() * 2, 0);
-            ofRotateY(180);
+            x += margin;
+            ofScale(-1,-1);
+            ofTranslate(-x * 2, -settings->getPlayerHeight());
+            player_score_text.drawString(getPlayerScoreToString(), x, y);
+            ofTranslate(settings->getWidth() * 2, settings->getPlayerHeight());
+            ofScale(-1,-1);
         }else{
-           x -= 10;
-           player_score_text.drawRight(x, y);
+           x -= margin;
+           player_score_text.drawString(getPlayerScoreToString(), x, y);
         }
+        settings = NULL;
    }
 }
 string Player::getPlayerScoreToString(){
-
-    //Conversion to string
-
-    string t;
-    ostringstream temp;
-    temp << "";
+    string ret = "";
 
     if (blocks.size() > 0){
         int score = getBlockScore(getFirstBlockEnabled());
         if (score > 0){
-            temp << "+" << score;
+            ret = "+" + ofToString(score);
         }
     }
 
-    t=temp.str();
-    return t;
+  return ret;
 
 }
 

@@ -29,7 +29,7 @@ Team::Team(int id)
     }
     Team::id = id;
 
-    score_text.loadFont(ofToDataPath("FuturaLT-CondensedLight.ttf"), 25);
+    score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48);
 }
 
 
@@ -102,15 +102,17 @@ ofColor Team::getPlayerScoringColor(){
 
 
 void Team::drawTeamScore(bool start){
-    int team_x = Settings::getInstance()->getTeamScoreX(id);
+    Settings* settings = Settings::getInstance();
     float stringWidth = score_text.stringWidth(ofToString(team_score));
     float stringHeight = score_text.stringHeight(ofToString(team_score));
     ofSetColor(getPlayerScoringColor());
     if (!start) ofSetColor(255,255,255,255);
+    int team_x = settings->getTeamScoreX(id);
+    float team_y = settings->getTeamScoreY() + stringHeight/2;
     if(id == 0){
-       score_text.drawString(ofToString(team_score), team_x + 5, Settings::getInstance()->getHeaderHeight() / 2 + stringHeight + 5);
+       score_text.drawString(ofToString(team_score), team_x - stringWidth/2, team_y);
     }else{
-        score_text.drawString(ofToString(team_score), team_x -5 - stringWidth, Settings::getInstance()->getHeaderHeight() / 2 + stringHeight + 5);
+        score_text.drawString(ofToString(team_score), team_x - stringWidth/2, team_y);
     }
 
 }

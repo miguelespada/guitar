@@ -100,9 +100,9 @@ int Settings::getBlockSeparation(){
 }
 
 float Settings::getTeamScoreX(int team){
-    int y = getSmallHeaderPanelWidth();
+    int y = getPlayerMargin() + getPlayerWidth()/2;
     if (team == 1){
-        y += getSmallHeaderPanelWidth() * 2 + getBigHeaderPanelWidth();
+        y = getWidth() - y;
     }
     return y;
 }
@@ -217,4 +217,10 @@ float Settings::getLogoHeight(){
 //float Settings::getVideoScaleY(){
 //
 //}
+
+
+float Settings::getTeamScoreY(){
+    return getHeaderHeight() + getPlayerHeight()*2 + getPlayerSeparation() + 120 * SCALE;
+}
+
 
