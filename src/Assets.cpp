@@ -19,7 +19,7 @@ Assets::~Assets(){
 
 void Assets::load(){
 
-    
+
     text.init(ofToDataPath(settings->getFont()), 24);
     string assets_path = Settings::getInstance()->assetsPath();
     ofLogNotice() << "Loading assets from..." << assets_path;
@@ -30,6 +30,10 @@ void Assets::load(){
 
     filename = assets_path + "intro-background.jpg";
     intro_background.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+
+    filename = assets_path + "navigate-the-sub.jpg";
+    navigate_the_sub.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
 }
 
