@@ -47,10 +47,12 @@ void ofApp::update(){
     oscAdapter.update();
    if (!manual_mode) game.update();
 
-    simulator.sendMidiSubbeat();
+    if(bSimulate){
+        simulator.sendMidiSubbeat();
 
-    if(ofGetFrameNum() % 6 == 0)
-        simulator.sendMidiBeat();
+        if(ofGetFrameNum() % 6 == 0)
+            simulator.sendMidiBeat();
+    }
 }
 
 //--------------------------------------------------------------
@@ -148,6 +150,9 @@ void ofApp::keyPressed(int key){
 
         case 'i':
             bInfo = !bInfo;
+            break;
+        case 'S':
+            bSimulate = !bSimulate;
             break;
         default:
             break;

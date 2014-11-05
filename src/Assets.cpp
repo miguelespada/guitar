@@ -11,7 +11,6 @@
 
 Assets::Assets(){
     ofLogVerbose() << "Constructing Assets ";
-    text.init(ofToDataPath(settings->getFont()), 24);
 }
 
 Assets::~Assets(){
@@ -20,7 +19,8 @@ Assets::~Assets(){
 
 void Assets::load(){
 
-
+    
+    text.init(ofToDataPath(settings->getFont()), 24);
     string assets_path = Settings::getInstance()->assetsPath();
     ofLogNotice() << "Loading assets from..." << assets_path;
 
