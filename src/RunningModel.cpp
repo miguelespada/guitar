@@ -15,6 +15,7 @@ RunningModel::RunningModel()
         teams.push_back(team);
         team = NULL;
     }
+
 }
 
 RunningModel::~RunningModel()

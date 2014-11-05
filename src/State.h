@@ -61,7 +61,7 @@ public:
     void push();
     void jump();
     void notify(Action *action);
-
+    void update();
     std::string toString() {
         return "Starting";
     }
@@ -100,6 +100,7 @@ public:
     void push();
     void jump();
     void notify(Action *action);
+    void update();
 
     std::string toString() {
         return "Finishing";
