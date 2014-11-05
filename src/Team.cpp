@@ -45,8 +45,7 @@ void Team::draw(bool start){
     std::vector<Player*>::const_iterator p;
 
     for(p=players.begin(); p!=players.end(); ++p){
-        if(p == players.begin())
-            ofTranslate(0, Settings::getInstance()->getPlayerMargin());
+
         (*p)->draw(start);
 
         ofTranslate(0, Settings::getInstance()->getPlayerHeight() + Settings::getInstance()->getPlayerSeparation());

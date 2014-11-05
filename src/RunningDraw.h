@@ -46,7 +46,6 @@ private:
     void drawBeatCounter();
 
     RunningModel* running_model;
-    Settings* settings;
 };
 
 #endif /* defined(__heinneken__RunningDraw__) */

@@ -86,7 +86,7 @@ void Player::draw(bool start){
 
 void Player::drawInactivityPanel(){
     if (isInactive()){
-        int width = Settings::getInstance()->getWidth();
+        int width = Settings::getInstance()->getPlayerWidth();
         int height = Settings::getInstance()->getPlayerHeight();
         ofSetColor(ofColor(0,0,0,180));
         ofRect(0, 0, width, height);
@@ -95,7 +95,7 @@ void Player::drawInactivityPanel(){
 }
 
 void Player::drawBackground(){
-    int width = Settings::getInstance()->getWidth();
+    int width = Settings::getInstance()->getPlayerWidth();
     int height = Settings::getInstance()->getPlayerHeight();
     ofColor backgroundColor = Settings::getInstance()->getColor("gray");
     ofSetColor(backgroundColor);
@@ -105,7 +105,7 @@ void Player::drawBackground(){
 }
 
 void Player::drawGradients(){
-    int width = Settings::getInstance()->getWidth();
+    int width = Settings::getInstance()->getPlayerWidth();
     int height = Settings::getInstance()->getPlayerHeight();
 
     if(inBlock){

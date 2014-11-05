@@ -12,7 +12,7 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
-#define SCALE 3
+#define SCALE 0.5
 
 class Settings{
 public:
@@ -52,7 +52,11 @@ public:
     string getFont();
     string getBoldFont();
 
-    const float PIECE_SIZE = 181/(2*16) * SCALE;
+    //new design
+    const float PLAYER_WIDTH = 600 * SCALE;
+
+
+    const float PIECE_SIZE = getPlayerWidth()/32 * SCALE;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
     const int BLOCK_SEPARATION = 2;
@@ -65,7 +69,12 @@ public:
     int getInactivityTime();
     int getTitleRUNNINGChangeTime();
     int getTitleIDLEChangeTime();
-
+    float getPlayerWidth();
+    float getCentralImageX();
+    float getCentralImageY();
+    float getPlayerCentralImageSeparation();
+    float getCentralImageHeight();
+    float getCentralImageWidth();
 private:
     static Settings* instance;
     Settings();
@@ -74,7 +83,7 @@ private:
 
     ofxJSONElement json_file;
     Json::Value getData(string key);
-    int speed = 3;
+    int speed = 1;
 
 };
 #endif /* defined(__carrousel__Settings__) */

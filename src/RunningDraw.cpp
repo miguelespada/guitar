@@ -23,16 +23,21 @@ RunningDraw::~RunningDraw()
 }
 
 void RunningDraw::draw(bool start){
+    Settings* s = Settings::getInstance();
     if (start){
         ofBackground(255);
-        ofTranslate(40, 40);
+        //ofTranslate(40, 40);
         ofSetColor(0);
-        ofRect(0, 0, settings->getWidth(), settings->getHeight());
+        ofRect(0, 0, s->getWidth(), s->getHeight());
+        ofSetColor(255);
+
+        ofRect(s->getCentralImageX(), s->getCentralImageY(), s->getCentralImageWidth(), s->getCentralImageHeight());
     }
-        drawHeader();
+       // drawHeader();
         drawTeams(start);
 }
 void RunningDraw::drawWinner(){
+    Settings* settings = Settings::getInstance();
     ofBackground(255);
 
         ofSetColor(0);
@@ -57,6 +62,7 @@ RunningModel* RunningDraw::getRunningModel(){
 }
 
 void RunningDraw::drawHeader(){
+    Settings* settings = Settings::getInstance();
     ofSetColor(192);
     ofRect(0, 0, settings->getWidth(), settings->getHeaderHeight());
     ofSetColor(0);
@@ -73,16 +79,17 @@ void RunningDraw::drawHeader(){
 }
 
 void RunningDraw::drawTeams(bool start){
+    Settings* settings = Settings::getInstance();
     ofPushMatrix();
-    ofTranslate(0, Settings::getInstance()->getHeaderHeight());
+    ofTranslate(Settings::getInstance()->getPlayerMargin(), Settings::getInstance()->getHeaderHeight());
+
 
     vector<Team*>  teams = running_model->getTeams();
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw(start);
-        ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
-        ofScale(-1, 1);
-        //ofRotateX(-180);
+        ofTranslate(settings->getWidth() - settings->getPlayerMargin()*2, 0);
+        ofScale(-1, -1);
     }
 
     ofPopMatrix();

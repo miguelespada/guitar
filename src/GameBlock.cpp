@@ -12,7 +12,7 @@
 GameBlock::GameBlock(int pieces_num, bool bDown)
 {
     GameBlock::bDown = bDown;
-    x = Settings::getInstance()->getWidth();
+    x = Settings::getInstance()->getPlayerMargin() + Settings::getInstance()->getPlayerWidth();
     pieces = pieces_num;
 }
 
@@ -21,12 +21,14 @@ void GameBlock::update(){
 }
 
 void GameBlock::draw(int y, ofColor block_color){
+    ofSetColor(255,0,0);
     paintBlock(y, block_color);
 }
 
 void GameBlock::paintBlock(int y, ofColor block_color){
 
     ofRectangle r;
+    cout << x << endl;
     r.x = x;
     r.y = y;
 

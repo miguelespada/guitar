@@ -34,15 +34,15 @@ Json::Value Settings::getData(string key){
 }
 
 int Settings::getWidth(){
-    return 192 * SCALE;
+    return 1920 * SCALE;
 }
 
 int Settings::getHeight(){
-    return 157 * SCALE;
+    return 1080 * SCALE;
 }
 
 int Settings::getHeaderHeight(){
-    return 32 * SCALE;
+    return getHeight()/2 - getPlayerHeight() - getPlayerSeparation()/2 * SCALE;
 }
 
 int Settings::getSmallHeaderPanelWidth(){
@@ -64,11 +64,11 @@ string Settings::assetsPath(){
 }
 
 float Settings::getPlayerHeight(){
-    return 24 * SCALE;
+    return 200 * SCALE;
 }
 
 float Settings::getPlayerSeparation(){
-    return 3 * SCALE;
+    return 20 * SCALE;
 }
 
 float Settings::getPlayerCenterX(){
@@ -80,15 +80,15 @@ float Settings::getPlayerCenterY(){
 }
 
 float Settings::getPlayerOuterRadius(){
-    return 5 * SCALE;
+    return 55/2 * SCALE;
 }
 
 float Settings::getPlayerInnerRadius(){
-    return 3 * SCALE;
+    return 35/2 * SCALE;
 }
 
 float Settings::getPlayerMargin(){
-    return 7 * SCALE;
+    return 70 * SCALE;
 }
 
 float Settings::getTeamSeparation(){
@@ -118,7 +118,7 @@ ofColor Settings::getColor(string colorName){
 }
 
 float Settings::getMoveSize(){
-    return 181/(16*6);
+    return getPlayerWidth()/(16*6);
 }
 string Settings::getFont(){
     return "FuturaLT-CondensedLight.ttf";
@@ -150,7 +150,7 @@ int Settings::getSpeed(){
 
 void Settings::setSpeed(int _speed){
     speed = _speed;
-    
+
 }
 int Settings::getBonusMark(int bonus){
     switch (bonus){
@@ -174,3 +174,23 @@ int Settings::getTitleRUNNINGChangeTime(){
 int Settings::getTitleIDLEChangeTime(){
     return 60 * 6;
 }
+float Settings::getPlayerWidth(){
+    return PLAYER_WIDTH;
+}
+float Settings::getCentralImageX(){
+    return (getPlayerMargin() + getPlayerWidth() + getPlayerCentralImageSeparation());
+
+}
+float Settings::getCentralImageY(){
+        return getHeaderHeight() + 39 * SCALE;
+}
+float Settings::getPlayerCentralImageSeparation(){
+    return 65 * SCALE;
+}
+float Settings::getCentralImageHeight(){
+    return 342 * SCALE;
+}
+float Settings::getCentralImageWidth(){
+    return 450 * SCALE;
+}
+

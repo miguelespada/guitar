@@ -54,11 +54,12 @@ STARTING::STARTING(Game *g){
 }
 
 void STARTING::draw(){
-    ofBackground(255);
+
     ofTranslate(40, 40);
     ofSetColor(0);
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
-    gameLogic->getRunningDraw()->draw(false);
+    //gameLogic->getRunningDraw()->draw(false);
+    ofTranslate(-40,-40);
 
 };
 
@@ -91,7 +92,9 @@ RUNNING::RUNNING(Game *g, GameLogic* gLogic){
 };
 
 void RUNNING::draw(){
+    ofTranslate(40,40);
     gameLogic->draw();
+    ofTranslate(-40,-40);
 };
 
 void RUNNING::update(){
