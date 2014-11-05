@@ -28,6 +28,8 @@ class MidiAdapter: public ofxMidiListener{
     int ticks;
     int compass;
 public:
+    void resetCompass();
+    
     ofxMidiOut midiOut;
     static MidiAdapter* getInstance();
     ~MidiAdapter();
