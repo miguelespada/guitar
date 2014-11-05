@@ -12,7 +12,7 @@
 GameBlock::GameBlock(int pieces_num, bool bDown)
 {
     GameBlock::bDown = bDown;
-    x = Settings::getInstance()->getPlayerMargin() + Settings::getInstance()->getPlayerWidth();
+    x = Settings::getInstance()->getPlayerWidth();
     pieces = pieces_num;
 }
 

@@ -66,16 +66,12 @@ void Player::draw(bool start){
 
     drawIcon(start);
     if(start){
-            drawBlocks();
-        if (!isInactive()){
-            drawGradients();
-        }
-
-
+        drawBlocks();
+        drawInactivityPanel();
+        drawGradients();
         if (!isInactive()){
             drawPlayerScore();
         }
-    drawInactivityPanel();
     }
 
 
