@@ -13,7 +13,6 @@
 #include "RunningModel.h"
 #include "Settings.h"
 #include "GameBlock.h"
-#include "ofxTextSuite.h"
 #include "Assets.h"
 
 class RunningDraw

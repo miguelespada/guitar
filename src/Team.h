@@ -10,7 +10,6 @@
 #define __heinneken__Team__
 
 #include "ofMain.h"
-#include "ofxTextSuite.h"
 
 class Player;
 class Team

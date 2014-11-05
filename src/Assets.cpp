@@ -36,7 +36,6 @@ void Assets::load(){
      theSub.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
     navigate_the_sub.loadMovie(ofToDataPath(assets_path + "the_sub_loop.mov"));
 
-    text.init(ofToDataPath(settings->getFont()), 24);
 
     ofLogNotice() << "Loading assets from..." << assets_path;
 
