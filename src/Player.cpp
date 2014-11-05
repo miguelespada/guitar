@@ -28,7 +28,7 @@ Player::Player(int id, Team* team){
     queue_down = 0;
     queue_up = 0;
 
-    player_score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48);
+    player_score_text.loadFont(ofToDataPath(Settings::getInstance()->getBoldFont()), 48*SCALE);
 }
 
 Player::~Player(){
@@ -353,16 +353,18 @@ void Player::addNewBlock(bool position_down, int block_pieces){
 }
 
 void Player::incrementQueue(bool position_down, int pieces){
-    float piece_size = Settings::getInstance()->PIECE_SIZE;
+    Settings* settings = Settings::getInstance();
+    float piece_size = settings->PIECE_SIZE;
     if (position_down){
         //queue_down += (pieces + 4 + round(ofRandom(0,4))) * piece_size;
-        queue_down += 8 * piece_size;
+        queue_down += settings->getBlockSeparation() * piece_size;
         queue_up += pieces * piece_size;
     } else{
-        queue_up += 8  * piece_size;
+        queue_up += settings->getBlockSeparation() * piece_size;
       //  queue_up += (pieces + 4 + round(ofRandom(0,4))) * piece_size;
         queue_down += pieces * piece_size;
     }
+    settings = NULL;
 }
 
 void Player::decrementQueues(){

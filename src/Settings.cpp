@@ -96,7 +96,7 @@ float Settings::getTeamSeparation(){
 }
 
 int Settings::getBlockSeparation(){
-    return BLOCK_SEPARATION;
+    return BLOCK_SEPARATION * 2;
 }
 
 float Settings::getTeamScoreX(int team){

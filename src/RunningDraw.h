@@ -31,6 +31,7 @@ public:
     void drawGrid();
     void drawNavigate();
     void drawLogo();
+    void drawLateralBands();
 protected:
 
 private:
