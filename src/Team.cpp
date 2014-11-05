@@ -58,17 +58,21 @@ void Team::draw(bool start){
 }
 void Team::drawWinner(){
 
-    int width = Settings::getInstance()->getWidth();
+    ofTranslate(0, Settings::getInstance()->getPlayerMargin());
+     int width = Settings::getInstance()->getWidth();
     int height = Settings::getInstance()->getPlayerHeight() * 2;
     ofColor backgroundColor = Settings::getInstance()->getColor("gray");
     ofSetColor(backgroundColor);
     ofRect(0, 0, width, height);
-
-    backgroundColor = Settings::getInstance()->getColor("black");
+     backgroundColor = Settings::getInstance()->getColor("black");
     for(int i = width/2; i < width; i ++){
         ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
         ofLine(i, 0, i, height);
     }
+        //ofTranslate(0, Settings::getInstance()->getPlayerHeight());
+
+
+
 
 
 

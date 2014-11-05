@@ -39,3 +39,4 @@ void AssetsFacade::drawText(string t){
     assets->text.setColor(255,255,255,255);
     assets->text.drawCenter(x,y);
 }
+

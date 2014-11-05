@@ -148,6 +148,7 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
 
 void WINNER::draw(){
     gameLogic->getRunningDraw()->drawWinner();
+    gameLogic->getRunningDraw()->drawFinalScore();
 };
 
 void WINNER::push()

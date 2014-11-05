@@ -13,7 +13,8 @@ RunningDraw::RunningDraw(RunningModel* model){
     Settings* settings = Settings::getInstance();
 
     title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
-
+    title_font.loadFont(Settings::getInstance()->getFont(), 22);
+    final_score_font.loadFont(Settings::getInstance()->getFont(), 70);
 }
 
 RunningDraw::~RunningDraw()
@@ -33,17 +34,22 @@ void RunningDraw::draw(bool start){
 }
 void RunningDraw::drawWinner(){
     ofBackground(255);
-        ofTranslate(40, 40);
+
         ofSetColor(0);
         ofRect(0, 0, settings->getWidth(), settings->getHeight());
     drawHeader();
+    ofPushMatrix();
+    ofTranslate(0, Settings::getInstance()->getHeaderHeight());
+
     vector<Team*> teams = running_model->getTeams();
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->drawWinner();
-        ofTranslate(settings->getWidth(), settings->getTeamSeparation() - settings->getPlayerMargin());
+        ofTranslate(settings->getWidth(), settings->getPlayerHeight() * 2 + settings->getPlayerSeparation() *2);
         ofScale(-1, 1);
     }
+
+    ofPopMatrix();
 }
 
 RunningModel* RunningDraw::getRunningModel(){
@@ -134,5 +140,20 @@ void RunningDraw::drawGrid(){
 
         ofLine(i * d + margin_circle , 0, i * d  + margin_circle, Settings::getInstance()->getHeight());
     }
+
+}
+void RunningDraw::drawFinalScore(){
+    Settings* settings = Settings::getInstance();
+    ofSetColor(255);
+    string str = ofToString(running_model->getTeams().front()->getScore());
+    float x = Settings::getInstance()->getWidth() / 2 - final_score_font.stringWidth(str) / 2;
+    float y = Settings::getInstance()->getPlayerHeight() * 3;
+    final_score_font.drawString(str,x ,y );
+
+    str = ofToString(running_model->getTeams().back()->getScore());
+    x = Settings::getInstance()->getWidth() / 2 - final_score_font.stringWidth(str) / 2;
+    y = Settings::getInstance()->getPlayerHeight() * 6 - settings->getPlayerSeparation() * 2;
+    final_score_font.drawString(str,x ,y );
+
 
 }
