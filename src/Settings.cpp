@@ -121,10 +121,10 @@ float Settings::getMoveSize(){
     return 181/(16*6);
 }
 string Settings::getFont(){
-    return "FuturaLT-CondensedLight.ttf";
+    return ofToDataPath("FuturaLT-CondensedLight.ttf");
 }
 string Settings::getBoldFont(){
-    return "FuturaLT-CondensedExtraBold.ttf";
+    return ofToDataPath("FuturaLT-CondensedExtraBold.ttf");
 }
 
 
