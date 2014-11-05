@@ -50,27 +50,26 @@ void Team::draw(bool start){
 
         ofTranslate(0, Settings::getInstance()->getPlayerHeight() + Settings::getInstance()->getPlayerSeparation());
     }
-    ofTranslate(0, - Settings::getInstance()->getPlayerSeparation());
-
+    ofTranslate(0, -2*(Settings::getInstance()->getPlayerHeight() + Settings::getInstance()->getPlayerSeparation()));
+   // ofTranslate(0, - Settings::getInstance()->getPlayerSeparation());
 
 
 }
 void Team::drawWinner(){
 
     ofTranslate(0, Settings::getInstance()->getPlayerMargin());
-     int width = Settings::getInstance()->getWidth();
+    int width = Settings::getInstance()->getWidth();
     int height = Settings::getInstance()->getPlayerHeight() * 2;
     ofColor backgroundColor = Settings::getInstance()->getColor("gray");
     ofSetColor(backgroundColor);
     ofRect(0, 0, width, height);
-     backgroundColor = Settings::getInstance()->getColor("black");
+    backgroundColor = Settings::getInstance()->getColor("black");
     for(int i = width/2; i < width; i ++){
         ofSetColor(backgroundColor, ofMap(i, width/2, width, 0, 255));
         ofLine(i, 0, i, height);
     }
 
     ofTranslate(0, -Settings::getInstance()->getPlayerMargin());
-        //ofTranslate(0, Settings::getInstance()->getPlayerHeight());
 
 
 
@@ -87,8 +86,8 @@ int Team::getScore(){
 
 ofColor Team::getPlayerScoringColor(){
     ofColor color = ofColor(255,255,255,255);
-    bool player_0_scored = players.front()->isTouchingCircle();// && players.front()->hasScored();
-    bool player_1_scored = players.back()->isTouchingCircle();// && players.back()->hasScored();
+    bool player_0_scored = players.front()->isTouchingCircle();
+    bool player_1_scored = players.back()->isTouchingCircle();
 
     if(player_0_scored && !player_1_scored){
         color =  Settings::getInstance()->getPlayerColor(id, 0);
@@ -101,12 +100,11 @@ ofColor Team::getPlayerScoringColor(){
 }
 
 
-void Team::drawTeamScore(bool start){
+void Team::drawTeamScore(){
     Settings* settings = Settings::getInstance();
     float stringWidth = score_text.stringWidth(ofToString(team_score));
     float stringHeight = score_text.stringHeight(ofToString(team_score));
     ofSetColor(getPlayerScoringColor());
-    if (!start) ofSetColor(255,255,255,255);
     int team_x = settings->getTeamScoreX(id);
     float team_y = settings->getTeamScoreY() + stringHeight/2;
     if(id == 0){

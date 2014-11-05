@@ -132,7 +132,7 @@ void FINISHING::draw(){
     ofBackground(255);
     ofSetColor(0);
     ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
-    gameLogic->getRunningDraw()->draw(false);
+
 };
 
 void FINISHING::push()
@@ -160,8 +160,16 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
 }
 
 void WINNER::draw(){
-    gameLogic->getRunningDraw()->drawWinner();
-    gameLogic->getRunningDraw()->drawFinalScore();
+    ofBackground(255);
+    ofSetColor(0);
+    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
+    gameLogic->getRunningDraw()->draw(false);
+  //  gameLogic->getRunningDraw()->drawWinner();
+  //  gameLogic->getRunningDraw()->drawFinalScore();
+};
+
+void WINNER::notify(Action *action){
+    gameLogic->notify(action);
 };
 
 void WINNER::push()
