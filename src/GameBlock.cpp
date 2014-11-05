@@ -35,7 +35,7 @@ void GameBlock::paintBlock(int y, ofColor block_color){
     r.width = (pieces > 1) ? pieces * Settings::getInstance()->PIECE_SIZE : r.height;
     //ofTranslate(-Settings::getInstance()->getPlayerMargin(), 0);
     ofSetColor(block_color);
-    ofRectRounded(r, 10);
+    ofRectRounded(r, 20 * SCALE);
    // ofTranslate(Settings::getInstance()->getPlayerMargin(), 0);
 
 }

@@ -29,13 +29,4 @@ void AssetsFacade::drawIntro(){
 
 }
 
-void AssetsFacade::drawText(string t){
-    float x = settings->getSmallHeaderPanelWidth() * 2 + settings->getBigHeaderPanelWidth()/ 1.5;
-    float y = settings->getPlayerCenterY() * 2;
-    Assets::getInstance()->text.setText(t);
-    Assets::getInstance()->text.setColor(255,255,255,255);
-    Assets::getInstance()->text.drawCenter(x,y);
-}
-
-
 

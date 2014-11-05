@@ -55,12 +55,6 @@ Compass::Compass(string actionName){
 
 void Compass::run(Action *_action, Commandable *g){
     if(_action->getAction() == action){
-        if(_action->getArgAsInt(0) == 20)
-            ((GameLogic *)g)->setSpeed(2);
-        if(_action->getArgAsInt(0) == 40)
-            ((GameLogic *)g)->setSpeed(3);
-        if(_action->getArgAsInt(0) == 55)
-            ((GameLogic *)g)->setSpeed(4);
         
     }
 }

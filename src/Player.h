@@ -13,7 +13,6 @@
 #include "Settings.h"
 #include "Team.h"
 #include "GameBlock.h"
-#include "ofxTextSuite.h"
 
 class Player
 {
