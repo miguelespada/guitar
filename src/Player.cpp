@@ -64,7 +64,7 @@ void Player::draw(bool start){
     ofPushStyle();
     drawBackground();
 
-    drawIcon();
+    drawIcon(start);
     if(start){
             drawBlocks();
         if (!isInactive()){
@@ -124,11 +124,11 @@ void Player::drawGradients(){
 
 }
 
-void Player::drawIcon(){
+void Player::drawIcon(bool start){
     int y =  bDown ? y_down : y_up;
 
     ofPath icon;
-    ofColor color = inBlock ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
+    ofColor color = inBlock && start ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
     icon.setFillColor(color);
 
     //upper cap

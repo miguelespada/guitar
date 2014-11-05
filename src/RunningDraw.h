@@ -23,7 +23,7 @@ public:
     virtual ~RunningDraw();
     RunningModel* getRunningModel();
     void draw(bool start);
-    void drawTeamScores();
+    void drawTeamScores(bool start);
     void drawHeader();
     void drawWinner();
 

@@ -122,8 +122,11 @@ FINISHING::FINISHING(Game *g, GameLogic* gLogic){
 }
 
 void FINISHING::draw(){
-
-
+    ofBackground(255);
+    ofTranslate(40, 40);
+    ofSetColor(0);
+    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
+    gameLogic->getRunningDraw()->draw(false);
 };
 
 void FINISHING::push()
@@ -131,6 +134,9 @@ void FINISHING::push()
     game->setCurrent(new WINNER(game, gameLogic));
 };
 
+void FINISHING::notify(Action *action){
+    gameLogic->notify(action);
+};
 
 void FINISHING::jump()
 {

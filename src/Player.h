@@ -46,7 +46,7 @@ private:
 
     void drawBlocks();
     void drawBackground();
-    void drawIcon();
+    void drawIcon(bool start);
     void drawHeader();
 
 

@@ -81,17 +81,17 @@ void RunningDraw::drawTeams(bool start){
 
     ofPopMatrix();
 
-    drawTeamScores();
+    drawTeamScores(start);
 
     drawTitle();
     drawGrid();
 }
-void RunningDraw::drawTeamScores(){
+void RunningDraw::drawTeamScores(bool start){
     vector<Team*>  teams = running_model->getTeams();
 
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
-        (*t)->drawTeamScore();
+        (*t)->drawTeamScore(start);
 
     }
 }
