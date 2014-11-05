@@ -27,6 +27,7 @@ public:
     void drawTeamScore();
     vector<Player*> getPlayers();
     void drawWinner();
+    void drawWinnerPlayer(float team_x, float team_y);
 
 protected:
 private:
@@ -35,6 +36,7 @@ private:
     int team_score = 0;
 
     ofTrueTypeFont score_text;
+    ofTrueTypeFont big_score_text;
 };
 
 
