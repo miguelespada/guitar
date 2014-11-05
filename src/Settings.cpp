@@ -194,3 +194,4 @@ float Settings::getCentralImageWidth(){
     return 450 * SCALE;
 }
 
+

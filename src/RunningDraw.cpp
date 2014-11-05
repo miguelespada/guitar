@@ -14,7 +14,7 @@ RunningDraw::RunningDraw(RunningModel* model){
     running_model = model;
     Settings* settings = Settings::getInstance();
 
-    title_text.init(ofToDataPath("FuturaLT-CondensedLight.ttf"), 22);
+
     title_font.loadFont(Settings::getInstance()->getFont(), 22);
     final_score_font.loadFont(Settings::getInstance()->getFont(), 70);
 }
@@ -115,21 +115,22 @@ void RunningDraw::drawTeamScores(bool start){
 }
 
 void RunningDraw::drawTitle(){
-    Settings* settings = Settings::getInstance();
-    int title_pos = settings->getWidth() / 2;
-    if (ofGetFrameNum() % settings->getTitleRUNNINGChangeTime() == 0){
-        changeText = !changeText;
-    }
-
-    if(changeText){
-        title_text.setText("NAVIGATE THE SUB");
-    }else{
-        title_text.setText("EXPERIENCIA THE SUB");
-    }
-    title_text.wrapTextForceLines(2);
-    title_text.setColor(255,255,255,100);
-    title_text.drawCenter(title_pos, 0);
-    settings = NULL;
+//    Settings* settings = Settings::getInstance();
+//    float title_x= settings->getWidth() / 2;
+//
+//    if (ofGetFrameNum() % settings->getTitleRUNNINGChangeTime() == 0){
+//        changeText = !changeText;
+//    }
+//
+//    if(changeText){
+//        title_text.setText("NAVIGATE THE SUB");
+//    }else{
+//        title_text.setText("EXPERIENCIA THE SUB");
+//    }
+//    title_text.wrapTextForceLines(2);
+//    title_text.setColor(255,255,255,100);
+//    title_text.drawCenter(title_x, 0);
+//    settings = NULL;
 }
 
 

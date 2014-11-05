@@ -35,8 +35,7 @@ public:
 protected:
 
 private:
-    ofxTextBlock  title_text;
-    ofxTextBlock player_score_text;
+
     ofTrueTypeFont title_font;
     ofTrueTypeFont final_score_font;
     bool changeText = false;
