@@ -38,8 +38,8 @@ public:
     float getPlayerInnerRadius();
     float getPlayerMargin();
     int getNumberOfSongs();
-    int getSpeed();
-    void setSpeed(int _speed);
+    float getSpeed();
+    void setSpeed(float _speed);
     string getMidiIn();
     string getMidiOut();
 
@@ -53,6 +53,10 @@ public:
     string getFont();
     string getBoldFont();
     string getRunningTitle();
+    ofImage getIntroImage();
+    ofImage getTitleImage(bool mayday);
+    ofImage getRandomPhrase(bool winner);
+    ofImage getResultTitleImage();
 
 
     //new design
@@ -92,7 +96,8 @@ private:
 
     ofxJSONElement json_file;
     Json::Value getData(string key);
-    int speed = 1;
+    float speed = 1;
+
     int BLOCK_SEPARATION = 4;
 
 
