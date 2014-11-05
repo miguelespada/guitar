@@ -26,6 +26,7 @@ void RunningDraw::drawLogo(){
     Settings * settings = Settings::getInstance();
     Assets::getInstance()->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
 }
+
 void RunningDraw::draw(bool start){
     Settings* s = Settings::getInstance();
     if (start){
@@ -33,8 +34,6 @@ void RunningDraw::draw(bool start){
         //ofTranslate(40, 40);
         ofSetColor(0);
         ofRect(0, 0, s->getWidth(), s->getHeight());
-
-
 
     }
        // drawHeader();
@@ -46,8 +45,8 @@ void RunningDraw::drawWinner(){
     Settings* settings = Settings::getInstance();
     ofBackground(255);
 
-        ofSetColor(0);
-        ofRect(0, 0, settings->getWidth(), settings->getHeight());
+    ofSetColor(0);
+    ofRect(0, 0, settings->getWidth(), settings->getHeight());
     drawHeader();
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
@@ -105,6 +104,8 @@ void RunningDraw::drawTeams(bool start){
     ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
     ofSetColor(255);
     drawNavigate();
+    
+    
     //drawTitle(s->getRunningTitle());
     //drawGrid();
     //drawGrid();
