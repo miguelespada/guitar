@@ -112,8 +112,9 @@ void RunningDraw::drawTeams(bool start){
 
     if (start){
         drawNavigate();
-    }
+
     drawLateralBands();
+    }
 
     //drawTitle(s->getRunningTitle());
     //drawGrid();
