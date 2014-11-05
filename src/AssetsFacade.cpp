@@ -36,19 +36,6 @@ void AssetsFacade::drawText(string t){
     Assets::getInstance()->text.setColor(255,255,255,255);
     Assets::getInstance()->text.drawCenter(x,y);
 }
-void AssetsFacade::updateVideo(){
-    Assets::getInstance()->video.update();
-}
-void AssetsFacade::drawVideo(float x, float y){
-    Assets::getInstance()->video.draw(x,y,ofGetWidth(), ofGetHeight());
-}
-void AssetsFacade::playVideo(){
 
-    Assets::getInstance()->video.setLoopState(OF_LOOP_NORMAL);
-    Assets::getInstance()->video.play();
-}
-void AssetsFacade::stopVideo(){
-    Assets::getInstance()->video.stop();
-}
 
 

@@ -31,9 +31,10 @@ Assets* Assets::getInstance(){
 void Assets::load(){
      string assets_path = Settings::getInstance()->assetsPath();
 
-    video.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
-     loop.loadMovie(ofToDataPath(assets_path + "the_sub_loop.mov"));
      tunnel.loadMovie(ofToDataPath(assets_path + "SOLO_TUNEL3.mp4"));
+
+     theSub.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
+    navigate_the_sub.loadMovie(ofToDataPath(assets_path + "the_sub_loop.mov"));
 
     text.init(ofToDataPath(settings->getFont()), 24);
 
@@ -47,9 +48,6 @@ void Assets::load(){
     intro_background.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
 
-    filename = assets_path + "navigate-the-sub.jpg";
-    navigate_the_sub.loadImage(filename);
-    ofLogNotice() << "Loading: " << filename;
 
     filename = assets_path + "logo.jpg";
     logo.loadImage(filename);

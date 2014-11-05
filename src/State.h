@@ -99,6 +99,7 @@ public:
     void push();
     void jump();
     void notify(Action *action);
+    void update();
 
     std::string toString() {
         return "Finishing";
@@ -115,12 +116,13 @@ public:
     ~WINNER(){};
 
     float timer;
+    void draw();
     void push();
+    void notify(Action *action);
 
     std::string toString() {
         return "Winner";
     }
-    void draw();
 };
 
 //========================================================================

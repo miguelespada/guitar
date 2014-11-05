@@ -26,6 +26,7 @@ void RunningDraw::drawLogo(){
     Settings * settings = Settings::getInstance();
     Assets::getInstance()->logo.draw(settings->getLogoX(), settings->getLogoY(), settings->getLogoWidth(), settings->getLogoHeight());
 }
+
 void RunningDraw::draw(bool start){
     Settings* s = Settings::getInstance();
     if (start){
@@ -34,20 +35,20 @@ void RunningDraw::draw(bool start){
         ofSetColor(0);
         ofRect(0, 0, s->getWidth(), s->getHeight());
 
-
-
     }
        // drawHeader();
-        drawTeams(start);
+    drawTeams(start);
+    if(start){
         drawLogo();
+    }
 
 }
 void RunningDraw::drawWinner(){
     Settings* settings = Settings::getInstance();
     ofBackground(255);
 
-        ofSetColor(0);
-        ofRect(0, 0, settings->getWidth(), settings->getHeight());
+    ofSetColor(0);
+    ofRect(0, 0, settings->getWidth(), settings->getHeight());
     drawHeader();
     ofPushMatrix();
     ofTranslate(0, Settings::getInstance()->getHeaderHeight());
@@ -95,26 +96,33 @@ void RunningDraw::drawTeams(bool start){
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->draw(start);
         ofTranslate(s->getWidth() - s->getPlayerMargin()*2, 0);
-        ofScale(-1, -1);
+        ofScale(-1, 1);
     }
 
     ofPopMatrix();
 
-    drawTeamScores(start);
+    if (start){
+        drawTeamScores();
+    }
     ofSetColor(0);
     ofRect(s->getCentralImageX() - s->getPlayerCentralImageSeparation(), s->getHeaderHeight() , s->getCentralImageWidth() + 2 * s->getPlayerCentralImageSeparation(), s->getPlayerHeight()*2 + s->getPlayerSeparation());
     ofSetColor(255);
-    //drawNavigate();
+
+
+    if (start){
+        drawNavigate();
+    }
+
     //drawTitle(s->getRunningTitle());
     //drawGrid();
     //drawGrid();
 }
-void RunningDraw::drawTeamScores(bool start){
+void RunningDraw::drawTeamScores(){
     vector<Team*>  teams = running_model->getTeams();
 
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
-        (*t)->drawTeamScore(start);
+        (*t)->drawTeamScore();
 
     }
 }
@@ -144,7 +152,7 @@ void RunningDraw::drawGrid(){
 
     float d = 11.3125 * scale;
     for (int i = 0; i < 16 ; i++){
-        if(i%4 == 0){
+        if(i % 4 == 0){
             ofSetColor(255,0,0);
         }else{
             ofSetColor(255,255,255);

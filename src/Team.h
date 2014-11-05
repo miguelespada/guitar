@@ -25,7 +25,7 @@ public:
     void modifyScore(int value);
     int getScore();
     ofColor getPlayerScoringColor();
-    void drawTeamScore(bool start);
+    void drawTeamScore();
     vector<Player*> getPlayers();
     void drawWinner();
 

@@ -26,12 +26,6 @@ public:
     void drawIntro();
     void draw_background();
     void drawText(string t);
-    void updateVideo();
-    void drawVideo(float x, float y);
-    void playVideo();
-    void stopVideo();
-
-    ofVideoPlayer video;
 
 
 };

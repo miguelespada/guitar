@@ -16,7 +16,9 @@ IDLE::IDLE(Game *g){
     game = g;
     ofLogNotice() << "State: " << toString();
     changeText = false;
-    game->assetsFacade->playVideo();
+    Assets::getInstance()->theSub.setLoopState(OF_LOOP_NORMAL);
+    Assets::getInstance()->theSub.play();
+
 
 };
 
@@ -34,17 +36,17 @@ void IDLE::draw(){
 //        game->assetsFacade->drawText("COMIENZA LA INMERSIÓN");
 //    }
 
-    game->assetsFacade->drawVideo(0,0);
+
+    Assets::getInstance()->theSub.draw(0, 0, ofGetWidth(), ofGetHeight());
 };
 void IDLE::update(){
-
-   game->assetsFacade->updateVideo();
-
+   // gameLogic->update();
+    Assets::getInstance()->theSub.update();
 }
 void IDLE::push()
-{   game->assetsFacade->stopVideo();
+{
+    Assets::getInstance()->theSub.stop();
     game->setCurrent(new STARTING(game));
-    game->assetsFacade->stopVideo();
     delete this;
 };
 
@@ -62,7 +64,8 @@ STARTING::STARTING(Game *g){
 
 void STARTING::draw(){
 
-    Assets::getInstance()->tunnel.draw(0,0);
+    Assets::getInstance()->tunnel.draw(0, 0, ofGetWidth(), ofGetHeight());
+
 
 };
 void STARTING::update(){
@@ -74,6 +77,7 @@ void STARTING::update(){
 
 void STARTING::push()
 {
+
     game->setCurrent(new RUNNING(game, gameLogic));
     delete this;
 };
@@ -97,10 +101,13 @@ RUNNING::RUNNING(Game *g, GameLogic* gLogic){
     ofLogNotice() << "State: " << toString();
     game->songManager->playNextSong();
     game->songManager->playSong();
+    Assets::getInstance()->navigate_the_sub.setLoopState(OF_LOOP_NORMAL);
+    Assets::getInstance()->navigate_the_sub.play();
 
 };
 
 void RUNNING::draw(){
+    Assets::getInstance()->navigate_the_sub.update();
     gameLogic->draw();
 
 };
@@ -111,6 +118,7 @@ void RUNNING::update(){
 
 void RUNNING::push()
 {
+    Assets::getInstance()->navigate_the_sub.stop();
 
     game->setCurrent(new FINISHING(game, gameLogic));
 
@@ -133,11 +141,13 @@ FINISHING::FINISHING(Game *g, GameLogic* gLogic){
 }
 
 void FINISHING::draw(){
-    ofBackground(255);
-    ofSetColor(0);
-    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
-    gameLogic->getRunningDraw()->draw(false);
+    Assets::getInstance()->tunnel.draw(0, 0, ofGetWidth(), ofGetHeight());
+
+
 };
+void FINISHING::update(){
+    Assets::getInstance()->tunnel.update();
+}
 
 void FINISHING::push()
 {
@@ -164,8 +174,16 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
 }
 
 void WINNER::draw(){
-    gameLogic->getRunningDraw()->drawWinner();
-    gameLogic->getRunningDraw()->drawFinalScore();
+    ofBackground(255);
+    ofSetColor(0);
+    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
+    gameLogic->getRunningDraw()->draw(false);
+  //  gameLogic->getRunningDraw()->drawWinner();
+  //  gameLogic->getRunningDraw()->drawFinalScore();
+};
+
+void WINNER::notify(Action *action){
+    gameLogic->notify(action);
 };
 
 void WINNER::push()

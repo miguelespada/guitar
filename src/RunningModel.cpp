@@ -15,7 +15,6 @@ RunningModel::RunningModel()
         teams.push_back(team);
         team = NULL;
     }
-    Assets::getInstance()->loop.setLoopState(OF_LOOP_NORMAL);
 
 }
 
