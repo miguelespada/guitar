@@ -38,7 +38,8 @@ void ofApp::setup(){
     MidiAdapter::getInstance()->registerObserver(&game);
 
     ofEnableAlphaBlending();
-
+    
+    ofSetWindowShape(1920 * SCALE, 1080 * SCALE);
 }
 
 //--------------------------------------------------------------
