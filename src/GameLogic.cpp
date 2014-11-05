@@ -16,7 +16,10 @@ GameLogic::GameLogic(){
     commands.push_back(new PlayerOff("/player_off"));
     commands.push_back(new Beat("/beat"));
     commands.push_back(new Subbeat("/subbeat"));
+    commands.push_back(new Compass("/compass"));
     constructRunningServices();
+    
+    setSpeed(1);
 };
 
 
@@ -74,6 +77,10 @@ void GameLogic::destroyRunningServices(){
     running_model = NULL;
     running_logic = NULL;
     running_draw = NULL;
+}
+
+void GameLogic::setSpeed(int v){
+    Settings::getInstance()->setSpeed(v);
 }
 
 RunningModel* GameLogic::getRunningModel(){

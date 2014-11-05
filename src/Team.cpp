@@ -100,11 +100,12 @@ ofColor Team::getPlayerScoringColor(){
 }
 
 
-void Team::drawTeamScore(){
+void Team::drawTeamScore(bool start){
     int team_x = Settings::getInstance()->getTeamScoreX(id);
     float stringWidth = score_text.stringWidth(ofToString(team_score));
     float stringHeight = score_text.stringHeight(ofToString(team_score));
-    ofSetColor( getPlayerScoringColor());
+    ofSetColor(getPlayerScoringColor());
+    if (!start) ofSetColor(255,255,255,255);
     if(id == 0){
        score_text.drawString(ofToString(team_score), team_x + 5, Settings::getInstance()->getHeaderHeight() / 2 + stringHeight + 5);
     }else{

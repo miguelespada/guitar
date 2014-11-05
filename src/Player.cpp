@@ -54,6 +54,7 @@ void Player::setOn(){
 }
 
 void Player::setOff(){
+
     inactivity_counter = 0;
     bDown = false;
     height = y_down - y_up;
@@ -63,7 +64,7 @@ void Player::draw(bool start){
     ofPushStyle();
     drawBackground();
 
-    drawIcon();
+    drawIcon(start);
     if(start){
             drawBlocks();
         if (!isInactive()){
@@ -80,12 +81,6 @@ void Player::draw(bool start){
 
 
 
-    ofPopStyle();
-}
-void Player::drawForStarting(){
-    ofPushStyle();
-    drawBackground();
-    drawIcon();
     ofPopStyle();
 }
 
@@ -129,11 +124,11 @@ void Player::drawGradients(){
 
 }
 
-void Player::drawIcon(){
+void Player::drawIcon(bool start){
     int y =  bDown ? y_down : y_up;
 
     ofPath icon;
-    ofColor color = inBlock ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
+    ofColor color = inBlock && start ? Settings::getInstance()->getColor("white") : Settings::getInstance()->getPlayerColor(team->getId(), id);
     icon.setFillColor(color);
 
     //upper cap
@@ -275,13 +270,17 @@ string Player::getPlayerScoreToString(){
 }
 
 void Player::enterBlock(){
-    if(bDown)
+    if(bDown){
         MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
+        bInNote = true;
+    }
 }
 
 void Player::exitBlock(){
-    if(!bDown)
+    if(bInNote){
         MidiAdapter::getInstance()->sendNoteOn(getGlobalId());
+        bInNote = false;
+    }
 }
 
 void Player::updateBlocks(){

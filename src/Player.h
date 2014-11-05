@@ -46,7 +46,7 @@ private:
 
     void drawBlocks();
     void drawBackground();
-    void drawIcon();
+    void drawIcon(bool start);
     void drawHeader();
 
 
@@ -67,6 +67,8 @@ private:
     GameBlock* getFirstBlockEnabled();
 
     void eraseBlock(int position);
+    bool bInNote = false;
+
     int getBlockScore(GameBlock* block);
     void updateInactivityCounter();
     void drawInactivityPanel();
@@ -74,7 +76,6 @@ private:
 protected:
 
 public:
-     void drawForStarting();
     Player();
     Player(int id, Team* team);
     virtual ~Player();
@@ -105,7 +106,6 @@ public:
     void updateBonus();
     ofColor getBlockPaintingColor();
     bool isInactive();
-
 };
 
 
