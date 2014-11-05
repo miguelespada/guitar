@@ -98,7 +98,7 @@ private:
     Json::Value getData(string key);
     float speed = 1;
 
-    int BLOCK_SEPARATION = 2;
+    int BLOCK_SEPARATION = 4;
 
 
 };
