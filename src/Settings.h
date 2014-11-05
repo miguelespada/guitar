@@ -12,7 +12,7 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
-#define SCALE 1
+#define SCALE 0.5
 
 class Settings{
 public:
@@ -62,7 +62,7 @@ public:
     const float PIECE_SIZE = getPlayerWidth()/32;
     const int MAX_BLOCK_PIECES = 20;
     const int MAX_PLAYER_PIECES = 150;
-    const int BLOCK_SEPARATION = 2;
+    const int BLOCK_SEPARATION = 4;
     const int PIECE_WIDTH = getPlayerInnerRadius() * 2;
     const int PIECE_SCORE = 10;
 
