@@ -407,5 +407,8 @@ void Player::setPerfectBlocks(int value){
     perfect_blocks = value;
 }
 
+int Player::getPlayerScore(){
+    return player_score;
+}
 
 

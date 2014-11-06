@@ -71,3 +71,17 @@ Player* RunningLogic::getPlayer(int player){
     return running_model->getPlayer(team, id);
 }
 
+void RunningLogic::calculateWinners(){
+    vector<Team*> teams = running_model->getTeams();
+
+    int score_0 = teams.front()->getScore();
+    int score_1 = teams.back()->getScore();
+    if (score_0 == score_1){
+        teams.front()->setWinner(true);
+        teams.back()->setWinner(true);
+    } else {
+        teams.front()->setWinner(score_0 > score_1);
+        teams.back()->setWinner(!(score_0 > score_1));
+    }
+}
+

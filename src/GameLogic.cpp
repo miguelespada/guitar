@@ -91,3 +91,7 @@ RunningModel* GameLogic::getRunningModel(){
 RunningDraw* GameLogic::getRunningDraw(){
     return running_draw;
 }
+
+RunningLogic* GameLogic::getRunningLogic(){
+    return running_logic;
+}

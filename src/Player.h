@@ -41,13 +41,10 @@ private:
 
     int inactivity_counter = 100000;
 
-
-
     void drawBlocks();
     void drawBackground();
     void drawIcon(bool start);
     void drawHeader();
-
 
     void drawGradients();
 
@@ -105,6 +102,7 @@ public:
     void updateBonus();
     ofColor getBlockPaintingColor();
     bool isInactive();
+    int getPlayerScore();
 };
 
 
