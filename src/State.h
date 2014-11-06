@@ -118,6 +118,7 @@ public:
     ~WINNER();
 
     float timer;
+    void update();
     void push();
     void notify(Action *action);
 
