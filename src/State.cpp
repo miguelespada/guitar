@@ -211,7 +211,6 @@ void WINNER::update(){
 }
 void WINNER::push(){
     game->setCurrent(new IDLE(game, gameLogic));
-    Assets::getInstance()->theSub.stop();
     delete this;
 };
 
