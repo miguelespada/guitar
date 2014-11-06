@@ -20,6 +20,7 @@ class State
 {
 public:
     Game *game;
+    float timer;
     virtual void push() =0;
     GameLogic* gameLogic;
     virtual void jump() {};
@@ -58,7 +59,6 @@ class STARTING: public State
 public:
     STARTING(Game *c, GameLogic* gLogic);
     ~STARTING(){};
-
     void push();
     void jump();
     void notify(Action *action);

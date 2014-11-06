@@ -46,18 +46,13 @@ void RunningDraw::draw(bool start){
 void RunningDraw::drawWinner(){
     Settings* settings = Settings::getInstance();
 
-    ofPushMatrix();
-    ofTranslate(0, Settings::getInstance()->getHeaderHeight());
 
     vector<Team*> teams = running_model->getTeams();
     std::vector<Team*>::const_iterator t;
     for(t=teams.begin(); t!=teams.end(); ++t){
         (*t)->drawWinner();
-        ofTranslate(settings->getWidth(), settings->getPlayerHeight() * 2 + settings->getPlayerSeparation() *2);
-        ofScale(-1, 1);
     }
 
-    ofPopMatrix();
 }
 
 RunningModel* RunningDraw::getRunningModel(){
@@ -110,7 +105,7 @@ void RunningDraw::drawTeams(bool start){
         drawNavigate();
 
     drawLateralBands();
-    drawTitle(s->getTitleImage(false));
+    drawTitle(s->getTitleImage());
     }
 
 

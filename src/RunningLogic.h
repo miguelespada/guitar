@@ -24,6 +24,7 @@ public:
     void playerOff(int player);
     void update();
     void generateBlocks();
+    void calculateWinners();
 
 protected:
 private:

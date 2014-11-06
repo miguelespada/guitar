@@ -65,6 +65,8 @@ STARTING::STARTING(Game *g, GameLogic* gLogic){
     gameLogic = gLogic;
     ofLogNotice() << "State: " << toString();
     Assets::getInstance()->tunnel.play();
+
+    timer = ofGetElapsedTimeMillis();
 }
 
 void STARTING::draw(){
@@ -76,6 +78,9 @@ void STARTING::draw(){
 void STARTING::update(){
 
    Assets::getInstance()->tunnel.update();
+
+    if(ofGetElapsedTimeMillis() - timer > 4000)
+        push();
 
 }
 
@@ -143,6 +148,8 @@ FINISHING::FINISHING(Game *g, GameLogic* gLogic){
     ofLogNotice() << "State: " << toString();
     gameLogic = gLogic;
     Assets::getInstance()->clip.setLoopState(OF_LOOP_NORMAL);
+    Assets::getInstance()->clip.play();
+    timer = ofGetElapsedTimeMillis();
 }
 
 void FINISHING::draw(){
@@ -152,6 +159,9 @@ void FINISHING::draw(){
 };
 void FINISHING::update(){
     Assets::getInstance()->clip.update();
+
+    if(ofGetElapsedTimeMillis() - timer > 2500)
+        push();
 }
 
 void FINISHING::push(){
@@ -175,7 +185,9 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
     gameLogic = gLogic;
+    gameLogic->getRunningLogic()->calculateWinners();
     timer = ofGetElapsedTimeMillis();
+    Assets::getInstance()->theSub.play();
 }
 
 WINNER::~WINNER(){
@@ -188,6 +200,7 @@ void WINNER::draw(){
     gameLogic->getRunningDraw()->draw(false);
     gameLogic->getRunningDraw()->drawWinner();
     gameLogic->getRunningDraw()->drawTitle(Settings::getInstance()->getResultTitleImage());
+
 };
 
 void WINNER::notify(Action *action){

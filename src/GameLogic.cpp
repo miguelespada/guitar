@@ -20,6 +20,8 @@ GameLogic::GameLogic(){
     constructRunningServices();
 
     setSpeed(0.5);
+    Settings::getInstance()->current_title = 0;
+    
 };
 
 
@@ -88,4 +90,8 @@ RunningModel* GameLogic::getRunningModel(){
 }
 RunningDraw* GameLogic::getRunningDraw(){
     return running_draw;
+}
+
+RunningLogic* GameLogic::getRunningLogic(){
+    return running_logic;
 }

@@ -59,9 +59,7 @@ void RunningLogic::generateBlocks(){
             }
             bool position_down = round(ofRandom(0,1));
             ofColor color = Settings::getInstance()->getPlayerColor(team, player);
-            //if (ofRandom(0,100) < 12){
-                model->addNewBlock(team, player, position_down, block_pieces);
-           // }
+            model->addNewBlock(team, player, position_down, block_pieces);
         }
     }
     model = NULL;
@@ -71,5 +69,19 @@ Player* RunningLogic::getPlayer(int player){
     int team = player / 2;
     int id = player % 2;
     return running_model->getPlayer(team, id);
+}
+
+void RunningLogic::calculateWinners(){
+    vector<Team*> teams = running_model->getTeams();
+
+    int score_0 = teams.front()->getScore();
+    int score_1 = teams.back()->getScore();
+    if (score_0 == score_1){
+        teams.front()->setWinner(true);
+        teams.back()->setWinner(true);
+    } else {
+        teams.front()->setWinner(score_0 > score_1);
+        teams.back()->setWinner(!(score_0 > score_1));
+    }
 }
 
