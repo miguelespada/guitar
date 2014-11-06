@@ -12,7 +12,7 @@
 #include "ofxJSON.h"
 #include "ofMain.h"
 
-#define SCALE 1
+#define SCALE 0.5
 
 class Settings{
 public:

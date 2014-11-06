@@ -83,6 +83,11 @@ void ofApp::keyPressed(int key){
             ofLogNotice() << "[MIDI for player] " << key - '1';
             MidiAdapter::getInstance()->sendNoteOn(key - '1');
             break;
+        case '0':
+        case '5' ... '9':
+            ofLogNotice() << "[MIDI effect] " << key - '0';
+            MidiAdapter::getInstance()->sendNoteOn(key - '0');
+            break;
         case 'f':
             ofToggleFullscreen();
             break;

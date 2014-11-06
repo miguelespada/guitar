@@ -29,6 +29,7 @@ public:
     void setMidiAndNext();
     string toString();
     string help();
+    bool bFirstTime = true;
 };
 
 
