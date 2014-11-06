@@ -28,7 +28,7 @@ IDLE::IDLE(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
     changeText = false;
-    gameLogic = gLogic;//new GameLogic();
+    gameLogic = new GameLogic();
     gameLogic->destroyRunningServices();
     gameLogic->constructRunningServices();
     Assets::getInstance()->theSub.setLoopState(OF_LOOP_NORMAL);
