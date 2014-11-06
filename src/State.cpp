@@ -155,7 +155,7 @@ void FINISHING::draw(){
 void FINISHING::update(){
     Assets::getInstance()->tunnel.update();
     
-    if(ofGetElapsedTimeMillis() - timer > 4000)
+    if(ofGetElapsedTimeMillis() - timer > 2500)
         push();
 }
 

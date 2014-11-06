@@ -236,7 +236,7 @@ ofImage Settings::getRandomPhrase(bool winner){
     int i = winner ? round(ofRandom(1,6)) : round(ofRandom(1,5));
     string filename = s + ofToString(i);
     ofImage img;
-    img.loadImage(ofToDataPath(assetsPath() + "glows/juego" + filename + ".png"));
+    img.loadImage(ofToDataPath(assetsPath() + "glows/" + filename + ".png"));
 
     return img;
 
