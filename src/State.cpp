@@ -87,9 +87,9 @@ void STARTING::update(){
 
 void STARTING::push()
 {
-
+    
     game->setCurrent(new RUNNING(game, gameLogic));
-    Assets::getInstance()->tunnel.update();
+    Assets::getInstance()->tunnel.stop();
     delete this;
 };
 
@@ -167,7 +167,7 @@ void FINISHING::update(){
 
 void FINISHING::push(){
     game->setCurrent(new WINNER(game, gameLogic));
-    Assets::getInstance()->tunnel.update();
+    Assets::getInstance()->clip.stop();
     delete this;
 };
 
@@ -216,6 +216,8 @@ void WINNER::update(){
     Assets::getInstance()->theSub.update();
 }
 void WINNER::push(){
+    Assets::getInstance()->theSub.stop();
+
     game->setCurrent(new IDLE(game, gameLogic));
     delete this;
 };
