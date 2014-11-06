@@ -110,7 +110,7 @@ void RunningDraw::drawTeams(bool start){
         drawNavigate();
 
     drawLateralBands();
-    drawTitle(s->getTitleImage(false));
+    drawTitle(s->getTitleImage());
     }
 
 

@@ -52,9 +52,8 @@ public:
     ofColor getPlayerColor(int team, int id);
     string getFont();
     string getBoldFont();
-    string getRunningTitle();
     ofImage getIntroImage();
-    ofImage getTitleImage(bool mayday);
+    ofImage getTitleImage();
     ofImage getRandomPhrase(bool winner);
     ofImage getResultTitleImage();
 
@@ -87,6 +86,8 @@ public:
     float getLogoY();
     float getLogoWidth();
     float getLogoHeight();
+    int current_title = 0;
+
 
 private:
     static Settings* instance;
@@ -99,7 +100,6 @@ private:
     float speed = 1;
 
     int BLOCK_SEPARATION = 4;
-
 
 };
 #endif /* defined(__carrousel__Settings__) */
