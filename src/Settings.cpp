@@ -196,9 +196,7 @@ float Settings::getCentralImageWidth(){
 float Settings::getTitleY(){
     return   120 * SCALE;
 }
-string Settings::getRunningTitle(){
-    return "¡VAMOS, ATRÉVETE Y DEMUESTRA QUE ERES UN AUTÉNTICO CAPITÁN!";
-}
+
 float Settings::getLogoX(){
     return getWidth() / 2 - getLogoWidth() /2;
 }
@@ -224,18 +222,15 @@ ofImage Settings::getResultTitleImage(){
     img.loadImage(ofToDataPath(assets_path + "glows/"+ "resultados1.png"));
     return img;
 }
-ofImage Settings::getTitleImage(bool mayday){
+
+ofImage Settings::getTitleImage(){
     string filename;
-    if(mayday){
-        filename = "juego3.png";
-    }else{
-        filename = "juego1.png";
-    }
     string assets_path = assetsPath();
     ofImage img;
-    img.loadImage(ofToDataPath(assets_path + "glows/"+ filename));
+    img.loadImage(ofToDataPath(assets_path + "glows/juego" + ofToString(current_title + 1) + ".png"));
     return img;
 }
+
 ofImage Settings::getRandomPhrase(bool winner){
     string s = winner ? "winner" : "loser";
     int i = winner ? round(ofRandom(1,6)) : round(ofRandom(1,5));

@@ -53,6 +53,7 @@ void IDLE::update(){
 void IDLE::push(){
     Assets::getInstance()->theSub.stop();
     game->setCurrent(new STARTING(game, gameLogic));
+    Assets::getInstance()->theSub.stop();
     delete this;
 };
 
@@ -64,7 +65,7 @@ STARTING::STARTING(Game *g, GameLogic* gLogic){
     gameLogic = gLogic;
     ofLogNotice() << "State: " << toString();
     Assets::getInstance()->tunnel.play();
-    
+
     timer = ofGetElapsedTimeMillis();
 }
 
@@ -77,7 +78,7 @@ void STARTING::draw(){
 void STARTING::update(){
 
    Assets::getInstance()->tunnel.update();
-    
+
     if(ofGetElapsedTimeMillis() - timer > 4000)
         push();
 
@@ -87,6 +88,7 @@ void STARTING::push()
 {
 
     game->setCurrent(new RUNNING(game, gameLogic));
+    Assets::getInstance()->tunnel.update();
     delete this;
 };
 
@@ -129,6 +131,7 @@ void RUNNING::push()
     Assets::getInstance()->navigate_the_sub.stop();
     game->setCurrent(new FINISHING(game, gameLogic));
     game->songManager->stopSong();
+    Assets::getInstance()->navigate_the_sub.stop();
     delete this;
 };
 
@@ -144,23 +147,26 @@ FINISHING::FINISHING(Game *g, GameLogic* gLogic){
     game = g;
     ofLogNotice() << "State: " << toString();
     gameLogic = gLogic;
+    Assets::getInstance()->clip.setLoopState(OF_LOOP_NORMAL);
+    Assets::getInstance()->clip.play();
     timer = ofGetElapsedTimeMillis();
 }
 
 void FINISHING::draw(){
-    Assets::getInstance()->tunnel.draw(0, 0, ofGetWidth(), ofGetHeight());
+    Assets::getInstance()->clip.draw(0, 0, ofGetWidth(), ofGetHeight());
 
 
 };
 void FINISHING::update(){
-    Assets::getInstance()->tunnel.update();
-    
-    if(ofGetElapsedTimeMillis() - timer > 4000)
+    Assets::getInstance()->clip.update();
+
+    if(ofGetElapsedTimeMillis() - timer > 2500)
         push();
 }
 
 void FINISHING::push(){
     game->setCurrent(new WINNER(game, gameLogic));
+    Assets::getInstance()->tunnel.update();
     delete this;
 };
 
@@ -181,6 +187,7 @@ WINNER::WINNER(Game *g, GameLogic* gLogic){
     gameLogic = gLogic;
     gameLogic->getRunningLogic()->calculateWinners();
     timer = ofGetElapsedTimeMillis();
+    Assets::getInstance()->theSub.play();
 }
 
 WINNER::~WINNER(){
@@ -188,19 +195,24 @@ WINNER::~WINNER(){
 }
 
 void WINNER::draw(){
-    ofBackground(255);
-    ofSetColor(0);
-    ofRect(0, 0, Settings::getInstance()->getWidth(), Settings::getInstance()->getHeight());
+    ofBackground(0);
+    Assets::getInstance()->theSub.draw(0,0, ofGetWidth(), ofGetHeight());
     gameLogic->getRunningDraw()->draw(false);
     gameLogic->getRunningDraw()->drawWinner();
     gameLogic->getRunningDraw()->drawTitle(Settings::getInstance()->getResultTitleImage());
     
+    
+    if(ofGetElapsedTimeMillis() - timer > 5000)
+        push();
+
 };
 
 void WINNER::notify(Action *action){
     gameLogic->notify(action);
 };
-
+void WINNER::update(){
+    Assets::getInstance()->theSub.update();
+}
 void WINNER::push(){
     game->setCurrent(new IDLE(game, gameLogic));
     delete this;

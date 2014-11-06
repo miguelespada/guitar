@@ -20,6 +20,8 @@ GameLogic::GameLogic(){
     constructRunningServices();
 
     setSpeed(0.5);
+    Settings::getInstance()->current_title = 0;
+    
 };
 
 

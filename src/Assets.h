@@ -30,7 +30,7 @@ public:
     ofImage star;
 
     ofVideoPlayer tunnel;
-
+    ofVideoPlayer clip;
     ofVideoPlayer theSub;
     ofVideoPlayer navigate_the_sub;
 

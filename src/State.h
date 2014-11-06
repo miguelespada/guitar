@@ -117,6 +117,8 @@ public:
     WINNER(Game *g, GameLogic* gLogic);
     ~WINNER();
 
+    float timer;
+    void update();
     void push();
     void notify(Action *action);
 
