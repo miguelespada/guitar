@@ -59,6 +59,21 @@ void Assets::load(){
         ofLogNotice() << "Loading: " << filename;
     }
     
+    for(int i = 0; i < 3; i ++){
+        filename = assets_path + "glows/juego" + ofToString(i + 1) + ".png";
+        titleImage[i].loadImage(filename);
+        ofLogNotice() << "Loading: " << filename;
+    }
+    
+    filename = assets_path + "glows/intro.png";
+    introImage.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+    
+    filename = assets_path + "glows/resultados1.png";
+    resultados.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
+    
+    
     filename = assets_path + "gradientBlack.png";
     gradientBlack.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;

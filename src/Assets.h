@@ -36,6 +36,10 @@ public:
 
     ofImage gradients[4];
     ofImage gradientBlack;
+    ofImage titleImage[3];
+    ofImage introImage;
+    ofImage resultados;
+    
 private:
     static Assets* instance;
 

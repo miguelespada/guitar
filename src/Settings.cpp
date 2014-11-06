@@ -7,6 +7,7 @@
 //
 
 #include "Settings.h"
+#include "Assets.h"
 
 Settings::Settings(){
     ofLogVerbose() << "Constructing Settings ";
@@ -211,27 +212,18 @@ float Settings::getLogoHeight(){
 }
 
 ofImage Settings::getIntroImage(){
-    string assets_path = assetsPath();
-    ofImage img;
-    img.loadImage(ofToDataPath(assets_path + "glows/"+ "intro.png"));
-    return img;
+    return Assets::getInstance()->introImage;
 }
 ofImage Settings::getResultTitleImage(){
-    string assets_path = assetsPath();
-    ofImage img;
-    img.loadImage(ofToDataPath(assets_path + "glows/"+ "resultados1.png"));
-    return img;
+    return Assets::getInstance()->resultados;
 }
 
 ofImage Settings::getTitleImage(){
-    string filename;
-    string assets_path = assetsPath();
-    ofImage img;
-    img.loadImage(ofToDataPath(assets_path + "glows/juego" + ofToString(current_title + 1) + ".png"));
-    return img;
+    return Assets::getInstance()->titleImage[current_title];
 }
 
 ofImage Settings::getRandomPhrase(bool winner){
+    
     string s = winner ? "winner" : "loser";
     int i = winner ? round(ofRandom(1,6)) : round(ofRandom(1,5));
     string filename = s + ofToString(i);
