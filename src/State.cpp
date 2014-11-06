@@ -200,6 +200,10 @@ void WINNER::draw(){
     gameLogic->getRunningDraw()->draw(false);
     gameLogic->getRunningDraw()->drawWinner();
     gameLogic->getRunningDraw()->drawTitle(Settings::getInstance()->getResultTitleImage());
+    
+    
+    if(ofGetElapsedTimeMillis() - timer > 5000)
+        push();
 
 };
 
