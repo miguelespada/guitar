@@ -50,6 +50,7 @@ void IDLE::update(){
    // gameLogic->update();
     Assets::getInstance()->theSub.update();
 }
+
 void IDLE::push(){
     Assets::getInstance()->theSub.stop();
     game->setCurrent(new STARTING(game, gameLogic));
@@ -208,7 +209,8 @@ void WINNER::draw(){
 };
 
 void WINNER::notify(Action *action){
-    gameLogic->notify(action);
+    if(gameLogic != NULL)
+       gameLogic->notify(action);
 };
 void WINNER::update(){
     Assets::getInstance()->theSub.update();

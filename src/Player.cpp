@@ -106,12 +106,11 @@ void Player::drawGradients(){
     int width = Settings::getInstance()->getPlayerWidth();
     int height = Settings::getInstance()->getPlayerHeight();
 
+    
+    
     if(inBlock && !isInactive()){
-        ofColor color =  Settings::getInstance()->getPlayerColor(team->getId(), id);
-        for(int i = 0; i < width/2; i ++){
-            ofSetColor(color, ofMap(i, 0, width/2, 255, 0));
-            ofLine(i, 0, i, height);
-        }
+        
+        Assets::getInstance()->gradients[getGlobalId()].draw(0, 0, width/2, height);
     }
 
     ofColor backgroundColor = Settings::getInstance()->getColor("black");

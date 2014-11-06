@@ -1,9 +1,9 @@
 {
   "port" : 8080,
   "player_00" : "FF6A13",
-  "player_01" : "DDD100",
-  "player_10" : "BA0DAB3",
-  "player_11" : "B00C1D5",
+  "player_01" : "ffd100",
+  "player_10" : "a0dab3",
+  "player_11" : "00c1d5",
   "black" : "000000",
   "gray" : "191919",
   "red" : "f10e0e",

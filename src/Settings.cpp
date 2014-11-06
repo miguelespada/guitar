@@ -164,7 +164,7 @@ int Settings::getBonusMark(int bonus){
 }
 
 int Settings::getInactivityTime(){
-    return 10;
+    return 20;
 }
 
 int Settings::getTitleRUNNINGChangeTime(){

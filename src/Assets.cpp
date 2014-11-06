@@ -31,11 +31,6 @@ Assets* Assets::getInstance(){
 void Assets::load(){
      string assets_path = Settings::getInstance()->assetsPath();
 
-     tunnel.loadMovie(ofToDataPath(assets_path + "SOLO_TUNEL3.mp4"));
-
-     theSub.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
-     clip.loadMovie(ofToDataPath(assets_path + "CLIP_SUELTO_NEON_VERDE.mp4"));
-    navigate_the_sub.loadMovie(ofToDataPath(assets_path + "the_sub_loop.mov"));
 
 
     ofLogNotice() << "Loading assets from..." << assets_path;
@@ -56,6 +51,19 @@ void Assets::load(){
     filename = assets_path + "star.png";
     star.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
+    
+    
+    for(int i = 0; i < 4; i ++){
+        filename = assets_path + "gradientPlayer" + ofToString(i + 1) + ".png";
+        gradients[i].loadImage(filename);
+        ofLogNotice() << "Loading: " << filename;
+    }
+    
+    tunnel.loadMovie(ofToDataPath(assets_path + "SOLO_TUNEL3.mp4"));
+    
+    theSub.loadMovie(ofToDataPath(assets_path + "THE_SUB_3D_ORBIT.mp4"));
+    clip.loadMovie(ofToDataPath(assets_path + "CLIP_SUELTO_NEON_VERDE.mp4"));
+    navigate_the_sub.loadMovie(ofToDataPath(assets_path + "the_sub_loop.mov"));
 }
 
 

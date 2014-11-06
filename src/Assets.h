@@ -34,6 +34,7 @@ public:
     ofVideoPlayer theSub;
     ofVideoPlayer navigate_the_sub;
 
+    ofImage gradients[4];
 private:
     static Assets* instance;
 
