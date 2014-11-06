@@ -27,7 +27,8 @@ public:
     ofImage background;
     ofImage intro_background;
     ofImage logo;
-    
+    ofImage star;
+
     ofVideoPlayer tunnel;
 
     ofVideoPlayer theSub;

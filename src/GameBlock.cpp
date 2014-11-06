@@ -20,24 +20,25 @@ void GameBlock::update(){
     x = x - Settings::getInstance()->getMoveSize() * Settings::getInstance()->getSpeed();
 }
 
-void GameBlock::draw(int y, ofColor block_color){
+void GameBlock::draw(int y, ofColor block_color, int bonus){
     ofSetColor(255,0,0);
-    paintBlock(y, block_color);
+    paintBlock(y, block_color, bonus);
 }
 
-void GameBlock::paintBlock(int y, ofColor block_color){
+void GameBlock::paintBlock(int y, ofColor block_color, int bonus){
 
-    ofRectangle r;
-    r.x = x;
-    r.y = y;
+    if(bonus == 2 && pieces == 1){
+        Assets::getInstance()->star.draw(x, y,  Settings::getInstance()->PIECE_WIDTH*1.5,  Settings::getInstance()->PIECE_WIDTH*1.5);
+    } else {
+        ofRectangle r;
+        r.x = x;
+        r.y = y;
 
-    r.height = Settings::getInstance()->PIECE_WIDTH;
-    r.width = (pieces > 1) ? pieces * Settings::getInstance()->PIECE_SIZE : r.height;
-    //ofTranslate(-Settings::getInstance()->getPlayerMargin(), 0);
-    ofSetColor(block_color);
-    ofRectRounded(r, 20 * SCALE);
-   // ofTranslate(Settings::getInstance()->getPlayerMargin(), 0);
-
+        r.height = Settings::getInstance()->PIECE_WIDTH;
+        r.width = (pieces > 1) ? pieces * Settings::getInstance()->PIECE_SIZE : r.height;
+        ofSetColor(block_color);
+        ofRectRounded(r, 20 * SCALE);
+    }
 }
 bool GameBlock::isDown(){
     return bDown;

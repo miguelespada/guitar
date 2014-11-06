@@ -51,6 +51,10 @@ void Assets::load(){
     filename = assets_path + "logo.jpg";
     logo.loadImage(filename);
     ofLogNotice() << "Loading: " << filename;
+
+    filename = assets_path + "star.png";
+    star.loadImage(filename);
+    ofLogNotice() << "Loading: " << filename;
 }
 
 

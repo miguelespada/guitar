@@ -319,7 +319,7 @@ void Player::drawBlocks(){
     std::vector<GameBlock*>::const_iterator b;
     for(b=blocks.begin(); b!=blocks.end(); ++b){
         int yy = (*b)->isDown() ? y_down : y_up;
-        (*b)->draw(yy - inner_radius, color);
+        (*b)->draw(yy - inner_radius, color, bonus);
     }
 }
 

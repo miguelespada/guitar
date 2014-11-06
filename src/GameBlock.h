@@ -11,8 +11,9 @@
 
 #include "ofMain.h"
 #include "Settings.h"
+#include "Assets.h"
 
-#define N 6
+#define N 10
 class GameBlock
 {
 
@@ -31,11 +32,11 @@ public:
     GameBlock(int length, bool bDown);
 
     void update();
-    void draw(int y, ofColor block_color);
+    void draw(int y, ofColor block_color, int bonus);
     bool isDown();
     int getNumberOfPieces();
     void setNumberOfPieces(int num);
-    void paintBlock(int y, ofColor block_color);
+    void paintBlock(int y, ofColor block_color, int bonus);
     int pieceAtTheEnd();
     bool isOutOfMap();
     int getScore();
